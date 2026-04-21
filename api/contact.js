@@ -1,6 +1,21 @@
 // Vercel serverless function for contact form submission
 // This endpoint handles POST requests to /api/contact
-import { Resend } from 'resend';
+
+// Dynamic import for Resend to handle serverless environment
+let Resend;
+try {
+  Resend = (await import('resend')).default;
+} catch (importError) {
+  console.error('Failed to import Resend:', importError);
+  // Fallback for development
+  Resend = class MockResend {
+    async emails() {
+      return {
+        error: new Error('Resend package not available in serverless environment')
+      };
+    }
+  };
+}
 
 export default async function handler(req, res) {
   // Add CORS headers for all requests
