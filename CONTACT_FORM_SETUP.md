@@ -101,22 +101,38 @@ FROM_EMAIL=onboarding@resend.dev
 TO_EMAIL=hello@orzz5.dev
 ```
 
-## Email Service Integration (Future)
+## Email Service Integration (ACTIVE)
 
-### Resend Integration Example
-```javascript
-// In api/contact.js, uncomment and configure:
-import { Resend } from 'resend';
+### Resend Integration (Currently Implemented)
+The contact form now uses **Resend** for email delivery with the following features:
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-const { data, error } = await resend.emails.send({
-  from: process.env.FROM_EMAIL,
-  to: process.env.TO_EMAIL,
-  subject: `New Contact Form: ${sanitizedData.subject}`,
-  html: emailTemplate
-});
+#### Environment Variables Required:
+```bash
+RESEND_API_KEY=your_resend_api_key
+FROM_EMAIL=your_verified_sender_email
+TO_EMAIL=your_destination_email
 ```
+
+#### Email Features:
+- **Professional HTML template** with responsive design
+- **Secure email sending** via Resend API
+- **Reply-to functionality** for easy responses
+- **Submission details** (IP, timestamp, user agent)
+- **Error handling** with proper logging
+- **Rate limiting ready** (can be added)
+
+#### Email Template:
+- Modern gradient header matching portfolio design
+- Organized field display with proper formatting
+- Mobile-responsive layout
+- Professional styling with Inter font
+- Submission metadata for tracking
+
+#### Current Configuration:
+- **From**: Uses `process.env.FROM_EMAIL` or falls back to Resend default
+- **To**: Uses `process.env.TO_EMAIL` or falls back to placeholder
+- **Reply-To**: Set to submitter's email for easy response
+- **Subject**: Includes emoji and contact subject line
 
 ### Other Email Services
 - SendGrid
