@@ -120,8 +120,8 @@ const Hero = () => {
             variants={itemVariants}
             className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
           >
-            Passionate frontend developer and Discord bot creator specializing in building 
-            stunning web experiences and custom automation solutions that make people say "Wow!"
+            Frontend developer and Discord bot specialist focused on creating 
+            exceptional web applications and intelligent automation solutions
           </motion.p>
 
           {/* CTA Buttons */}

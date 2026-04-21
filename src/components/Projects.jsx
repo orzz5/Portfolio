@@ -45,86 +45,7 @@ const Projects = () => {
     },
   };
 
-  const projects = [
-    {
-      id: 1,
-      title: 'E-Commerce Platform',
-      description: 'A modern e-commerce solution with real-time inventory, payment processing, and admin dashboard.',
-      image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop',
-      category: 'web',
-      technologies: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      features: ['Real-time inventory', 'Payment processing', 'Admin dashboard', 'Responsive design'],
-      github: '#',
-      live: '#',
-      stats: { stars: 245, forks: 89, watchers: 12 },
-      status: 'completed'
-    },
-    {
-      id: 2,
-      title: 'Discord Community Bot',
-      description: 'Multi-purpose Discord bot with moderation, music, games, and custom commands for server management.',
-      image: 'https://images.unsplash.com/photo-1516035069379-86924e7d6bb4?w=800&h=400&fit=crop',
-      category: 'discord',
-      technologies: ['Discord.js', 'Node.js', 'SQLite', 'Webhooks'],
-      features: ['Moderation tools', 'Music player', 'Custom commands', 'Welcome messages'],
-      github: '#',
-      live: '#',
-      stats: { stars: 189, forks: 45, servers: '500+' },
-      status: 'completed'
-    },
-    {
-      id: 3,
-      title: 'Task Management App',
-      description: 'Collaborative task management application with real-time updates, drag-and-drop, and team features.',
-      image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800&h=400&fit=crop',
-      category: 'web',
-      technologies: ['React', 'Firebase', 'Material-UI', 'Redux'],
-      features: ['Real-time sync', 'Drag & drop', 'Team collaboration', 'Mobile app'],
-      github: '#',
-      live: '#',
-      stats: { stars: 156, forks: 67, users: '1.2k' },
-      status: 'completed'
-    },
-    {
-      id: 4,
-      title: 'Social Media Dashboard',
-      description: 'Analytics dashboard for social media management with scheduling and performance tracking.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop',
-      category: 'web',
-      technologies: ['Vue.js', 'Chart.js', 'Express', 'PostgreSQL'],
-      features: ['Multi-platform support', 'Analytics', 'Scheduling', 'Team management'],
-      github: '#',
-      live: '#',
-      stats: { stars: 298, forks: 112, users: '3.5k' },
-      status: 'completed'
-    },
-    {
-      id: 5,
-      title: 'Discord Music Bot',
-      description: 'Advanced music bot with high-quality audio, playlists, radio stations, and voice channel management.',
-      image: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&h=400&fit=crop',
-      category: 'discord',
-      technologies: ['Discord.js', 'YouTube API', 'Spotify API', 'Node.js'],
-      features: ['HD audio', 'Playlists', 'Radio stations', 'Voice management'],
-      github: '#',
-      live: '#',
-      stats: { stars: 412, forks: 156, servers: '1k+' },
-      status: 'completed'
-    },
-    {
-      id: 6,
-      title: 'Portfolio Website',
-      description: 'Modern portfolio website with 3D animations, dark mode, and optimized performance.',
-      image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&h=400&fit=crop',
-      category: 'web',
-      technologies: ['React', 'Three.js', 'TailwindCSS', 'Framer Motion'],
-      features: ['3D animations', 'Dark mode', 'Performance optimized', 'SEO friendly'],
-      github: '#',
-      live: '#',
-      stats: { stars: 178, forks: 89, visitors: '10k+' },
-      status: 'completed'
-    }
-  ];
+  const projects = [];
 
   const filters = [
     { id: 'all', label: 'All Projects', icon: Code },
@@ -276,10 +197,10 @@ const Projects = () => {
           {/* Section Title */}
           <motion.div variants={itemVariants} className="text-center">
             <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
-              Featured Projects
+              Projects
             </h2>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              Explore my latest work showcasing frontend development and Discord bot creation expertise
+              Coming soon - showcasing my latest work in frontend development and Discord bot creation
             </p>
           </motion.div>
 
@@ -306,11 +227,33 @@ const Projects = () => {
           </motion.div>
 
           {/* Projects Grid */}
-          <motion.div variants={itemVariants} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
-            ))}
-          </motion.div>
+          {filteredProjects.length > 0 ? (
+            <motion.div variants={itemVariants} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredProjects.map((project, index) => (
+                <ProjectCard key={project.id} project={project} index={index} />
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div variants={itemVariants} className="text-center py-16">
+              <div className="glass-effect rounded-2xl p-12 border border-purple-accent/20 max-w-2xl mx-auto">
+                <Code size={48} className="text-purple-accent mx-auto mb-4" />
+                <h3 className="text-2xl font-bold text-purple-accent mb-4">Projects Coming Soon</h3>
+                <p className="text-gray-300 mb-6">
+                  I'm currently working on some exciting projects that will be showcased here soon. 
+                  Check back later to see my latest work in web development and Discord bot creation.
+                </p>
+                <motion.a
+                  href="#contact"
+                  className="inline-flex items-center space-x-2 glow-button bg-gradient-to-r from-purple-accent to-purple-glow text-white px-6 py-3 rounded-lg"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <span>Get Notified</span>
+                  <ExternalLink size={16} />
+                </motion.a>
+              </div>
+            </motion.div>
+          )}
 
           {/* View More Button */}
           <motion.div variants={itemVariants} className="text-center pt-8">

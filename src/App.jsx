@@ -4,6 +4,7 @@ import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Technologies from './components/Technologies';
 import Projects from './components/Projects';
 import DiscordServices from './components/DiscordServices';
 import Contact from './components/Contact';
@@ -44,6 +45,7 @@ function App() {
         <main>
           <Hero />
           <About />
+          <Technologies />
           <Projects />
           <DiscordServices />
           <Contact />
