@@ -1,21 +1,6 @@
 // Vercel serverless function for contact form submission
 // This endpoint handles POST requests to /api/contact
-
-// Dynamic import for Resend to handle serverless environment
-let Resend;
-try {
-  Resend = (await import('resend')).default;
-} catch (importError) {
-  console.error('Failed to import Resend:', importError);
-  // Fallback for development
-  Resend = class MockResend {
-    async emails() {
-      return {
-        error: new Error('Resend package not available in serverless environment')
-      };
-    }
-  };
-}
+import { Resend } from 'resend';
 
 export default async function handler(req, res) {
   // Add CORS headers for all requests
@@ -164,9 +149,12 @@ export default async function handler(req, res) {
       });
     }
 
+    // Initialize Resend
+    const resendClient = new Resend(process.env.RESEND_API_KEY);
+
     // Send email using Resend
     try {
-      const { data, error } = await resend.emails.send({
+      const { data, error } = await resendClient.emails.send({
         from: process.env.FROM_EMAIL || 'noreply@orzz5.dev',
         to: process.env.TO_EMAIL,
         subject: `📧 New Contact: ${sanitizedData.subject}`,

@@ -1,19 +1,5 @@
 // Test endpoint to verify email configuration
-
-// Dynamic import for Resend to handle serverless environment
-let Resend;
-try {
-  Resend = (await import('resend')).default;
-} catch (importError) {
-  console.error('Failed to import Resend:', importError);
-  Resend = class MockResend {
-    async emails() {
-      return {
-        error: new Error('Resend package not available')
-      };
-    }
-  };
-}
+import { Resend } from 'resend';
 
 export default async function handler(req, res) {
   // Add CORS headers
@@ -45,11 +31,14 @@ export default async function handler(req, res) {
 
     console.log('Email configuration test:', config);
 
+    // Initialize Resend
+    const resendClient = new Resend(process.env.RESEND_API_KEY);
+
     // Test Resend connection
     let resendTest = 'Not tested';
     if (process.env.RESEND_API_KEY && process.env.TO_EMAIL) {
       try {
-        const { data, error } = await resend.emails.send({
+        const { data, error } = await resendClient.emails.send({
           from: process.env.FROM_EMAIL || 'test@resend.dev',
           to: process.env.TO_EMAIL,
           subject: '📧 Email Configuration Test',
