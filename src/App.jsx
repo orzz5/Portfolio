@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
@@ -11,7 +10,6 @@ import DiscordServices from './components/DiscordServices';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BackgroundAnimation from './components/BackgroundAnimation';
-import Admin from './pages/Admin';
 
 function App() {
   useEffect(() => {
@@ -40,26 +38,21 @@ function App() {
   }, []);
 
   return (
-    <Routes>
-      <Route path="/admin" element={<Admin />} />
-      <Route path="*" element={
-        <div className="relative min-h-screen bg-dark-bg">
-          <BackgroundAnimation />
-          <div className="relative z-10">
-            <Navbar />
-            <main>
-              <Hero />
-              <About />
-              <Technologies />
-              <Projects />
-              <DiscordServices />
-              <Contact />
-            </main>
-            <Footer />
-          </div>
-        </div>
-      } />
-    </Routes>
+    <div className="relative min-h-screen bg-dark-bg">
+      <BackgroundAnimation />
+      <div className="relative z-10">
+        <Navbar />
+        <main>
+          <Hero />
+          <About />
+          <Technologies />
+          <Projects />
+          <DiscordServices />
+          <Contact />
+        </main>
+        <Footer />
+      </div>
+    </div>
   );
 }
 
