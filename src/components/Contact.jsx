@@ -8,7 +8,6 @@ import {
   Github, 
   Linkedin, 
   Twitter, 
-  MessageCircle,
   Clock,
   CheckCircle,
   AlertCircle,
@@ -16,6 +15,8 @@ import {
   Briefcase,
   FileText
 } from 'lucide-react';
+import DiscordPresence from './DiscordPresence';
+import DiscordIcon from './DiscordIcon';
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -80,7 +81,7 @@ const Contact = () => {
       description: 'Get a response within 24 hours'
     },
     {
-      icon: MessageCircle,
+      icon: DiscordIcon,
       title: 'Discord',
       value: 'orzz5#1234',
       link: 'https://discord.com/users/667791939453583373',
@@ -90,9 +91,7 @@ const Contact = () => {
 
   const socialLinks = [
     { icon: Github, href: 'https://github.com/orzz5', label: 'GitHub', color: 'hover:text-gray-400' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn', color: 'hover:text-blue-400' },
-    { icon: Twitter, href: '#', label: 'Twitter', color: 'hover:text-blue-500' },
-    { icon: MessageCircle, href: 'https://discord.com/users/667791939453583373', label: 'Discord', color: 'hover:text-purple-400' }
+    { icon: DiscordIcon, href: 'https://discord.com/users/667791939453583373', label: 'Discord', color: 'hover:text-purple-400' }
   ];
 
   const projectTypes = [
@@ -212,6 +211,9 @@ const Contact = () => {
                 </div>
               </div>
 
+              {/* Discord Presence Widget */}
+              <DiscordPresence />
+
               {/* Availability */}
               <motion.div variants={itemVariants} className="glass-effect rounded-xl p-6 border border-purple-accent/20">
                 <div className="flex items-center space-x-3 mb-4">
@@ -329,7 +331,7 @@ const Contact = () => {
 
                   <div>
                     <label htmlFor="message" className="block text-sm font-medium text-purple-accent mb-2">
-                      <MessageCircle size={16} className="inline mr-2" />
+                      <DiscordIcon size={16} className="inline mr-2" />
                       Message
                     </label>
                     <textarea

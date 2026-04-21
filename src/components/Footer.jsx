@@ -2,26 +2,21 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   Github, 
-  Linkedin, 
-  Twitter, 
-  MessageSquare, 
   Mail, 
-  Phone,
   MapPin,
   Heart,
   ArrowUp,
   Code,
   Bot
 } from 'lucide-react';
+import DiscordIcon from './DiscordIcon';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
     { icon: Github, href: 'https://github.com/orzz5', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: MessageSquare, href: 'https://discord.com/users/667791939453583373', label: 'Discord' }
+    { icon: DiscordIcon, href: 'https://discord.com/users/667791939453583373', label: 'Discord' }
   ];
 
   const quickLinks = [
@@ -152,13 +147,6 @@ const Footer = () => {
                   className="flex items-center text-gray-300 text-sm"
                   whileHover={{ x: 5 }}
                 >
-                  <Phone size={14} className="mr-2" />
-                  +1 (555) 123-4567
-                </motion.div>
-                <motion.div
-                  className="flex items-center text-gray-300 text-sm"
-                  whileHover={{ x: 5 }}
-                >
                   <MapPin size={14} className="mr-2" />
                   Available Worldwide
                 </motion.div>
@@ -222,12 +210,6 @@ const Footer = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="flex items-center space-x-6 text-sm text-gray-400"
             >
-              <a href="#" className="hover:text-purple-accent transition-colors duration-200">
-                Privacy Policy
-              </a>
-              <a href="#" className="hover:text-purple-accent transition-colors duration-200">
-                Terms of Service
-              </a>
               <motion.button
                 onClick={scrollToTop}
                 className="flex items-center space-x-1 text-purple-accent hover:text-purple-glow transition-colors duration-200"
