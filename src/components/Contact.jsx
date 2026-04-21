@@ -108,18 +108,42 @@ const Contact = () => {
     setIsSubmitting(true);
     setFormStatus('');
 
-    // Simulate form submission
-    setTimeout(() => {
-      setFormStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        projectType: '',
-        message: ''
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setFormStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          projectType: '',
+          message: ''
+        });
+      } else {
+        // Handle validation errors or other errors
+        if (data.errors) {
+          // Display validation errors
+          const errorMessages = Object.values(data.errors).join(', ');
+          setFormStatus(`error: ${errorMessages}`);
+        } else {
+          setFormStatus(`error: ${data.message || 'Failed to send message'}`);
+        }
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setFormStatus('error: Failed to send message. Please try again later.');
+    } finally {
       setIsSubmitting(false);
-    }, 2000);
+    }
   };
 
   const handleChange = (e) => {
@@ -250,6 +274,17 @@ const Contact = () => {
                   >
                     <CheckCircle size={20} className="text-green-400" />
                     <span className="text-green-400">Message sent successfully! I'll get back to you soon.</span>
+                  </motion.div>
+                )}
+
+                {formStatus && formStatus.startsWith('error:') && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-lg flex items-center space-x-3"
+                  >
+                    <AlertCircle size={20} className="text-red-400" />
+                    <span className="text-red-400">{formStatus.replace('error:', '')}</span>
                   </motion.div>
                 )}
 
