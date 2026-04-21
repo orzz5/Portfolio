@@ -12,7 +12,6 @@ import {
   Users, 
   Clock, 
   CheckCircle, 
-  Star, 
   ArrowRight,
   Code,
   Database,
@@ -144,74 +143,6 @@ const DiscordServices = () => {
     }
   ];
 
-  const pricingPlans = [
-    {
-      name: 'Starter',
-      price: '$49',
-      period: 'one-time',
-      features: [
-        'Basic bot setup',
-        'Up to 10 custom commands',
-        '1 month support',
-        'Basic features'
-      ],
-      popular: false,
-      color: 'border-gray-600'
-    },
-    {
-      name: 'Professional',
-      price: '$149',
-      period: 'one-time',
-      features: [
-        'Advanced bot features',
-        'Up to 50 custom commands',
-        '3 months support',
-        'Database integration',
-        'API connections'
-      ],
-      popular: true,
-      color: 'border-purple-accent'
-    },
-    {
-      name: 'Enterprise',
-      price: '$299',
-      period: 'one-time',
-      features: [
-        'Custom development',
-        'Unlimited commands',
-        '6 months support',
-        'Advanced analytics',
-        'Priority updates',
-        'Source code included'
-      ],
-      popular: false,
-      color: 'border-gray-600'
-    }
-  ];
-
-  const testimonials = [
-    {
-      name: 'Alex Chen',
-      role: 'Server Owner',
-      content: 'The moderation bot transformed our server management. Automated everything we needed!',
-      rating: 5,
-      server: 'Gaming Community - 10K members'
-    },
-    {
-      name: 'Sarah Johnson',
-      role: 'Community Manager',
-      content: 'Best music bot we\'ve ever used. High quality audio and amazing features!',
-      rating: 5,
-      server: 'Music Lounge - 5K members'
-    },
-    {
-      name: 'Mike Williams',
-      role: 'Developer',
-      content: 'Custom bot development was exactly what we needed. Professional and fast delivery.',
-      rating: 5,
-      server: 'Dev Community - 2K members'
-    }
-  ];
 
   return (
     <section id="discord" className="py-20 relative">
@@ -300,87 +231,6 @@ const DiscordServices = () => {
             </div>
           </motion.div>
 
-          {/* Pricing Plans */}
-          <motion.div variants={itemVariants} className="space-y-8">
-            <h3 className="text-2xl font-bold text-center text-purple-accent">Pricing Plans</h3>
-            <div className="grid md:grid-cols-3 gap-8">
-              {pricingPlans.map((plan, index) => (
-                <motion.div
-                  key={index}
-                  className={`glass-effect rounded-2xl p-8 border ${plan.popular ? 'border-purple-accent shadow-purple-glow' : plan.color} relative`}
-                  whileHover={{ scale: 1.02, y: -5 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  {plan.popular && (
-                    <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                      <span className="px-4 py-1 bg-gradient-to-r from-purple-accent to-purple-glow text-white text-sm rounded-full font-medium">
-                        Most Popular
-                      </span>
-                    </div>
-                  )}
-                  
-                  <div className="text-center mb-6">
-                    <h4 className="text-xl font-bold text-purple-accent mb-2">{plan.name}</h4>
-                    <div className="flex items-baseline justify-center">
-                      <span className="text-3xl font-bold gradient-text">{plan.price}</span>
-                      <span className="text-gray-400 ml-2">/{plan.period}</span>
-                    </div>
-                  </div>
-                  
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((feature, featureIndex) => (
-                      <li key={featureIndex} className="flex items-center text-sm text-gray-300">
-                        <CheckCircle size={16} className="mr-3 text-green-400 flex-shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <motion.button
-                    className={`w-full py-3 rounded-lg font-medium transition-all duration-300 ${
-                      plan.popular
-                        ? 'bg-gradient-to-r from-purple-accent to-purple-glow text-white hover:shadow-purple-glow-hover'
-                        : 'glass-effect border border-purple-accent/50 text-purple-accent hover:bg-purple-accent/10'
-                    }`}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Get Started
-                  </motion.button>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* Testimonials */}
-          <motion.div variants={itemVariants} className="space-y-8">
-            <h3 className="text-2xl font-bold text-center text-purple-accent">Happy Clients</h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              {testimonials.map((testimonial, index) => (
-                <motion.div
-                  key={index}
-                  className="glass-effect rounded-xl p-6 border border-purple-accent/20"
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <div className="flex items-center mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} size={16} className="text-yellow-500 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-gray-300 mb-4 italic">"{testimonial.content}"</p>
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="font-semibold text-purple-accent">{testimonial.name}</div>
-                      <div className="text-sm text-gray-400">{testimonial.role}</div>
-                    </div>
-                    <div className="text-xs text-gray-500 text-right">
-                      {testimonial.server}
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
 
           {/* CTA Section */}
           <motion.div variants={itemVariants} className="text-center">

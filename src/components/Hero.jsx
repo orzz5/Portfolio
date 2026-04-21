@@ -151,11 +151,10 @@ const Hero = () => {
           {/* Stats */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 max-w-4xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-3xl mx-auto"
           >
             {[
               { number: '50+', label: 'Projects Completed' },
-              { number: '30+', label: 'Happy Clients' },
               { number: '15+', label: 'Discord Bots' },
               { number: '24/7', label: 'Support Available' },
             ].map((stat, index) => (

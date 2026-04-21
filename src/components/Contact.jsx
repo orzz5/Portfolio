@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { 
   Mail, 
-  Phone, 
   MapPin, 
   Send, 
   Github, 
@@ -72,13 +71,6 @@ const Contact = () => {
       value: 'orzz5#1234',
       link: '#',
       description: 'Available for quick chats'
-    },
-    {
-      icon: Phone,
-      title: 'Phone',
-      value: '+1 (555) 123-4567',
-      link: 'tel:+15551234567',
-      description: 'Mon-Fri, 9AM-6PM EST'
     }
   ];
 
