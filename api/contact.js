@@ -3,7 +3,17 @@
 import { Resend } from 'resend';
 
 export default async function handler(req, res) {
-  // Only allow POST requests
+  // Add CORS headers for all requests
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  // Handle OPTIONS requests for CORS preflight
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
+  // Only allow POST requests for contact form
   if (req.method !== 'POST') {
     return res.status(405).json({
       success: false,
@@ -151,9 +161,33 @@ export default async function handler(req, res) {
 
       if (error) {
         console.error('Resend API error:', error);
+        console.error('Error details:', {
+          message: error.message,
+          name: error.name,
+          statusCode: error.statusCode,
+          response: error.response?.data
+        });
+        
+        // Return more specific error message
+        let errorMessage = 'Failed to send message. Please try again later.';
+        
+        if (error.statusCode === 429) {
+          errorMessage = 'Rate limit exceeded. Please try again later.';
+        } else if (error.statusCode === 401) {
+          errorMessage = 'Authentication failed. Please check API configuration.';
+        } else if (error.statusCode === 403) {
+          errorMessage = 'Permission denied. Please check sender email configuration.';
+        } else if (error.message && error.message.includes('from')) {
+          errorMessage = 'Invalid sender email. Please check FROM_EMAIL configuration.';
+        }
+        
         return res.status(500).json({
           success: false,
-          message: 'Failed to send message. Please try again later.'
+          message: errorMessage,
+          debug: process.env.NODE_ENV === 'development' ? {
+            error: error.message,
+            statusCode: error.statusCode
+          } : undefined
         });
       }
 
@@ -168,9 +202,19 @@ export default async function handler(req, res) {
 
     } catch (emailError) {
       console.error('Email sending failed:', emailError);
+      console.error('Catch block error details:', {
+        message: emailError.message,
+        name: emailError.name,
+        stack: emailError.stack
+      });
+      
       return res.status(500).json({
         success: false,
-        message: 'Failed to send message. Please try again later.'
+        message: 'Failed to send message. Please try again later.',
+        debug: process.env.NODE_ENV === 'development' ? {
+          error: emailError.message,
+          stack: emailError.stack
+        } : undefined
       });
     }
 
