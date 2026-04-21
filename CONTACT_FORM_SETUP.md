@@ -108,10 +108,20 @@ The contact form now uses **Resend** for email delivery with the following featu
 
 #### Environment Variables Required:
 ```bash
+# Required - Must be configured in Vercel dashboard
 RESEND_API_KEY=your_resend_api_key
-FROM_EMAIL=your_verified_sender_email
 TO_EMAIL=your_destination_email
+
+# Optional - Custom sender email (must be verified in Resend)
+FROM_EMAIL=your_verified_sender_email
 ```
+
+#### Security Features:
+- **No hardcoded emails** in source code
+- **Environment variables only** for email configuration
+- **Server-side validation** prevents email exposure
+- **Fallback handling** for missing environment variables
+- **Error logging** without sensitive data
 
 #### Email Features:
 - **Professional HTML template** with responsive design

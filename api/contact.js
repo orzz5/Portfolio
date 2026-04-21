@@ -122,11 +122,28 @@ export default async function handler(req, res) {
       </html>
     `;
 
+    // Check required environment variables
+    if (!process.env.RESEND_API_KEY) {
+      console.error('RESEND_API_KEY environment variable is required');
+      return res.status(500).json({
+        success: false,
+        message: 'Server configuration error. Please contact administrator.'
+      });
+    }
+
+    if (!process.env.TO_EMAIL) {
+      console.error('TO_EMAIL environment variable is required');
+      return res.status(500).json({
+        success: false,
+        message: 'Server configuration error. Please contact administrator.'
+      });
+    }
+
     // Send email using Resend
     try {
       const { data, error } = await resend.emails.send({
-        from: process.env.FROM_EMAIL || 'onboarding@resend.dev',
-        to: process.env.TO_EMAIL || 'myemail@gmail.com',
+        from: process.env.FROM_EMAIL || 'noreply@orzz5.dev',
+        to: process.env.TO_EMAIL,
         subject: `📧 New Contact: ${sanitizedData.subject}`,
         html: emailHtml,
         replyTo: sanitizedData.email
