@@ -150,18 +150,7 @@ const Technologies = () => {
             </div>
           </motion.div>
 
-          {/* View All Technologies Button */}
-          <motion.div variants={itemVariants} className="text-center mt-12">
-            <motion.button
-              className="glass-effect border border-purple-accent/50 text-purple-accent px-8 py-4 rounded-full font-semibold text-lg hover:bg-purple-accent/10 transition-all duration-300 inline-flex items-center space-x-2"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span>View All Technologies</span>
-              <Wrench size={20} />
-            </motion.button>
-          </motion.div>
-        </motion.div>
+                  </motion.div>
       </div>
 
       <style jsx>{`
