@@ -17,7 +17,19 @@ export default async function handler(req, res) {
   }
 
   const adminKey = req.headers.authorization;
-  if (!adminKey || adminKey !== process.env.ADMIN_KEY) {
+  const expectedKey = process.env.ADMIN_KEY;
+
+  if (!adminKey) {
+    console.log('Missing Authorization header');
+    return res.status(401).json({
+      success: false,
+      error: 'Missing Authorization header'
+    });
+  }
+
+  if (adminKey !== expectedKey) {
+    console.log('Auth mismatch - received length:', adminKey.length, 'expected length:', expectedKey?.length);
+    console.log('Received key (first 3 chars):', adminKey.substring(0, 3) + '***');
     return res.status(401).json({
       success: false,
       error: 'Unauthorized'
