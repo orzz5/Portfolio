@@ -128,8 +128,8 @@ const About = () => {
               About Me
             </h2>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              I'm a passionate frontend developer and Discord bot creator with a love for building 
-              exceptional digital experiences that make a difference.
+              Frontend developer and Discord bot specialist focused on creating 
+              exceptional digital experiences.
             </p>
           </motion.div>
 
@@ -137,18 +137,12 @@ const About = () => {
           <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h3 className="text-2xl md:text-3xl font-bold text-purple-accent mb-4">
-                Turning Ideas Into Reality
+                About Me
               </h3>
               <p className="text-gray-300 leading-relaxed">
-                Hi! I'm orzz5, a creative developer who loves crafting beautiful, functional, 
-                and user-friendly digital experiences. With expertise in frontend development and 
-                Discord bot creation, I help businesses and individuals bring their ideas to life.
-              </p>
-              <p className="text-gray-300 leading-relaxed">
-                My journey started with a curiosity about how things work on the web, and it has 
-                evolved into a passion for creating solutions that not only look great but also 
-                provide real value to users. I specialize in React-based applications and custom 
-                Discord bots that automate tasks and enhance community engagement.
+                Hi! I'm orzz5, a frontend developer and Discord bot specialist 
+                who creates beautiful, functional digital experiences. I help bring ideas to life 
+                through React applications and custom Discord bots.
               </p>
               <div className="flex flex-wrap gap-4 pt-4">
                 {['Problem Solver', 'Creative Thinker', 'Team Player', 'Fast Learner'].map((trait) => (

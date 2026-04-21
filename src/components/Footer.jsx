@@ -18,10 +18,10 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
+    { icon: Github, href: 'https://github.com/orzz5', label: 'GitHub' },
     { icon: Linkedin, href: '#', label: 'LinkedIn' },
     { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: MessageSquare, href: '#', label: 'Discord' }
+    { icon: MessageSquare, href: 'https://discord.com/users/667791939453583373', label: 'Discord' }
   ];
 
   const quickLinks = [

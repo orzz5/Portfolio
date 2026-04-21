@@ -232,38 +232,7 @@ const DiscordServices = () => {
           </motion.div>
 
 
-          {/* CTA Section */}
-          <motion.div variants={itemVariants} className="text-center">
-            <div className="glass-effect rounded-2xl p-12 border border-purple-accent/20">
-              <h3 className="text-2xl font-bold gradient-text mb-4">
-                Ready to Transform Your Discord Server?
-              </h3>
-              <p className="text-gray-300 mb-8 max-w-2xl mx-auto">
-                Let's discuss your requirements and create a custom Discord bot that perfectly fits your community's needs
-              </p>
-              <motion.div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.a
-                  href="#contact"
-                  className="glow-button bg-gradient-to-r from-purple-accent to-purple-glow text-white px-8 py-4 rounded-full font-semibold inline-flex items-center justify-center space-x-2"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span>Start Your Project</span>
-                  <ArrowRight size={20} />
-                </motion.a>
-                <motion.a
-                  href="#"
-                  className="glass-effect border border-purple-accent/50 text-purple-accent px-8 py-4 rounded-full font-semibold inline-flex items-center justify-center space-x-2 hover:bg-purple-accent/10"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span>View Portfolio</span>
-                  <MessageSquare size={20} />
-                </motion.a>
-              </motion.div>
-            </div>
-          </motion.div>
-        </motion.div>
+                  </motion.div>
       </div>
     </section>
   );

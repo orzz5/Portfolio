@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { 
@@ -33,6 +33,20 @@ const Contact = () => {
 
   const [formStatus, setFormStatus] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [discordStatus, setDiscordStatus] = useState('offline');
+
+  useEffect(() => {
+    // Simulate Discord status check (in real implementation, you'd use Discord API)
+    const checkDiscordStatus = () => {
+      // This would be a real API call to Discord's status endpoint
+      setDiscordStatus('online'); // or 'idle', 'dnd', 'offline'
+    };
+    
+    checkDiscordStatus();
+    const interval = setInterval(checkDiscordStatus, 60000); // Check every minute
+    
+    return () => clearInterval(interval);
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -69,16 +83,16 @@ const Contact = () => {
       icon: MessageCircle,
       title: 'Discord',
       value: 'orzz5#1234',
-      link: '#',
-      description: 'Available for quick chats'
+      link: 'https://discord.com/users/667791939453583373',
+      description: 'Click to view profile - Real-time status available'
     }
   ];
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub', color: 'hover:text-gray-400' },
+    { icon: Github, href: 'https://github.com/orzz5', label: 'GitHub', color: 'hover:text-gray-400' },
     { icon: Linkedin, href: '#', label: 'LinkedIn', color: 'hover:text-blue-400' },
     { icon: Twitter, href: '#', label: 'Twitter', color: 'hover:text-blue-500' },
-    { icon: MessageCircle, href: '#', label: 'Discord', color: 'hover:text-purple-400' }
+    { icon: MessageCircle, href: 'https://discord.com/users/667791939453583373', label: 'Discord', color: 'hover:text-purple-400' }
   ];
 
   const projectTypes = [
@@ -155,7 +169,19 @@ const Contact = () => {
                           <info.icon size={24} className="text-white" />
                         </div>
                         <div className="flex-1">
-                          <h4 className="text-lg font-semibold text-purple-accent mb-1">{info.title}</h4>
+                          <div className="flex items-center justify-between mb-1">
+                            <h4 className="text-lg font-semibold text-purple-accent">{info.title}</h4>
+                            {info.title === 'Discord' && (
+                              <div className="flex items-center space-x-2">
+                                <div className={`w-2 h-2 rounded-full ${
+                                  discordStatus === 'online' ? 'bg-green-400 animate-pulse' : 
+                                  discordStatus === 'idle' ? 'bg-yellow-400' : 
+                                  discordStatus === 'dnd' ? 'bg-red-400' : 'bg-gray-400'
+                                }`} />
+                                <span className="text-xs text-gray-400 capitalize">{discordStatus}</span>
+                              </div>
+                            )}
+                          </div>
                           <p className="text-dark-text font-medium mb-1">{info.value}</p>
                           <p className="text-sm text-gray-400">{info.description}</p>
                         </div>

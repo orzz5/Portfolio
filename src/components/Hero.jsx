@@ -146,6 +146,18 @@ const Hero = () => {
             >
               Let's Connect
             </motion.a>
+            
+            <motion.a
+              href="https://github.com/orzz5"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass-effect border border-purple-accent/50 text-purple-accent px-8 py-4 rounded-full font-semibold text-lg hover:bg-purple-accent/10 transition-all duration-300"
+              whileHover={{ scale: 1.05, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Code size={20} className="mr-2" />
+              GitHub
+            </motion.a>
           </motion.div>
 
           {/* Stats */}
