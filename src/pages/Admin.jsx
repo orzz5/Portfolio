@@ -13,6 +13,12 @@ export default function Admin() {
   const [success, setSuccess] = useState('');
 
   useEffect(() => {
+    console.log('Environment variables available:', {
+      VITE_ADMIN_KEY: import.meta.env.VITE_ADMIN_KEY,
+      MODE: import.meta.env.MODE,
+      DEV: import.meta.env.DEV
+    });
+
     const storedAuth = localStorage.getItem('adminAuthenticated');
     if (storedAuth === 'true') {
       setIsAuthenticated(true);
@@ -34,6 +40,15 @@ export default function Admin() {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    
+    console.log('Admin key entered:', adminKey);
+    console.log('Expected key:', import.meta.env.VITE_ADMIN_KEY);
+    console.log('Environment check:', {
+      VITE_ADMIN_KEY: import.meta.env.VITE_ADMIN_KEY,
+      keyLength: adminKey.length,
+      match: adminKey === import.meta.env.VITE_ADMIN_KEY
+    });
+    
     if (adminKey === import.meta.env.VITE_ADMIN_KEY) {
       setIsAuthenticated(true);
       localStorage.setItem('adminAuthenticated', 'true');
