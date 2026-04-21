@@ -1,0 +1,71 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    @apply bg-dark-bg text-dark-text font-['Inter'] antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-['Space_Grotesk'];
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-purple-accent via-purple-glow to-purple-light bg-clip-text text-transparent;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 transform hover:scale-105 hover:shadow-purple-glow-hover;
+  }
+  
+  .glass-effect {
+    @apply bg-gradient-to-br from-purple-dark/20 to-purple-medium/20 backdrop-blur-md border border-purple-accent/20;
+  }
+  
+  .glow-button {
+    @apply relative overflow-hidden transition-all duration-300 before:absolute before:inset-0 before:bg-gradient-to-r before:from-purple-accent before:to-purple-glow before:opacity-0 hover:before:opacity-20 before:transition-opacity;
+  }
+  
+  .floating {
+    @apply animate-float;
+  }
+  
+  .glow-effect {
+    @apply animate-glow;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-purple-dark;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-purple-accent rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-purple-glow;
+}
+
+/* Selection text color */
+::selection {
+  @apply bg-purple-accent/30 text-white;
+}
