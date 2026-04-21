@@ -57,16 +57,25 @@ export default async function handler(req, res) {
           resendTest = 'Success';
         }
       } catch (testError) {
-        resendTest = `Error: ${testError.message}`;
       }
+    } catch (testError) {
+      testResult = `Error: ${testError.message}`;
     }
 
     res.status(200).json({
       success: true,
       message: 'Email configuration test completed',
       config,
-      resendTest,
-      timestamp: new Date().toISOString()
+      testResult,
+      timestamp: new Date().toISOString(),
+      instructions: config.hasFromEmail ? [
+        '1. Verify your domain at resend.com/domains',
+        '2. Add domain as verified sender in Resend dashboard',
+        '3. Update FROM_EMAIL environment variable if needed'
+      ] : [
+        '1. Configure FROM_EMAIL environment variable',
+        '2. Verify domain at resend.com/domains'
+      ]
     });
 
   } catch (error) {

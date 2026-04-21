@@ -149,8 +149,22 @@ export default async function handler(req, res) {
       });
     }
 
-    // Initialize Resend
-    const resendClient = new Resend(process.env.RESEND_API_KEY);
+    // Initialize Resend with error handling
+    let resendClient;
+    try {
+      resendClient = new Resend(process.env.RESEND_API_KEY);
+      console.log('Resend initialized successfully');
+    } catch (initError) {
+      console.error('Failed to initialize Resend:', initError);
+      return res.status(500).json({
+        success: false,
+        message: 'Email service initialization failed. Please try again later.',
+        debug: process.env.NODE_ENV === 'development' ? {
+          error: initError.message,
+          stack: initError.stack
+        } : undefined
+      });
+    }
 
     // Send email using Resend
     try {
