@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Lenis from 'lenis';
+import { LanguageProvider } from './contexts/LanguageContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -38,21 +39,23 @@ function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-dark-bg">
-      <BackgroundAnimation />
-      <div className="relative z-10">
-        <Navbar />
-        <main>
-          <Hero />
-          <About />
-          <Technologies />
-          <Projects />
-          <DiscordServices />
-          <Contact />
-        </main>
-        <Footer />
+    <LanguageProvider>
+      <div className="relative min-h-screen bg-dark-bg">
+        <BackgroundAnimation />
+        <div className="relative z-10">
+          <Navbar />
+          <main>
+            <Hero />
+            <About />
+            <Technologies />
+            <Projects />
+            <DiscordServices />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
       </div>
-    </div>
+    </LanguageProvider>
   );
 }
 
