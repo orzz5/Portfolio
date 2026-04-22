@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Github, Send, Briefcase, ChevronDown } from 'lucide-react';
+import { Github, Send, Briefcase, ChevronDown, User, Mail, FileText } from 'lucide-react';
 import DiscordPresence from './DiscordPresence';
+import DiscordIcon from './DiscordIcon';
 
 const Contact = () => {
   const [ref, inView] = useInView({
@@ -61,6 +62,17 @@ const Contact = () => {
     }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        delayChildren: 0.3,
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
   const itemVariants = {
     hidden: { y: 30, opacity: 0 },
     visible: {
@@ -87,6 +99,28 @@ const Contact = () => {
           </div>
 
           <DiscordPresence />
+
+          <motion.div variants={itemVariants} className="text-center mb-8">
+            <h3 className="text-2xl font-bold text-purple-accent mb-6">Connect on Social</h3>
+            <div className="flex justify-center space-x-4">
+              <motion.a
+                href="https://github.com/orzz5"
+                className="w-12 h-12 bg-purple-accent/20 rounded-lg flex items-center justify-center text-purple-accent hover:bg-purple-accent hover:text-white transition-all duration-300"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <Github size={20} />
+              </motion.a>
+              <motion.a
+                href="https://discord.com/users/667791939453583373"
+                className="w-12 h-12 bg-purple-accent/20 rounded-lg flex items-center justify-center text-purple-accent hover:bg-purple-accent hover:text-white transition-all duration-300"
+                whileHover={{ scale: 1.1, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <DiscordIcon size={20} />
+              </motion.a>
+            </div>
+          </motion.div>
 
           <motion.div variants={itemVariants}>
             <div className="glass-effect rounded-2xl p-8 border border-purple-accent/20 max-w-2xl mx-auto">

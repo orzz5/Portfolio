@@ -2,8 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   Github, 
-  Mail, 
-  MapPin,
   Heart,
   ArrowUp,
   Code,
@@ -47,7 +45,7 @@ const Footer = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Brand Section */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -125,67 +123,7 @@ const Footer = () => {
                 ))}
               </ul>
             </motion.div>
-
-            {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="space-y-4"
-            >
-              <h3 className="text-lg font-semibold text-purple-accent">Contact</h3>
-              <div className="space-y-3">
-                <motion.a
-                  href="mailto:hello@orzz5.dev"
-                  className="flex items-center text-gray-300 hover:text-purple-accent transition-colors duration-200 text-sm"
-                  whileHover={{ x: 5 }}
-                >
-                  <Mail size={14} className="mr-2" />
-                  hello@orzz5.dev
-                </motion.a>
-                <motion.div
-                  className="flex items-center text-gray-300 text-sm"
-                  whileHover={{ x: 5 }}
-                >
-                  <MapPin size={14} className="mr-2" />
-                  Available Worldwide
-                </motion.div>
-              </div>
-            </motion.div>
           </div>
-
-          {/* Newsletter Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-12 pt-8 border-t border-purple-accent/20"
-          >
-            <div className="glass-effect rounded-xl p-6 border border-purple-accent/20">
-              <div className="text-center">
-                <h3 className="text-xl font-semibold text-purple-accent mb-2">
-                  Stay Updated
-                </h3>
-                <p className="text-gray-300 text-sm mb-4">
-                  Get notified about new projects and Discord bot releases
-                </p>
-                <div className="flex flex-col sm:flex-row max-w-md mx-auto gap-3">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="flex-1 px-4 py-2 bg-purple-dark/50 border border-purple-accent/30 rounded-lg text-dark-text placeholder-gray-500 focus:outline-none focus:border-purple-accent focus:ring-2 focus:ring-purple-accent/20 transition-all duration-200"
-                  />
-                  <motion.button
-                    className="px-6 py-2 bg-gradient-to-r from-purple-accent to-purple-glow text-white rounded-lg font-medium hover:shadow-purple-glow-hover transition-all duration-300"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Subscribe
-                  </motion.button>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </div>
 
         {/* Bottom Section */}
