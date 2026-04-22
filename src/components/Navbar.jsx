@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Github, Linkedin, Twitter, MessageSquare } from 'lucide-react';
+import { Menu, X, Github } from 'lucide-react';
+import DiscordIcon from './DiscordIcon';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,10 +24,8 @@ const Navbar = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: MessageSquare, href: '#', label: 'Discord' },
+    { icon: Github, href: 'https://github.com/orzz5', label: 'GitHub' },
+    { icon: DiscordIcon, href: 'https://discord.com/users/667791939453583373', label: 'Discord' },
   ];
 
   return (
