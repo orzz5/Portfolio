@@ -111,7 +111,7 @@ const Navbar = () => {
                         whileHover={{ x: 5 }}
                         whileTap={{ scale: 0.98 }}
                       >
-                        <span className="text-lg">{lang}</span>
+                        <span className="text-lg">{lang.flag}</span>
                         <span className="font-medium">{lang.name}</span>
                       </motion.button>
                     ))}
