@@ -136,11 +136,11 @@ const Projects = () => {
       id: 'bots-testing',
       title: t('botsProjectTitle'),
       description: t('botsProjectDesc'),
-      image: 'https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=1000',
+      image: '/Bots.orzz.png',
       categories: ['web', 'discord'],
       technologies: ['React', 'Tailwind CSS', 'Discord.js', 'Node.js'],
       features: [t('autoModeration'), t('musicTitle'), t('economyTitle'), t('customFeatures')],
-      github: 'https://github.com/orzz5',
+      github: 'https://github.com/orzz5/Bots-web',
       live: 'https://bots.orzz.website',
       stats: { stars: 12, forks: 5, servers: 150 },
       status: 'Live'
