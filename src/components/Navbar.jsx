@@ -55,9 +55,7 @@ const Navbar = () => {
             whileTap={{ scale: 0.95 }}
           >
             <a href="#home" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple-accent to-purple-glow rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">O5</span>
-              </div>
+              <img src="/logo.png" alt="orzz5 logo" className="w-8 h-8 object-contain" />
               <span className="text-xl font-bold gradient-text">orzz5</span>
             </a>
           </motion.div>

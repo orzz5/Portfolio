@@ -54,9 +54,7 @@ const Footer = () => {
               className="space-y-4"
             >
               <div className="flex items-center space-x-2">
-                <div className="w-10 h-10 bg-gradient-to-br from-purple-accent to-purple-glow rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold">O5</span>
-                </div>
+                <img src="/logo.png" alt="orzz5 logo" className="w-10 h-10 object-contain" />
                 <span className="text-xl font-bold gradient-text">orzz5</span>
               </div>
               <p className="text-gray-300 text-sm leading-relaxed">
