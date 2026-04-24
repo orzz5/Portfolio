@@ -8,7 +8,6 @@ import {
   Eye, 
   Code, 
   Bot,
-  Users,
   Star,
   X,
   Maximize2,
@@ -45,12 +44,6 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
             {/* Window Header */}
             <div className="flex items-center justify-between px-4 py-3 bg-[#1A1D23] border-b border-white/5">
               <div className="flex items-center space-x-3">
-                <div className="flex space-x-2">
-                  <div className="w-3 h-3 rounded-full bg-[#FF5F57] shadow-inner" />
-                  <div className="w-3 h-3 rounded-full bg-[#FFBD2E] shadow-inner" />
-                  <div className="w-3 h-3 rounded-full bg-[#28C840] shadow-inner" />
-                </div>
-                <div className="h-4 w-[1px] bg-white/10 mx-2" />
                 <div className="flex items-center space-x-2 text-gray-400">
                   <Globe size={14} />
                   <span className="text-xs font-medium truncate max-w-[150px] sm:max-w-none">
@@ -77,43 +70,26 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
               </div>
             </div>
 
-            {/* Content Area */}
-            <div className="flex-1 relative group overflow-hidden bg-[#0F1115]">
-              {/* Actual Image Preview */}
-              <img 
-                src={project.image} 
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            {/* Content Area - Interactive Iframe */}
+            <div className="flex-1 relative bg-[#0F1115]">
+              <iframe 
+                src={project.live} 
+                className="w-full h-full border-none"
+                title={project.title}
+                loading="lazy"
               />
               
-              {/* Overlay with "Click to Enter" */}
-              <a 
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 backdrop-blur-[2px] opacity-100 transition-all duration-300 hover:bg-black/20 group"
-              >
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="flex flex-col items-center space-y-4"
+              {/* External Link at Top Right */}
+              <div className="absolute top-6 right-6 z-10">
+                <a 
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 bg-white/10 hover:bg-purple-accent backdrop-blur-md rounded-xl border border-white/10 text-white transition-all duration-300 shadow-xl flex items-center justify-center group"
                 >
-                  <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight drop-shadow-2xl">
-                    {project.title}
-                  </h2>
-                  <div className="flex items-center space-x-2 text-white/80 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 group-hover:bg-purple-accent/30 group-hover:border-purple-accent/50 transition-all">
-                    <Pointer size={16} className="animate-bounce" />
-                    <span className="text-sm font-medium">{t('clickToEnter')}</span>
-                  </div>
-                </motion.div>
-                
-                {/* External Link at Top Right of Content Area */}
-                <div className="absolute top-6 right-6">
-                  <div className="p-3 bg-white/10 hover:bg-purple-accent backdrop-blur-md rounded-xl border border-white/10 text-white transition-all duration-300 shadow-xl group-hover:scale-110">
-                    <ExternalLink size={20} />
-                  </div>
-                </div>
-              </a>
+                  <ExternalLink size={20} className="group-hover:scale-110 transition-transform" />
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -160,7 +136,7 @@ const Projects = () => {
       id: 'bots-testing',
       title: t('botsProjectTitle'),
       description: t('botsProjectDesc'),
-      image: '/bots-preview.png',
+      image: 'https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=1000',
       categories: ['web', 'discord'],
       technologies: ['React', 'Tailwind CSS', 'Discord.js', 'Node.js'],
       features: [t('autoModeration'), t('musicTitle'), t('economyTitle'), t('customFeatures')],
@@ -193,13 +169,16 @@ const Projects = () => {
         onClick={() => setSelectedProject(project)}
       >
         <div className="glass-effect rounded-2xl overflow-hidden border border-purple-accent/20 hover:border-purple-accent/40 transition-all duration-300 h-full flex flex-col">
-          <div className="relative h-56 overflow-hidden">
+          <div className="relative h-56 overflow-hidden bg-purple-dark/20">
             <motion.img
               src={project.image}
               alt={project.title}
               className="w-full h-full object-cover"
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
+              onError={(e) => {
+                e.target.src = 'https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=1000';
+              }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-purple-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                <motion.div
