@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from '../contexts/LanguageContext';
 import { 
@@ -8,12 +8,119 @@ import {
   Eye, 
   Code, 
   Bot,
-  ShoppingCart,
   Users,
-  Calendar,
   Star,
-  Filter
+  X,
+  Maximize2,
+  Minus,
+  Globe,
+  Pointer
 } from 'lucide-react';
+
+const ProjectModal = ({ project, isOpen, onClose }) => {
+  const { t } = useTranslation();
+  
+  if (!project) return null;
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-10">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="absolute inset-0 bg-black/80 backdrop-blur-md"
+          />
+          
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            className="relative w-full max-w-6xl aspect-video bg-[#0B0D11] rounded-xl overflow-hidden border border-white/10 shadow-2xl flex flex-col"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Window Header */}
+            <div className="flex items-center justify-between px-4 py-3 bg-[#1A1D23] border-b border-white/5">
+              <div className="flex items-center space-x-3">
+                <div className="flex space-x-2">
+                  <div className="w-3 h-3 rounded-full bg-[#FF5F57] shadow-inner" />
+                  <div className="w-3 h-3 rounded-full bg-[#FFBD2E] shadow-inner" />
+                  <div className="w-3 h-3 rounded-full bg-[#28C840] shadow-inner" />
+                </div>
+                <div className="h-4 w-[1px] bg-white/10 mx-2" />
+                <div className="flex items-center space-x-2 text-gray-400">
+                  <Globe size={14} />
+                  <span className="text-xs font-medium truncate max-w-[150px] sm:max-w-none">
+                    {project.title} — {t('preview')}
+                  </span>
+                </div>
+              </div>
+              
+              <div className="flex items-center space-x-4">
+                <div className="hidden sm:flex items-center space-x-2 bg-white/5 rounded-lg px-2 py-1 border border-white/10">
+                  <button className="p-1 hover:bg-white/10 rounded transition-colors text-gray-400">
+                    <Minus size={14} />
+                  </button>
+                  <button className="p-1 hover:bg-white/10 rounded transition-colors text-gray-400">
+                    <Maximize2 size={14} />
+                  </button>
+                </div>
+                <button 
+                  onClick={onClose}
+                  className="p-1.5 hover:bg-red-500/20 hover:text-red-400 rounded-lg transition-all text-gray-400"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+            </div>
+
+            {/* Content Area */}
+            <div className="flex-1 relative group overflow-hidden bg-[#0F1115]">
+              {/* Actual Image Preview */}
+              <img 
+                src={project.image} 
+                alt={project.title}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              
+              {/* Overlay with "Click to Enter" */}
+              <a 
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 backdrop-blur-[2px] opacity-100 transition-all duration-300 hover:bg-black/20 group"
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex flex-col items-center space-y-4"
+                >
+                  <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight drop-shadow-2xl">
+                    {project.title}
+                  </h2>
+                  <div className="flex items-center space-x-2 text-white/80 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 group-hover:bg-purple-accent/30 group-hover:border-purple-accent/50 transition-all">
+                    <Pointer size={16} className="animate-bounce" />
+                    <span className="text-sm font-medium">{t('clickToEnter')}</span>
+                  </div>
+                </motion.div>
+                
+                {/* External Link at Top Right of Content Area */}
+                <div className="absolute top-6 right-6">
+                  <div className="p-3 bg-white/10 hover:bg-purple-accent backdrop-blur-md rounded-xl border border-white/10 text-white transition-all duration-300 shadow-xl group-hover:scale-110">
+                    <ExternalLink size={20} />
+                  </div>
+                </div>
+              </a>
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+};
 
 const Projects = () => {
   const { t } = useTranslation();
@@ -23,6 +130,7 @@ const Projects = () => {
   });
 
   const [activeFilter, setActiveFilter] = useState('all');
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -47,7 +155,21 @@ const Projects = () => {
     },
   };
 
-  const projects = [];
+  const projects = [
+    {
+      id: 'bots-testing',
+      title: t('botsProjectTitle'),
+      description: t('botsProjectDesc'),
+      image: '/bots-preview.png',
+      categories: ['web', 'discord'],
+      technologies: ['React', 'Tailwind CSS', 'Discord.js', 'Node.js'],
+      features: [t('autoModeration'), t('musicTitle'), t('economyTitle'), t('customFeatures')],
+      github: 'https://github.com/orzz5',
+      live: 'https://bots.orzz.website',
+      stats: { stars: 12, forks: 5, servers: 150 },
+      status: 'Live'
+    }
+  ];
 
   const filters = [
     { id: 'all', label: t('allProjects'), icon: Code },
@@ -57,7 +179,7 @@ const Projects = () => {
 
   const filteredProjects = activeFilter === 'all' 
     ? projects 
-    : projects.filter(project => project.category === activeFilter);
+    : projects.filter(project => project.categories.includes(activeFilter));
 
   const ProjectCard = ({ project, index }) => {
     const [isHovered, setIsHovered] = useState(false);
@@ -65,12 +187,13 @@ const Projects = () => {
     return (
       <motion.div
         variants={itemVariants}
-        className="group"
+        className="group cursor-pointer"
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
+        onClick={() => setSelectedProject(project)}
       >
-        <div className="glass-effect rounded-2xl overflow-hidden border border-purple-accent/20 hover:border-purple-accent/40 transition-all duration-300 h-full">
-          <div className="relative h-48 overflow-hidden">
+        <div className="glass-effect rounded-2xl overflow-hidden border border-purple-accent/20 hover:border-purple-accent/40 transition-all duration-300 h-full flex flex-col">
+          <div className="relative h-56 overflow-hidden">
             <motion.img
               src={project.image}
               alt={project.title}
@@ -78,16 +201,26 @@ const Projects = () => {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-purple-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <div className="absolute inset-0 bg-gradient-to-t from-purple-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+               <motion.div
+                 initial={{ opacity: 0, scale: 0.5 }}
+                 animate={{ opacity: isHovered ? 1 : 0, scale: isHovered ? 1 : 0.5 }}
+                 className="p-3 bg-purple-accent rounded-full text-white"
+               >
+                 <Eye size={24} />
+               </motion.div>
+            </div>
             
-            <div className="absolute top-4 left-4">
-              <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                project.category === 'web' 
-                  ? 'bg-blue-500/20 text-blue-400' 
-                  : 'bg-purple-500/20 text-purple-400'
-              }`}>
-                {project.category === 'web' ? t('webApps') : t('discordBots')}
-              </span>
+            <div className="absolute top-4 left-4 flex flex-wrap gap-2">
+              {project.categories.map(cat => (
+                <span key={cat} className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider ${
+                  cat === 'web' 
+                    ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30' 
+                    : 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
+                }`}>
+                  {cat === 'web' ? t('webApps') : t('discordBots')}
+                </span>
+              ))}
             </div>
 
             <motion.div
@@ -98,6 +231,8 @@ const Projects = () => {
             >
               <motion.a
                 href={project.github}
+                onClick={(e) => e.stopPropagation()}
+                target="_blank"
                 className="w-8 h-8 bg-purple-dark/80 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-purple-accent transition-colors duration-200"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -106,6 +241,8 @@ const Projects = () => {
               </motion.a>
               <motion.a
                 href={project.live}
+                onClick={(e) => e.stopPropagation()}
+                target="_blank"
                 className="w-8 h-8 bg-purple-dark/80 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-purple-accent transition-colors duration-200"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -115,12 +252,12 @@ const Projects = () => {
             </motion.div>
           </div>
 
-          <div className="p-6 space-y-4">
+          <div className="p-6 space-y-4 flex-1 flex flex-col">
             <div>
-              <h3 className="text-xl font-bold text-purple-accent mb-2 group-hover:text-purple-glow transition-colors duration-200">
+              <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-purple-accent transition-colors duration-200 font-display">
                 {project.title}
               </h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+              <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">
                 {project.description}
               </p>
             </div>
@@ -129,29 +266,14 @@ const Projects = () => {
               {project.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="text-xs px-2 py-1 bg-purple-accent/20 text-purple-glow rounded-md"
+                  className="text-[10px] font-bold px-2 py-1 bg-white/5 text-gray-300 border border-white/10 rounded uppercase tracking-tighter"
                 >
                   {tech}
                 </span>
               ))}
             </div>
 
-            <div className="space-y-2">
-              <h4 className="text-sm font-medium text-purple-accent">{t('keyFeatures')}</h4>
-              <div className="flex flex-wrap gap-2">
-                {project.features.slice(0, 3).map((feature) => (
-                  <div key={feature} className="flex items-center text-xs text-gray-400">
-                    <div className="w-1 h-1 bg-purple-accent rounded-full mr-2" />
-                    {feature}
-                  </div>
-                ))}
-                {project.features.length > 3 && (
-                  <span className="text-xs text-purple-accent">+{project.features.length - 3} {t('featuresCount')}</span>
-                )}
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between pt-4 border-t border-purple-accent/20">
+            <div className="flex items-center justify-between pt-4 border-t border-white/5 mt-auto">
               <div className="flex items-center space-x-4 text-xs text-gray-400">
                 <div className="flex items-center">
                   <Star size={12} className="mr-1 text-yellow-500" />
@@ -163,13 +285,13 @@ const Projects = () => {
                 </div>
                 {project.stats.servers && (
                   <div className="flex items-center">
-                    <Users size={12} className="mr-1 text-purple-accent" />
+                    <Bot size={12} className="mr-1 text-purple-accent" />
                     {project.stats.servers}
                   </div>
                 )}
               </div>
-              <div className="flex items-center text-xs text-green-400">
-                <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse" />
+              <div className="flex items-center text-[10px] font-bold text-green-400 uppercase tracking-widest">
+                <div className="w-1.5 h-1.5 bg-green-400 rounded-full mr-2 animate-pulse" />
                 {project.status}
               </div>
             </div>
@@ -245,20 +367,14 @@ const Projects = () => {
               </div>
             </motion.div>
           )}
-
-          <motion.div variants={itemVariants} className="text-center pt-8">
-            <motion.a
-              href="#"
-              className="inline-flex items-center space-x-2 glass-effect border border-purple-accent/50 px-6 py-3 rounded-lg text-purple-accent hover:bg-purple-accent/10 transition-all duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span>{t('viewAllProjects')}</span>
-              <ExternalLink size={16} />
-            </motion.a>
-          </motion.div>
         </motion.div>
       </div>
+
+      <ProjectModal 
+        project={selectedProject} 
+        isOpen={!!selectedProject} 
+        onClose={() => setSelectedProject(null)} 
+      />
     </section>
   );
 };
