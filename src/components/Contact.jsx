@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Github, Send, Briefcase, ChevronDown, User, Mail, FileText } from 'lucide-react';
-<<<<<<< HEAD
 import { useTranslation } from '../contexts/LanguageContext';
-=======
->>>>>>> f06c400a5636818eb156430333fe5fecb027391f
 import DiscordPresence from './DiscordPresence';
 import DiscordIcon from './DiscordIcon';
 
@@ -106,11 +103,7 @@ const Contact = () => {
           <DiscordPresence />
 
           <motion.div variants={itemVariants} className="text-center mb-8">
-<<<<<<< HEAD
             <h3 className="text-2xl font-bold text-purple-accent mb-6">{t('connectOnSocial')}</h3>
-=======
-            <h3 className="text-2xl font-bold text-purple-accent mb-6">Connect on Social</h3>
->>>>>>> f06c400a5636818eb156430333fe5fecb027391f
             <div className="flex justify-center space-x-4">
               <motion.a
                 href="https://github.com/orzz5"

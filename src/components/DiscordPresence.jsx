@@ -22,7 +22,6 @@ const DiscordPresence = () => {
   useEffect(() => {
     const fetchDiscordPresence = async () => {
       try {
-        // Using Lanyard API for real-time Discord presence
         const response = await fetch('https://api.lanyard.rest/v1/users/667791939453583373');
         const data = await response.json();
         
@@ -31,13 +30,11 @@ const DiscordPresence = () => {
           let status = 'offline';
           let activity = null;
 
-          // Determine status
           if (discord.discord_status === 'online') status = 'online';
           else if (discord.discord_status === 'idle') status = 'idle';
           else if (discord.discord_status === 'dnd') status = 'dnd';
           else status = 'offline';
 
-          // Get activity if present
           if (discord.activities && discord.activities.length > 0) {
             const primaryActivity = discord.activities.find(a => a.type === 0) || discord.activities[0];
             if (primaryActivity) {
@@ -66,7 +63,7 @@ const DiscordPresence = () => {
     };
 
     fetchDiscordPresence();
-    const interval = setInterval(fetchDiscordPresence, 30000); // Update every 30 seconds
+    const interval = setInterval(fetchDiscordPresence, 30000);
 
     return () => clearInterval(interval);
   }, []);
@@ -103,7 +100,6 @@ const DiscordPresence = () => {
       className="w-full max-w-md mx-auto"
     >
       <div className="glass-effect rounded-2xl border border-purple-accent/20 p-6 hover:border-purple-accent/40 transition-all duration-300">
-        {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-purple-accent flex items-center">
             <svg className="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
@@ -123,7 +119,6 @@ const DiscordPresence = () => {
           </div>
         ) : (
           <div className="flex items-center space-x-4">
-            {/* Avatar */}
             <div className="relative">
               <div className="w-16 h-16 rounded-full overflow-hidden bg-purple-dark/50 border-2 border-purple-accent/30">
                 {discordData.avatar ? (
@@ -146,7 +141,6 @@ const DiscordPresence = () => {
               <div className={`absolute bottom-0 right-0 w-4 h-4 rounded-full border-2 border-dark-bg ${getStatusColor(discordData.status)} ${discordData.status === 'online' ? 'animate-pulse' : ''}`} />
             </div>
 
-            {/* User Info */}
             <div className="flex-1 min-w-0">
               <div className="flex items-center space-x-2">
                 <h4 className="text-lg font-semibold text-white truncate">
@@ -157,7 +151,6 @@ const DiscordPresence = () => {
                 </span>
               </div>
               
-              {/* Activity */}
               {discordData.activity ? (
                 <div className="mt-2">
                   <div className="flex items-center space-x-2">
@@ -187,7 +180,6 @@ const DiscordPresence = () => {
           </div>
         )}
 
-        {/* Profile Link */}
         <div className="mt-4 pt-4 border-t border-purple-accent/20">
           <a
             href="https://discord.com/users/667791939453583373"

@@ -48,7 +48,6 @@
   }
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -65,7 +64,6 @@
   @apply bg-purple-glow;
 }
 
-/* Selection text color */
 ::selection {
   @apply bg-purple-accent/30 text-white;
 }

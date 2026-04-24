@@ -2,32 +2,20 @@ import React, { createContext, useState, useContext } from 'react';
 
 const translations = {
   en: {
-    // Navigation
     home: "Home",
-<<<<<<< HEAD
     about: "About",
     projects: "Projects",
     discordBots: "Discord Bots",
     contact: "Contact",
     technologies: "Technologies",
 
-    // Hero Section
     helloIm: "Hello, I'm",
-=======
-    about: "About", 
-    projects: "Projects",
-    discordBots: "Discord Bots",
-    contact: "Contact",
-    
-    // Hero Section
->>>>>>> f06c400a5636818eb156430333fe5fecb027391f
     iBuild: "I build",
     amazingWebsites: "amazing websites",
     discordBots2: "Discord bots",
     userExperiences: "user experiences",
     digitalSolutions: "digital solutions",
     customApplications: "custom applications",
-<<<<<<< HEAD
     heroDescription: "Frontend developer and Discord bot specialist focused on creating exceptional web applications and intelligent automation solutions",
     viewMyWork: "View My Work",
     letsConnect: "Let's Connect",
@@ -36,7 +24,6 @@ const translations = {
     discordBotsCount: "Discord Bots",
     supportAvailable: "Support Available",
 
-    // About Section
     aboutMe: "About Me",
     aboutTagline: "Frontend developer and Discord bot specialist focused on creating exceptional digital experiences.",
     aboutDescription: "Hi! I'm orzz5, a frontend developer and Discord bot specialist who creates beautiful, functional digital experiences. I help bring ideas to life through React applications and custom Discord bots.",
@@ -64,11 +51,9 @@ const translations = {
     perfOptTitle: "Performance Optimization",
     perfOptDesc: "Optimizing applications for speed, SEO, and best user experience",
 
-    // Technologies Section
     whatIUse: "What I Use",
     toolsDaily: "Tools and technologies I work with daily",
 
-    // Projects Section
     projectsTitle: "Projects",
     projectsTagline: "Coming soon - showcasing my latest work in frontend development and Discord bot creation",
     allProjects: "All Projects",
@@ -79,7 +64,6 @@ const translations = {
     viewAllProjects: "View All Projects",
     keyFeatures: "Key Features:",
 
-    // Discord Services Section
     discordBotDev: "Discord Bot Development",
     discordDesc: "Create powerful, custom Discord bots that enhance your server experience and automate community management",
     botTypesTitle: "Bot Types I Create",
@@ -111,52 +95,17 @@ const translations = {
     support247: "24/7 Support",
     support247Desc: "Round-the-clock maintenance and updates",
 
-    // Contact Section
     getInTouch: "Get in Touch",
     contactTagline: "Send me a message and I'll get back to you as soon as possible.",
     connectOnSocial: "Connect on Social",
     sendMessage: "Send a Message",
     name: "Name",
     emailAddress: "Email Address",
-=======
-    helloIm: "Hello, I'm",
-    fullStackDeveloper: "Full-Stack Developer & Discord Bot Specialist",
-    letsWork: "Let's work together",
-    viewProjects: "View Projects",
-    contactMe: "Contact Me",
-    
-    // Stats
-    projectsCompleted: "Projects Completed",
-    happyClients: "Happy Clients",
-    linesOfCode: "Lines of Code",
-    coffeeCups: "Coffee Cups",
-    
-    // About Section
-    aboutMe: "About Me",
-    aboutDescription: "I'm a passionate full-stack developer specializing in creating exceptional web experiences and powerful Discord bots. With expertise in modern technologies and a keen eye for design, I transform ideas into reality.",
-    skills: "Skills",
-    expertise: "Expertise",
-    
-    // Services
-    webDevelopment: "Web Development",
-    discordBotDev: "Discord Bot Development",
-    uiuxDesign: "UI/UX Design",
-    consulting: "Consulting",
-    
-    // Contact Section
-    getInTouch: "Get in Touch",
-    contactDescription: "Send me a message and I'll get back to you as soon as possible.",
-    connectOnSocial: "Connect on Social",
-    sendMessage: "Send a Message",
-    name: "Name",
-    emailAddress: "Email Address", 
->>>>>>> f06c400a5636818eb156430333fe5fecb027391f
     subject: "Subject",
     projectType: "Project Type",
     message: "Message",
     send: "Send Message",
     sending: "Sending...",
-<<<<<<< HEAD
     selectProjectType: "Select a project type",
     webDevelopment: "Web Development",
     discordBot: "Discord Bot",
@@ -167,7 +116,6 @@ const translations = {
     messageSuccessDesc: "Thank you for reaching out. I'll get back to you soon.",
     messageError: "Failed to send message. Please try again.",
 
-    // Footer
     footerDesc: "Creating exceptional digital experiences and powerful Discord bots that make communities thrive.",
     quickLinks: "Quick Links",
     services: "Services",
@@ -176,7 +124,6 @@ const translations = {
     rights: "All rights reserved. Made with",
     andLotsOf: "and lots of",
 
-    // Discord Presence
     discordPresence: "Discord Presence",
     online: "Online",
     idle: "Idle",
@@ -185,7 +132,6 @@ const translations = {
     available: "Available",
     viewProfile: "View Profile",
 
-    // Bot Features
     autoModeration: "Auto moderation",
     warningSystem: "Warning system",
     roleManagement: "Role management",
@@ -213,7 +159,6 @@ const translations = {
   },
 
   es: {
-    // Navigation
     home: "Inicio",
     about: "Sobre Mí",
     projects: "Proyectos",
@@ -221,43 +166,13 @@ const translations = {
     contact: "Contacto",
     technologies: "Tecnologías",
 
-    // Hero Section
     helloIm: "Hola, soy",
-=======
-    
-    // Footer
-    quickLinks: "Quick Links",
-    services: "Services",
-    backToTop: "Back to top",
-    rights: "All rights reserved. Made with",
-    andLotsOf: "and lots of",
-    
-    // Projects Section
-    allProjects: "All Projects",
-    webDev: "Web Development",
-    discordDev: "Discord Development",
-    design: "Design",
-    viewProject: "View Project",
-    liveDemo: "Live Demo"
-  },
-  
-  es: {
-    // Navigation
-    home: "Inicio",
-    about: "Acerca de",
-    projects: "Proyectos", 
-    discordBots: "Bots de Discord",
-    contact: "Contacto",
-    
-    // Hero Section
->>>>>>> f06c400a5636818eb156430333fe5fecb027391f
     iBuild: "Creo",
     amazingWebsites: "sitios web increíbles",
     discordBots2: "bots de Discord",
     userExperiences: "experiencias de usuario",
     digitalSolutions: "soluciones digitales",
     customApplications: "aplicaciones personalizadas",
-<<<<<<< HEAD
     heroDescription: "Desarrollador frontend y especialista en bots de Discord enfocado en crear aplicaciones web excepcionales y soluciones de automatización inteligentes",
     viewMyWork: "Ver mi trabajo",
     letsConnect: "Conectemos",
@@ -266,7 +181,6 @@ const translations = {
     discordBotsCount: "Bots de Discord",
     supportAvailable: "Soporte Disponible",
 
-    // About Section
     aboutMe: "Sobre Mí",
     aboutTagline: "Desarrollador frontend y especialista en bots de Discord enfocado en crear experiencias digitales excepcionales.",
     aboutDescription: "¡Hola! Soy orzz5, un desarrollador frontend y especialista en bots de Discord que crea experiencias digitales hermosas y funcionales. Ayudo a dar vida a las ideas a través de aplicaciones React y bots de Discord personalizados.",
@@ -294,11 +208,9 @@ const translations = {
     perfOptTitle: "Optimización de Rendimiento",
     perfOptDesc: "Optimización de aplicaciones para velocidad, SEO y la mejor experiencia de usuario",
 
-    // Technologies Section
     whatIUse: "Lo que utilizo",
     toolsDaily: "Herramientas y tecnologías con las que trabajo a diario",
 
-    // Projects Section
     projectsTitle: "Proyectos",
     projectsTagline: "Próximamente - mostrando mi trabajo más reciente en desarrollo frontend y creación de bots de Discord",
     allProjects: "Todos los proyectos",
@@ -309,7 +221,6 @@ const translations = {
     viewAllProjects: "Ver todos los proyectos",
     keyFeatures: "Características clave:",
 
-    // Discord Services Section
     discordBotDev: "Desarrollo de Bots de Discord",
     discordDesc: "Crea bots de Discord potentes y personalizados que mejoran la experiencia de tu servidor y automatizan la gestión de la comunidad",
     botTypesTitle: "Tipos de Bots que Creo",
@@ -341,7 +252,6 @@ const translations = {
     support247: "Soporte 24/7",
     support247Desc: "Mantenimiento y actualizaciones las 24 horas",
 
-    // Contact Section
     getInTouch: "Ponte en contacto",
     contactTagline: "Envíame un mensaje y te responderé lo antes posible.",
     connectOnSocial: "Conecta en redes sociales",
@@ -363,7 +273,6 @@ const translations = {
     messageSuccessDesc: "Gracias por contactarme. Te responderé pronto.",
     messageError: "Error al enviar el mensaje. Por favor, inténtalo de nuevo.",
 
-    // Footer
     footerDesc: "Creando experiencias digitales excepcionales y bots de Discord potentes que hacen prosperar a las comunidades.",
     quickLinks: "Enlaces rápidos",
     services: "Servicios",
@@ -372,7 +281,6 @@ const translations = {
     rights: "Todos los derechos reservados. Hecho con",
     andLotsOf: "y mucho",
 
-    // Discord Presence
     discordPresence: "Presencia en Discord",
     online: "En línea",
     idle: "Ausente",
@@ -381,7 +289,6 @@ const translations = {
     available: "Disponible",
     viewProfile: "Ver perfil",
 
-    // Bot Features
     autoModeration: "Moderación automática",
     warningSystem: "Sistema de advertencias",
     roleManagement: "Gestión de roles",
@@ -409,7 +316,6 @@ const translations = {
   },
 
   fr: {
-    // Navigation
     home: "Accueil",
     about: "À Propos",
     projects: "Projets",
@@ -417,7 +323,6 @@ const translations = {
     contact: "Contact",
     technologies: "Technologies",
 
-    // Hero Section
     helloIm: "Bonjour, je suis",
     iBuild: "Je crée",
     amazingWebsites: "des sites web incroyables",
@@ -433,7 +338,6 @@ const translations = {
     discordBotsCount: "Bots Discord",
     supportAvailable: "Support Disponible",
 
-    // About Section
     aboutMe: "À Propos de Moi",
     aboutTagline: "Développeur frontend et spécialiste des bots Discord, axé sur la création d'expériences numériques exceptionnelles.",
     aboutDescription: "Salut ! Je suis orzz5, un développeur frontend et spécialiste des bots Discord qui crée des expériences numériques belles et fonctionnelles. J'aide à donner vie aux idées grâce à des applications React et des bots Discord personnalisés.",
@@ -461,11 +365,9 @@ const translations = {
     perfOptTitle: "Optimisation des Performances",
     perfOptDesc: "Optimisation des applications pour la vitesse, le SEO et la meilleure expérience utilisateur",
 
-    // Technologies Section
     whatIUse: "Ce que j'utilise",
     toolsDaily: "Outils et technologies avec lesquels je travaille quotidiennement",
 
-    // Projects Section
     projectsTitle: "Projets",
     projectsTagline: "Prochainement - présentation de mes derniers travaux en développement frontend et création de bots Discord",
     allProjects: "Tous les projets",
@@ -476,7 +378,6 @@ const translations = {
     viewAllProjects: "Voir tous les projets",
     keyFeatures: "Caractéristiques clés :",
 
-    // Discord Services Section
     discordBotDev: "Développement de Bots Discord",
     discordDesc: "Créez des bots Discord puissants et personnalisés qui améliorent l'expérience de votre serveur et automatisent la gestion de la communauté",
     botTypesTitle: "Types de bots que je crée",
@@ -508,7 +409,6 @@ const translations = {
     support247: "Support 24/7",
     support247Desc: "Maintenance et mises à jour 24h/24",
 
-    // Contact Section
     getInTouch: "Contactez-moi",
     contactTagline: "Envoyez-moi un message et je vous répondrai dès que possible.",
     connectOnSocial: "Suivez-moi sur les réseaux",
@@ -530,7 +430,6 @@ const translations = {
     messageSuccessDesc: "Merci de m'avoir contacté. Je vous répondrai bientôt.",
     messageError: "Échec de l'envoi du message. Veuillez réessayer.",
 
-    // Footer
     footerDesc: "Création d'expériences numériques exceptionnelles et de bots Discord puissants qui font prospérer les communautés.",
     quickLinks: "Liens rapides",
     services: "Services",
@@ -539,7 +438,6 @@ const translations = {
     rights: "Tous droits réservés. Fait avec",
     andLotsOf: "et beaucoup de",
 
-    // Discord Presence
     discordPresence: "Présence Discord",
     online: "En ligne",
     idle: "Inactif",
@@ -548,7 +446,6 @@ const translations = {
     available: "Disponible",
     viewProfile: "Voir le profil",
 
-    // Bot Features
     autoModeration: "Modération automatique",
     warningSystem: "Système d'avertissement",
     roleManagement: "Gestion des rôles",
@@ -573,127 +470,6 @@ const translations = {
     apiIntegration: "Intégration API",
     databaseDesign: "Conception de base de données",
     uniqueCommands: "Commandes uniques",
-=======
-    helloIm: "Hola, soy",
-    fullStackDeveloper: "Desarrollador Full-Stack y Especialista en Bots de Discord",
-    letsWork: "Trabajemos juntos",
-    viewProjects: "Ver Proyectos",
-    contactMe: "Contáctame",
-    
-    // Stats
-    projectsCompleted: "Proyectos Completados",
-    happyClients: "Clientes Satisfechos",
-    linesOfCode: "Líneas de Código",
-    coffeeCups: "Tazas de Café",
-    
-    // About Section
-    aboutMe: "Sobre Mí",
-    aboutDescription: "Soy un desarrollador full-stack apasionado especializado en crear experiencias web excepcionales y bots de Discord potentes. Con experiencia en tecnologías modernas y un buen ojo para el diseño, transformo ideas en realidad.",
-    skills: "Habilidades",
-    expertise: "Experiencia",
-    
-    // Services
-    webDevelopment: "Desarrollo Web",
-    discordBotDev: "Desarrollo de Bots Discord",
-    uiuxDesign: "Diseño UI/UX",
-    consulting: "Consultoría",
-    
-    // Contact Section
-    getInTouch: "Ponte en Contacto",
-    contactDescription: "Envíame un mensaje y te responderé lo antes posible.",
-    connectOnSocial: "Conecta en Redes",
-    sendMessage: "Enviar Mensaje",
-    name: "Nombre",
-    emailAddress: "Correo Electrónico",
-    subject: "Asunto",
-    projectType: "Tipo de Proyecto",
-    message: "Mensaje",
-    send: "Enviar Mensaje",
-    sending: "Enviando...",
-    
-    // Footer
-    quickLinks: "Enlaces Rápidos",
-    services: "Servicios",
-    backToTop: "Volver arriba",
-    rights: "Todos los derechos reservados. Hecho con",
-    andLotsOf: "y mucho",
-    
-    // Projects Section
-    allProjects: "Todos los Proyectos",
-    webDev: "Desarrollo Web",
-    discordDev: "Desarrollo Discord",
-    design: "Diseño",
-    viewProject: "Ver Proyecto",
-    liveDemo: "Demo en Vivo"
-  },
-  
-  fr: {
-    // Navigation
-    home: "Accueil",
-    about: "À propos",
-    projects: "Projets",
-    discordBots: "Bots Discord", 
-    contact: "Contact",
-    
-    // Hero Section
-    iBuild: "Je crée",
-    amazingWebsites: "des sites web incroyables",
-    discordBots2: "bots Discord",
-    userExperiences: "expériences utilisateur",
-    digitalSolutions: "solutions numériques",
-    customApplications: "applications personnalisées",
-    helloIm: "Bonjour, je suis",
-    fullStackDeveloper: "Développeur Full-Stack et Spécialiste de Bots Discord",
-    letsWork: "Travaillons ensemble",
-    viewProjects: "Voir les Projets",
-    contactMe: "Contactez-moi",
-    
-    // Stats
-    projectsCompleted: "Projets Terminés",
-    happyClients: "Clients Satisfaits",
-    linesOfCode: "Lignes de Code",
-    coffeeCups: "Tasses de Café",
-    
-    // About Section
-    aboutMe: "À Propos de Moi",
-    aboutDescription: "Je suis un développeur full-stack passionné spécialisé dans la création d'expériences web exceptionnelles et de bots Discord puissants. Avec une expertise en technologies modernes et un œil attentif pour le design, je transforme les idées en réalité.",
-    skills: "Compétences",
-    expertise: "Expertise",
-    
-    // Services
-    webDevelopment: "Développement Web",
-    discordBotDev: "Développement de Bots Discord",
-    uiuxDesign: "Design UI/UX",
-    consulting: "Consultation",
-    
-    // Contact Section
-    getInTouch: "Contactez-moi",
-    contactDescription: "Envoyez-moi un message et je vous répondrai dès que possible.",
-    connectOnSocial: "Connectez-vous sur les Réseaux",
-    sendMessage: "Envoyer un Message",
-    name: "Nom",
-    emailAddress: "Adresse E-mail",
-    subject: "Sujet",
-    projectType: "Type de Projet",
-    message: "Message",
-    send: "Envoyer le Message",
-    sending: "Envoi en cours...",
-    
-    // Footer
-    quickLinks: "Liens Rapides",
-    services: "Services",
-    backToTop: "Retour en haut",
-    rights: "Tous droits réservés. Fait avec",
-    andLotsOf: "et plein de",
-    
-    // Projects Section
-    allProjects: "Tous les Projets",
-    webDev: "Développement Web",
-    discordDev: "Développement Discord",
-    design: "Design",
-    viewProject: "Voir le Projet",
-    liveDemo: "Démo en Direct"
->>>>>>> f06c400a5636818eb156430333fe5fecb027391f
   }
 };
 

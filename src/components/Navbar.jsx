@@ -48,7 +48,6 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <motion.div
             className="flex-shrink-0"
             whileHover={{ scale: 1.05 }}
@@ -60,7 +59,6 @@ const Navbar = () => {
             </a>
           </motion.div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:block">
             <div className="flex items-center space-x-8">
               {navItems.map((item) => (
@@ -77,9 +75,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          {/* Social Links & Mobile Menu */}
           <div className="flex items-center space-x-4">
-            {/* Language Selector */}
             <div className="relative">
               <motion.button
                 onClick={() => setShowLangDropdown(!showLangDropdown)}
@@ -115,7 +111,7 @@ const Navbar = () => {
                         whileHover={{ x: 5 }}
                         whileTap={{ scale: 0.98 }}
                       >
-                        <span className="text-lg">{lang.flag}</span>
+                        <span className="text-lg">{lang}</span>
                         <span className="font-medium">{lang.name}</span>
                       </motion.button>
                     ))}
@@ -124,7 +120,6 @@ const Navbar = () => {
               </AnimatePresence>
             </div>
 
-            {/* Social Links - Hidden on mobile */}
             <div className="hidden md:flex items-center space-x-3">
               {socialLinks.map((social) => (
                 <motion.a
@@ -140,7 +135,6 @@ const Navbar = () => {
               ))}
             </div>
 
-            {/* Mobile menu button */}
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden text-dark-text hover:text-purple-accent transition-colors duration-200"
@@ -153,7 +147,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -177,7 +170,6 @@ const Navbar = () => {
                 </motion.a>
               ))}
               
-              {/* Mobile Social Links */}
               <div className="flex items-center space-x-4 px-3 py-2 pt-4">
                 {socialLinks.map((social) => (
                   <motion.a

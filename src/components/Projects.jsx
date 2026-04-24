@@ -70,7 +70,6 @@ const Projects = () => {
         onHoverEnd={() => setIsHovered(false)}
       >
         <div className="glass-effect rounded-2xl overflow-hidden border border-purple-accent/20 hover:border-purple-accent/40 transition-all duration-300 h-full">
-          {/* Project Image */}
           <div className="relative h-48 overflow-hidden">
             <motion.img
               src={project.image}
@@ -81,7 +80,6 @@ const Projects = () => {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-purple-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             
-            {/* Category Badge */}
             <div className="absolute top-4 left-4">
               <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                 project.category === 'web' 
@@ -92,7 +90,6 @@ const Projects = () => {
               </span>
             </div>
 
-            {/* Action Buttons */}
             <motion.div
               className="absolute top-4 right-4 flex space-x-2"
               initial={{ opacity: 0, x: 20 }}
@@ -118,7 +115,6 @@ const Projects = () => {
             </motion.div>
           </div>
 
-          {/* Project Content */}
           <div className="p-6 space-y-4">
             <div>
               <h3 className="text-xl font-bold text-purple-accent mb-2 group-hover:text-purple-glow transition-colors duration-200">
@@ -129,7 +125,6 @@ const Projects = () => {
               </p>
             </div>
 
-            {/* Technologies */}
             <div className="flex flex-wrap gap-2">
               {project.technologies.map((tech) => (
                 <span
@@ -141,7 +136,6 @@ const Projects = () => {
               ))}
             </div>
 
-            {/* Features */}
             <div className="space-y-2">
               <h4 className="text-sm font-medium text-purple-accent">{t('keyFeatures')}</h4>
               <div className="flex flex-wrap gap-2">
@@ -157,7 +151,6 @@ const Projects = () => {
               </div>
             </div>
 
-            {/* Stats */}
             <div className="flex items-center justify-between pt-4 border-t border-purple-accent/20">
               <div className="flex items-center space-x-4 text-xs text-gray-400">
                 <div className="flex items-center">
@@ -196,7 +189,6 @@ const Projects = () => {
           animate={inView ? "visible" : "hidden"}
           className="space-y-12"
         >
-          {/* Section Title */}
           <motion.div variants={itemVariants} className="text-center">
             <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
               {t('projectsTitle')}
@@ -206,7 +198,6 @@ const Projects = () => {
             </p>
           </motion.div>
 
-          {/* Filter Buttons */}
           <motion.div variants={itemVariants} className="flex justify-center">
             <div className="inline-flex glass-effect rounded-lg p-1 border border-purple-accent/20">
               {filters.map((filter) => (
@@ -228,7 +219,6 @@ const Projects = () => {
             </div>
           </motion.div>
 
-          {/* Projects Grid */}
           {filteredProjects.length > 0 ? (
             <motion.div variants={itemVariants} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredProjects.map((project, index) => (
@@ -256,7 +246,6 @@ const Projects = () => {
             </motion.div>
           )}
 
-          {/* View More Button */}
           <motion.div variants={itemVariants} className="text-center pt-8">
             <motion.a
               href="#"

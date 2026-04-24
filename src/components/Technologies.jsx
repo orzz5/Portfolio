@@ -47,7 +47,6 @@ const Technologies = () => {
     },
   };
 
-  // Technology logos data
   const topRowTechnologies = [
     { name: 'TypeScript', icon: Code, color: 'text-blue-400' },
     { name: 'HTML5', icon: Code, color: 'text-orange-500' },
@@ -91,7 +90,6 @@ const Technologies = () => {
           animate={inView ? "visible" : "hidden"}
           className="space-y-16"
         >
-          {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
             <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
               {t('whatIUse')}
@@ -101,9 +99,7 @@ const Technologies = () => {
             </p>
           </motion.div>
 
-          {/* Marquee Container */}
           <motion.div variants={itemVariants} className="relative">
-            {/* Top Row - Moving Right */}
             <div className="relative overflow-hidden">
               <div className="flex space-x-8 animate-marquee-right">
                 {[...topRowTechnologies, ...topRowTechnologies].map((tech, index) => (
@@ -127,7 +123,6 @@ const Technologies = () => {
               </div>
             </div>
 
-            {/* Bottom Row - Moving Left */}
             <div className="relative overflow-hidden mt-8">
               <div className="flex space-x-8 animate-marquee-left">
                 {[...bottomRowTechnologies, ...bottomRowTechnologies].map((tech, index) => (
@@ -151,8 +146,7 @@ const Technologies = () => {
               </div>
             </div>
           </motion.div>
-
-                  </motion.div>
+        </motion.div>
       </div>
 
       <style jsx>{`

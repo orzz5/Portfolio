@@ -124,7 +124,6 @@ const About = () => {
           animate={inView ? "visible" : "hidden"}
           className="space-y-16"
         >
-          {/* Section Title */}
           <motion.div variants={itemVariants} className="text-center">
             <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
               {t('aboutMe')}
@@ -134,7 +133,6 @@ const About = () => {
             </p>
           </motion.div>
 
-          {/* About Content */}
           <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h3 className="text-2xl md:text-3xl font-bold text-purple-accent mb-4">
@@ -186,7 +184,6 @@ const About = () => {
             </motion.div>
           </motion.div>
 
-          {/* Skills Section */}
           <motion.div variants={itemVariants} className="space-y-8">
             <h3 className="text-3xl font-bold text-center gradient-text">{t('skillsExpertise')}</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -234,7 +231,6 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Services Section */}
           <motion.div variants={itemVariants} className="space-y-8">
             <h3 className="text-3xl font-bold text-center gradient-text">{t('whatIOffer')}</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">

@@ -44,7 +44,6 @@ const Hero = () => {
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Floating Icons */}
       {floatingIcons.map((item, index) => (
         <motion.div
           key={index}
@@ -75,14 +74,12 @@ const Hero = () => {
           animate={inView ? "visible" : "hidden"}
           className="space-y-8"
         >
-          {/* Greeting */}
           <motion.div variants={itemVariants}>
             <p className="text-lg md:text-xl text-purple-glow font-medium mb-4">
               {t('helloIm')}
             </p>
           </motion.div>
 
-          {/* Name */}
           <motion.h1
             variants={itemVariants}
             className="text-5xl md:text-7xl lg:text-8xl font-bold gradient-text mb-6"
@@ -90,13 +87,12 @@ const Hero = () => {
             orzz5
           </motion.h1>
 
-          {/* Animated Typing Text */}
           <motion.div variants={itemVariants} className="h-20">
             <div className="text-2xl md:text-4xl lg:text-5xl font-bold text-dark-text mb-4">
               <span className="text-purple-accent">{t('iBuild')} </span>
               <span className="gradient-text">
                 <TypeAnimation
-                  key={t('iBuild')} // Force re-render when language changes
+                  key={t('iBuild')}
                   sequence={[
                     t('amazingWebsites'),
                     2000,
@@ -118,7 +114,6 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Description */}
           <motion.p
             variants={itemVariants}
             className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
@@ -126,7 +121,6 @@ const Hero = () => {
             {t('heroDescription')}
           </motion.p>
 
-          {/* CTA Buttons */}
           <motion.div
             variants={itemVariants}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12"
@@ -162,7 +156,6 @@ const Hero = () => {
             </motion.a>
           </motion.div>
 
-          {/* Stats */}
           <motion.div
             variants={itemVariants}
             className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-3xl mx-auto"
@@ -189,7 +182,6 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         animate={{

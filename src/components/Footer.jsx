@@ -1,14 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Github, 
-  Heart,
-  ArrowUp,
-  Code,
-  Bot
-} from 'lucide-react';
-import { useTranslation } from '../contexts/LanguageContext';
+import { Github, Mail, Globe, ArrowUp } from 'lucide-react';
 import DiscordIcon from './DiscordIcon';
+import { useTranslation } from '../contexts/LanguageContext';
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -28,10 +22,10 @@ const Footer = () => {
   ];
 
   const services = [
-    { name: t('webDevelopment'), icon: Code },
-    { name: t('discordBots'), icon: Bot },
-    { name: t('uiuxDesign'), icon: Code },
-    { name: t('consulting'), icon: Code }
+    { name: t('webDevelopment'), href: '#about' },
+    { name: t('discordBotDev'), href: '#discord' },
+    { name: t('uiuxDesign'), href: '#about' },
+    { name: t('consulting'), href: '#contact' }
   ];
 
   const scrollToTop = () => {
@@ -39,125 +33,91 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-gradient-to-br from-purple-dark to-purple-medium border-t border-purple-accent/20">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=60 height=60 viewBox=0 0 60 60 xmlns=http://www.w3.org/2000/svg%3E%3Cg fill=none fill-rule=evenodd%3E%3Cg fill=%23a855f7 fill-opacity=0.1%3E%3Ccircle cx=30 cy=30 r=2/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="py-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Brand Section */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="space-y-4"
+    <footer className="relative bg-dark-bg pt-20 pb-10 overflow-hidden border-t border-purple-accent/10">
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=60 height=60 viewBox=0 0 60 60 xmlns=http://www.w3.org/2000/svg%3E%3Cg fill=none fill-rule=evenodd%3E%3Cg fill=%23a855f7 fill-opacity=0.1%3E%3Ccircle cx=30 cy=30 r=2/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]" />
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          <div className="col-span-1 md:col-span-2 lg:col-span-1">
+            <motion.div 
+              className="flex items-center space-x-2 mb-6"
+              whileHover={{ scale: 1.05 }}
             >
-              <div className="flex items-center space-x-2">
-                <img src="/logo.png" alt="orzz5 logo" className="w-10 h-10 object-contain" />
-                <span className="text-xl font-bold gradient-text">orzz5</span>
-              </div>
-              <p className="text-gray-300 text-sm leading-relaxed">
-                {t('footerDesc')}
-              </p>
-              <div className="flex items-center space-x-3">
-                {socialLinks.map((social) => (
-                  <motion.a
-                    key={social.label}
-                    href={social.href}
-                    aria-label={social.label}
-                    className="w-10 h-10 bg-purple-accent/20 rounded-lg flex items-center justify-center text-purple-accent hover:bg-purple-accent hover:text-white transition-all duration-300"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.9 }}
+              <img src="/logo.png" alt="orzz5 logo" className="w-10 h-10 object-contain" />
+              <span className="text-2xl font-bold gradient-text">orzz5</span>
+            </motion.div>
+            <p className="text-gray-400 mb-8 max-w-sm leading-relaxed">
+              {t('footerDesc')}
+            </p>
+            <div className="flex space-x-4">
+              {socialLinks.map((social, index) => (
+                <motion.a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 glass-effect rounded-lg flex items-center justify-center text-gray-400 hover:text-purple-accent hover:border-purple-accent/50 border border-purple-accent/10 transition-all duration-300"
+                  whileHover={{ scale: 1.1, y: -3 }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <social.icon size={20} />
+                </motion.a>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-white font-bold text-lg mb-6">{t('quickLinks')}</h4>
+            <ul className="space-y-4">
+              {quickLinks.map((link, index) => (
+                <li key={index}>
+                  <a 
+                    href={link.href}
+                    className="text-gray-400 hover:text-purple-accent transition-colors duration-200"
                   >
-                    <social.icon size={18} />
-                  </motion.a>
-                ))}
-              </div>
-            </motion.div>
+                    {link.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            {/* Quick Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="space-y-4"
-            >
-              <h3 className="text-lg font-semibold text-purple-accent">{t('quickLinks')}</h3>
-              <ul className="space-y-2">
-                {quickLinks.map((link) => (
-                  <li key={link.name}>
-                    <motion.a
-                      href={link.href}
-                      className="text-gray-300 hover:text-purple-accent transition-colors duration-200 text-sm"
-                      whileHover={{ x: 5 }}
-                    >
-                      {link.name}
-                    </motion.a>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+          <div>
+            <h4 className="text-white font-bold text-lg mb-6">{t('services')}</h4>
+            <ul className="space-y-4">
+              {services.map((service, index) => (
+                <li key={index}>
+                  <a 
+                    href={service.href}
+                    className="text-gray-400 hover:text-purple-accent transition-colors duration-200"
+                  >
+                    {service.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            {/* Services */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="space-y-4"
+          <div className="flex flex-col items-center lg:items-end justify-center">
+            <motion.button
+              onClick={scrollToTop}
+              className="w-12 h-12 glass-effect rounded-full flex items-center justify-center text-purple-accent border border-purple-accent/20 hover:border-purple-accent/50 hover:shadow-purple-glow mb-4 transition-all duration-300"
+              whileHover={{ scale: 1.1, y: -5 }}
+              whileTap={{ scale: 0.9 }}
             >
-              <h3 className="text-lg font-semibold text-purple-accent">{t('services')}</h3>
-              <ul className="space-y-2">
-                {services.map((service) => (
-                  <li key={service.name}>
-                    <motion.div
-                      className="flex items-center text-gray-300 hover:text-purple-accent transition-colors duration-200 text-sm cursor-pointer"
-                      whileHover={{ x: 5 }}
-                    >
-                      <service.icon size={14} className="mr-2" />
-                      {service.name}
-                    </motion.div>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+              <ArrowUp size={24} />
+            </motion.button>
+            <span className="text-gray-400 text-sm font-medium">{t('backToTop')}</span>
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="py-6 border-t border-purple-accent/20">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-center md:text-left text-sm text-gray-400"
-            >
-              <p>
-                © {currentYear} orzz5. {t('rights')}{' '}
-                <Heart size={14} className="inline text-red-500 fill-current" /> {t('andLotsOf')}{' '}
-                <Code size={14} className="inline text-purple-accent" />
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="flex items-center space-x-6 text-sm text-gray-400"
-            >
-              <motion.button
-                onClick={scrollToTop}
-                className="flex items-center space-x-1 text-purple-accent hover:text-purple-glow transition-colors duration-200"
-                whileHover={{ scale: 1.1, y: -2 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <span>{t('backToTop')}</span>
-                <ArrowUp size={16} />
-              </motion.button>
-            </motion.div>
+        <div className="pt-10 border-t border-purple-accent/10 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <p className="text-gray-500 text-sm">
+            © {currentYear} orzz5. {t('rights')} <span className="text-purple-accent">❤️</span> {t('andLotsOf')} <span className="text-purple-accent">☕</span>
+          </p>
+          <div className="flex space-x-6">
+            <a href="#" className="text-gray-500 hover:text-purple-accent text-sm transition-colors duration-200">Privacy Policy</a>
+            <a href="#" className="text-gray-500 hover:text-purple-accent text-sm transition-colors duration-200">Terms of Service</a>
           </div>
         </div>
       </div>

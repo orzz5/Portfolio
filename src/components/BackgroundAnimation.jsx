@@ -12,14 +12,14 @@ const BackgroundAnimation = () => {
     canvas.height = window.innerHeight;
     
     const particles = [];
-    const particleCount = 30; // Reduced from 50 for better performance
+    const particleCount = 30;
     
     class Particle {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
         this.size = Math.random() * 3 + 1;
-        this.speedX = Math.random() * 0.3 - 0.15; // Slower speeds for better performance
+        this.speedX = Math.random() * 0.3 - 0.15;
         this.speedY = Math.random() * 0.3 - 0.15;
         this.opacity = Math.random() * 0.5 + 0.2;
       }
@@ -54,13 +54,12 @@ const BackgroundAnimation = () => {
         particle.draw();
       });
       
-      // Draw connections (optimized with distance check early exit)
       particles.forEach((particle, index) => {
         for (let j = index + 1; j < particles.length; j++) {
           const dx = particles[j].x - particle.x;
           const dy = particles[j].y - particle.y;
           const distanceSquared = dx * dx + dy * dy;
-          const maxDistanceSquared = 100 * 100; // 100px max distance, squared for performance
+          const maxDistanceSquared = 100 * 100;
           
           if (distanceSquared < maxDistanceSquared) {
             const distance = Math.sqrt(distanceSquared);

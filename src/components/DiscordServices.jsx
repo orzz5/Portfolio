@@ -156,7 +156,6 @@ const DiscordServices = () => {
           animate={inView ? "visible" : "hidden"}
           className="space-y-16"
         >
-          {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
             <div className="flex items-center justify-center mb-4">
               <div className="w-16 h-16 bg-gradient-to-br from-purple-accent to-purple-glow rounded-2xl flex items-center justify-center">
@@ -171,7 +170,6 @@ const DiscordServices = () => {
             </p>
           </motion.div>
 
-          {/* Bot Types Grid */}
           <motion.div variants={itemVariants} className="space-y-8">
             <h3 className="text-2xl font-bold text-center text-purple-accent">{t('botTypesTitle')}</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -213,7 +211,6 @@ const DiscordServices = () => {
             </div>
           </motion.div>
 
-          {/* Key Features */}
           <motion.div variants={itemVariants} className="space-y-8">
             <h3 className="text-2xl font-bold text-center text-purple-accent">{t('whyChooseTitle')}</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -233,8 +230,7 @@ const DiscordServices = () => {
             </div>
           </motion.div>
 
-
-                  </motion.div>
+        </motion.div>
       </div>
     </section>
   );
