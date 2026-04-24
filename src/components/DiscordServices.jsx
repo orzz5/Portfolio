@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from '../contexts/LanguageContext';
 import { 
   Bot, 
   Shield, 
@@ -23,6 +24,7 @@ import {
 } from 'lucide-react';
 
 const DiscordServices = () => {
+  const { t } = useTranslation();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -56,55 +58,55 @@ const DiscordServices = () => {
   const botTypes = [
     {
       id: 'moderation',
-      title: 'Moderation Bots',
+      title: t('moderationTitle'),
       icon: Shield,
-      description: 'Advanced server management with automated moderation tools',
-      features: ['Auto moderation', 'Warning system', 'Role management', 'Audit logging'],
+      description: t('moderationDesc'),
+      features: [t('autoModeration'), t('warningSystem'), t('roleManagement'), t('auditLogging')],
       color: 'from-red-500 to-pink-600',
       popular: true
     },
     {
       id: 'music',
-      title: 'Music Bots',
+      title: t('musicTitle'),
       icon: Music,
-      description: 'High-quality music playback with extensive library support',
-      features: ['YouTube/Spotify', 'Playlists', 'Audio effects', 'Voice channels'],
+      description: t('musicDesc'),
+      features: [t('youtubeSpotify'), t('playlists'), t('audioEffects'), t('voiceChannels')],
       color: 'from-green-500 to-teal-600',
       popular: true
     },
     {
       id: 'gaming',
-      title: 'Gaming Bots',
+      title: t('gamingTitle'),
       icon: Gamepad2,
-      description: 'Interactive games and gaming community management tools',
-      features: ['Mini games', 'Tournaments', 'Stats tracking', 'LFG system'],
+      description: t('gamingDesc'),
+      features: [t('miniGames'), t('tournaments'), t('statsTracking'), t('lfgSystem')],
       color: 'from-purple-500 to-indigo-600',
       popular: false
     },
     {
       id: 'utility',
-      title: 'Utility Bots',
+      title: t('utilityTitle'),
       icon: Settings,
-      description: 'Helpful tools for server management and user convenience',
-      features: ['Custom commands', 'Reminders', 'Polls', 'Welcome messages'],
+      description: t('utilityDesc'),
+      features: [t('customCommands'), t('reminders'), t('polls'), t('welcomeMessages')],
       color: 'from-blue-500 to-cyan-600',
       popular: false
     },
     {
       id: 'economy',
-      title: 'Economy Bots',
+      title: t('economyTitle'),
       icon: Gift,
-      description: 'Virtual currency systems with shops and rewards',
-      features: ['Virtual currency', 'Shop system', 'Daily rewards', 'Gambling games'],
+      description: t('economyDesc'),
+      features: [t('virtualCurrency'), t('shopSystem'), t('dailyRewards'), t('gamblingGames')],
       color: 'from-yellow-500 to-orange-600',
       popular: true
     },
     {
       id: 'custom',
-      title: 'Custom Bots',
+      title: t('customBotsTitle'),
       icon: Code,
-      description: 'Tailored solutions for your specific server needs',
-      features: ['Custom features', 'API integration', 'Database design', 'Unique commands'],
+      description: t('customBotsDesc'),
+      features: [t('customFeatures'), t('apiIntegration'), t('databaseDesign'), t('uniqueCommands')],
       color: 'from-pink-500 to-purple-600',
       popular: false
     }
@@ -113,33 +115,33 @@ const DiscordServices = () => {
   const features = [
     {
       icon: Zap,
-      title: 'Lightning Fast',
-      description: 'Optimized performance with minimal latency'
+      title: t('lightningFast'),
+      description: t('lightningFastDesc')
     },
     {
       icon: Database,
-      title: 'Data Storage',
-      description: 'Secure database solutions for persistent data'
+      title: t('dataStorage'),
+      description: t('dataStorageDesc')
     },
     {
       icon: Lock,
-      title: 'Secure & Reliable',
-      description: 'Enterprise-grade security and 99.9% uptime'
+      title: t('secureReliable'),
+      description: t('secureReliableDesc')
     },
     {
       icon: BarChart3,
-      title: 'Analytics Dashboard',
-      description: 'Detailed insights and usage statistics'
+      title: t('analyticsDashboard'),
+      description: t('analyticsDashboardDesc')
     },
     {
       icon: Globe,
-      title: 'Multi-language',
-      description: 'Support for multiple languages and regions'
+      title: t('multiLanguage'),
+      description: t('multiLanguageDesc')
     },
     {
       icon: Clock,
-      title: '24/7 Support',
-      description: 'Round-the-clock maintenance and updates'
+      title: t('support247'),
+      description: t('support247Desc')
     }
   ];
 
@@ -162,16 +164,16 @@ const DiscordServices = () => {
               </div>
             </div>
             <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
-              Discord Bot Development
+              {t('discordBotDev')}
             </h2>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              Create powerful, custom Discord bots that enhance your server experience and automate community management
+              {t('discordDesc')}
             </p>
           </motion.div>
 
           {/* Bot Types Grid */}
           <motion.div variants={itemVariants} className="space-y-8">
-            <h3 className="text-2xl font-bold text-center text-purple-accent">Bot Types I Create</h3>
+            <h3 className="text-2xl font-bold text-center text-purple-accent">{t('botTypesTitle')}</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {botTypes.map((bot) => (
                 <motion.div
@@ -187,7 +189,7 @@ const DiscordServices = () => {
                     </div>
                     {bot.popular && (
                       <span className="px-2 py-1 bg-purple-accent/20 text-purple-glow text-xs rounded-full font-medium">
-                        Popular
+                        {t('popular')}
                       </span>
                     )}
                   </div>
@@ -203,7 +205,7 @@ const DiscordServices = () => {
                       </div>
                     ))}
                     {bot.features.length > 3 && (
-                      <span className="text-xs text-purple-accent">+{bot.features.length - 3} more features</span>
+                      <span className="text-xs text-purple-accent">+{bot.features.length - 3} {t('featuresCount')}</span>
                     )}
                   </div>
                 </motion.div>
@@ -213,7 +215,7 @@ const DiscordServices = () => {
 
           {/* Key Features */}
           <motion.div variants={itemVariants} className="space-y-8">
-            <h3 className="text-2xl font-bold text-center text-purple-accent">Why Choose My Bots?</h3>
+            <h3 className="text-2xl font-bold text-center text-purple-accent">{t('whyChooseTitle')}</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {features.map((feature, index) => (
                 <motion.div

@@ -2,16 +2,16 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   Github, 
-  Mail, 
-  MapPin,
   Heart,
   ArrowUp,
   Code,
   Bot
 } from 'lucide-react';
+import { useTranslation } from '../contexts/LanguageContext';
 import DiscordIcon from './DiscordIcon';
 
 const Footer = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
@@ -20,18 +20,18 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Discord Bots', href: '#discord' },
-    { name: 'Contact', href: '#contact' }
+    { name: t('home'), href: '#home' },
+    { name: t('about'), href: '#about' },
+    { name: t('projects'), href: '#projects' },
+    { name: t('discordBots'), href: '#discord' },
+    { name: t('contact'), href: '#contact' }
   ];
 
   const services = [
-    { name: 'Web Development', icon: Code },
-    { name: 'Discord Bots', icon: Bot },
-    { name: 'UI/UX Design', icon: Code },
-    { name: 'Consulting', icon: Code }
+    { name: t('webDevelopment'), icon: Code },
+    { name: t('discordBots'), icon: Bot },
+    { name: t('uiuxDesign'), icon: Code },
+    { name: t('consulting'), icon: Code }
   ];
 
   const scrollToTop = () => {
@@ -47,7 +47,7 @@ const Footer = () => {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="py-16">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Brand Section */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -56,13 +56,11 @@ const Footer = () => {
               className="space-y-4"
             >
               <div className="flex items-center space-x-2">
-                <div className="w-10 h-10 bg-gradient-to-br from-purple-accent to-purple-glow rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold">O5</span>
-                </div>
+                <img src="/logo.png" alt="orzz5 logo" className="w-10 h-10 object-contain" />
                 <span className="text-xl font-bold gradient-text">orzz5</span>
               </div>
               <p className="text-gray-300 text-sm leading-relaxed">
-                Creating exceptional digital experiences and powerful Discord bots that make communities thrive.
+                {t('footerDesc')}
               </p>
               <div className="flex items-center space-x-3">
                 {socialLinks.map((social) => (
@@ -87,7 +85,7 @@ const Footer = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="space-y-4"
             >
-              <h3 className="text-lg font-semibold text-purple-accent">Quick Links</h3>
+              <h3 className="text-lg font-semibold text-purple-accent">{t('quickLinks')}</h3>
               <ul className="space-y-2">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
@@ -110,7 +108,7 @@ const Footer = () => {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="space-y-4"
             >
-              <h3 className="text-lg font-semibold text-purple-accent">Services</h3>
+              <h3 className="text-lg font-semibold text-purple-accent">{t('services')}</h3>
               <ul className="space-y-2">
                 {services.map((service) => (
                   <li key={service.name}>
@@ -125,67 +123,7 @@ const Footer = () => {
                 ))}
               </ul>
             </motion.div>
-
-            {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="space-y-4"
-            >
-              <h3 className="text-lg font-semibold text-purple-accent">Contact</h3>
-              <div className="space-y-3">
-                <motion.a
-                  href="mailto:hello@orzz5.dev"
-                  className="flex items-center text-gray-300 hover:text-purple-accent transition-colors duration-200 text-sm"
-                  whileHover={{ x: 5 }}
-                >
-                  <Mail size={14} className="mr-2" />
-                  hello@orzz5.dev
-                </motion.a>
-                <motion.div
-                  className="flex items-center text-gray-300 text-sm"
-                  whileHover={{ x: 5 }}
-                >
-                  <MapPin size={14} className="mr-2" />
-                  Available Worldwide
-                </motion.div>
-              </div>
-            </motion.div>
           </div>
-
-          {/* Newsletter Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="mt-12 pt-8 border-t border-purple-accent/20"
-          >
-            <div className="glass-effect rounded-xl p-6 border border-purple-accent/20">
-              <div className="text-center">
-                <h3 className="text-xl font-semibold text-purple-accent mb-2">
-                  Stay Updated
-                </h3>
-                <p className="text-gray-300 text-sm mb-4">
-                  Get notified about new projects and Discord bot releases
-                </p>
-                <div className="flex flex-col sm:flex-row max-w-md mx-auto gap-3">
-                  <input
-                    type="email"
-                    placeholder="Enter your email"
-                    className="flex-1 px-4 py-2 bg-purple-dark/50 border border-purple-accent/30 rounded-lg text-dark-text placeholder-gray-500 focus:outline-none focus:border-purple-accent focus:ring-2 focus:ring-purple-accent/20 transition-all duration-200"
-                  />
-                  <motion.button
-                    className="px-6 py-2 bg-gradient-to-r from-purple-accent to-purple-glow text-white rounded-lg font-medium hover:shadow-purple-glow-hover transition-all duration-300"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Subscribe
-                  </motion.button>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         </div>
 
         {/* Bottom Section */}
@@ -198,8 +136,8 @@ const Footer = () => {
               className="text-center md:text-left text-sm text-gray-400"
             >
               <p>
-                © {currentYear} orzz5. All rights reserved. Made with{' '}
-                <Heart size={14} className="inline text-red-500 fill-current" /> and lots of{' '}
+                © {currentYear} orzz5. {t('rights')}{' '}
+                <Heart size={14} className="inline text-red-500 fill-current" /> {t('andLotsOf')}{' '}
                 <Code size={14} className="inline text-purple-accent" />
               </p>
             </motion.div>
@@ -216,7 +154,7 @@ const Footer = () => {
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.9 }}
               >
-                <span>Back to top</span>
+                <span>{t('backToTop')}</span>
                 <ArrowUp size={16} />
               </motion.button>
             </motion.div>

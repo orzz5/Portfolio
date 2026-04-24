@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from '../contexts/LanguageContext';
 import { 
   ExternalLink, 
   Github, 
@@ -15,6 +16,7 @@ import {
 } from 'lucide-react';
 
 const Projects = () => {
+  const { t } = useTranslation();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -48,9 +50,9 @@ const Projects = () => {
   const projects = [];
 
   const filters = [
-    { id: 'all', label: 'All Projects', icon: Code },
-    { id: 'web', label: 'Web Apps', icon: Eye },
-    { id: 'discord', label: 'Discord Bots', icon: Bot },
+    { id: 'all', label: t('allProjects'), icon: Code },
+    { id: 'web', label: t('webApps'), icon: Eye },
+    { id: 'discord', label: t('discordBots'), icon: Bot },
   ];
 
   const filteredProjects = activeFilter === 'all' 
@@ -86,7 +88,7 @@ const Projects = () => {
                   ? 'bg-blue-500/20 text-blue-400' 
                   : 'bg-purple-500/20 text-purple-400'
               }`}>
-                {project.category === 'web' ? 'Web App' : 'Discord Bot'}
+                {project.category === 'web' ? t('webApps') : t('discordBots')}
               </span>
             </div>
 
@@ -141,7 +143,7 @@ const Projects = () => {
 
             {/* Features */}
             <div className="space-y-2">
-              <h4 className="text-sm font-medium text-purple-accent">Key Features:</h4>
+              <h4 className="text-sm font-medium text-purple-accent">{t('keyFeatures')}</h4>
               <div className="flex flex-wrap gap-2">
                 {project.features.slice(0, 3).map((feature) => (
                   <div key={feature} className="flex items-center text-xs text-gray-400">
@@ -150,7 +152,7 @@ const Projects = () => {
                   </div>
                 ))}
                 {project.features.length > 3 && (
-                  <span className="text-xs text-purple-accent">+{project.features.length - 3} more</span>
+                  <span className="text-xs text-purple-accent">+{project.features.length - 3} {t('featuresCount')}</span>
                 )}
               </div>
             </div>
@@ -197,10 +199,10 @@ const Projects = () => {
           {/* Section Title */}
           <motion.div variants={itemVariants} className="text-center">
             <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
-              Projects
+              {t('projectsTitle')}
             </h2>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              Coming soon - showcasing my latest work in frontend development and Discord bot creation
+              {t('projectsTagline')}
             </p>
           </motion.div>
 
@@ -237,10 +239,9 @@ const Projects = () => {
             <motion.div variants={itemVariants} className="text-center py-16">
               <div className="glass-effect rounded-2xl p-12 border border-purple-accent/20 max-w-2xl mx-auto">
                 <Code size={48} className="text-purple-accent mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-purple-accent mb-4">Projects Coming Soon</h3>
+                <h3 className="text-2xl font-bold text-purple-accent mb-4">{t('projectsComingSoon')}</h3>
                 <p className="text-gray-300 mb-6">
-                  I'm currently working on some exciting projects that will be showcased here soon. 
-                  Check back later to see my latest work in web development and Discord bot creation.
+                  {t('projectsSoonDesc')}
                 </p>
                 <motion.a
                   href="#contact"
@@ -248,7 +249,7 @@ const Projects = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span>Get Notified</span>
+                  <span>{t('getNotified')}</span>
                   <ExternalLink size={16} />
                 </motion.a>
               </div>
@@ -263,7 +264,7 @@ const Projects = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span>View All Projects</span>
+              <span>{t('viewAllProjects')}</span>
               <ExternalLink size={16} />
             </motion.a>
           </motion.div>

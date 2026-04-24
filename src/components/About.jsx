@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from '../contexts/LanguageContext';
 import { 
   Code2, 
   Palette, 
@@ -16,6 +17,7 @@ import {
 } from 'lucide-react';
 
 const About = () => {
+  const { t } = useTranslation();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -46,42 +48,42 @@ const About = () => {
 
   const skills = [
     {
-      category: 'Frontend Development',
+      category: t('frontendDev'),
       icon: Code2,
       level: 95,
       technologies: ['React', 'Vue.js', 'TypeScript', 'TailwindCSS', 'Next.js'],
       color: 'from-blue-500 to-purple-600'
     },
     {
-      category: 'UI/UX Design',
+      category: t('designTitle'),
       icon: Palette,
       level: 85,
       technologies: ['Figma', 'Adobe XD', 'Prototyping', 'User Research'],
       color: 'from-pink-500 to-purple-600'
     },
     {
-      category: 'Discord Bot Development',
+      category: t('discordDevTitle'),
       icon: Bot,
       level: 90,
       technologies: ['Discord.js', 'Node.js', 'Python', 'Webhooks'],
       color: 'from-purple-500 to-indigo-600'
     },
     {
-      category: 'Backend Development',
+      category: t('backendDev'),
       icon: Database,
       level: 75,
       technologies: ['Node.js', 'Express', 'MongoDB', 'PostgreSQL'],
       color: 'from-green-500 to-teal-600'
     },
     {
-      category: 'Mobile Development',
+      category: t('mobileDev'),
       icon: Smartphone,
       level: 70,
       technologies: ['React Native', 'Flutter', 'Progressive Web Apps'],
       color: 'from-orange-500 to-red-600'
     },
     {
-      category: 'Cloud & DevOps',
+      category: t('cloudDev'),
       icon: Cloud,
       level: 80,
       technologies: ['AWS', 'Vercel', 'Docker', 'CI/CD'],
@@ -92,23 +94,23 @@ const About = () => {
   const services = [
     {
       icon: Rocket,
-      title: 'Web Development',
-      description: 'Building responsive, fast, and beautiful web applications with modern technologies',
+      title: t('webDevTitle'),
+      description: t('webDevDesc'),
     },
     {
       icon: Bot,
-      title: 'Discord Bots',
-      description: 'Custom Discord bots for moderation, entertainment, automation, and community management',
+      title: t('discordDevTitle'),
+      description: t('discordDevDesc'),
     },
     {
       icon: Palette,
-      title: 'UI/UX Design',
-      description: 'Creating intuitive and visually appealing user interfaces that delight users',
+      title: t('designTitle'),
+      description: t('designDesc'),
     },
     {
       icon: Zap,
-      title: 'Performance Optimization',
-      description: 'Optimizing applications for speed, SEO, and best user experience',
+      title: t('perfOptTitle'),
+      description: t('perfOptDesc'),
     },
   ];
 
@@ -125,11 +127,10 @@ const About = () => {
           {/* Section Title */}
           <motion.div variants={itemVariants} className="text-center">
             <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
-              About Me
+              {t('aboutMe')}
             </h2>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              Frontend developer and Discord bot specialist focused on creating 
-              exceptional digital experiences.
+              {t('aboutTagline')}
             </p>
           </motion.div>
 
@@ -137,15 +138,13 @@ const About = () => {
           <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <h3 className="text-2xl md:text-3xl font-bold text-purple-accent mb-4">
-                About Me
+                {t('aboutMe')}
               </h3>
               <p className="text-gray-300 leading-relaxed">
-                Hi! I'm orzz5, a frontend developer and Discord bot specialist 
-                who creates beautiful, functional digital experiences. I help bring ideas to life 
-                through React applications and custom Discord bots.
+                {t('aboutDescription')}
               </p>
               <div className="flex flex-wrap gap-4 pt-4">
-                {['Problem Solver', 'Creative Thinker', 'Team Player', 'Fast Learner'].map((trait) => (
+                {[t('problemSolver'), t('creativeThinker'), t('teamPlayer'), t('fastLearner')].map((trait) => (
                   <span
                     key={trait}
                     className="px-4 py-2 glass-effect border border-purple-accent/30 rounded-full text-sm font-medium text-purple-accent"
@@ -164,10 +163,10 @@ const About = () => {
               <div className="glass-effect rounded-2xl p-8 border border-purple-accent/20">
                 <div className="grid grid-cols-2 gap-6">
                   {[
-                    { icon: Code2, label: 'Clean Code', value: '100%' },
-                    { icon: Zap, label: 'Performance', value: 'A+' },
-                    { icon: GitBranch, label: 'Version Control', value: 'Git Pro' },
-                    { icon: Terminal, label: 'Debugging', value: 'Expert' },
+                    { icon: Code2, label: t('cleanCode'), value: '100%' },
+                    { icon: Zap, label: t('performance'), value: 'A+' },
+                    { icon: GitBranch, label: t('versionControl'), value: 'Git Pro' },
+                    { icon: Terminal, label: t('debugging'), value: t('expert') },
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -189,7 +188,7 @@ const About = () => {
 
           {/* Skills Section */}
           <motion.div variants={itemVariants} className="space-y-8">
-            <h3 className="text-3xl font-bold text-center gradient-text">Skills & Expertise</h3>
+            <h3 className="text-3xl font-bold text-center gradient-text">{t('skillsExpertise')}</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {skills.map((skill, index) => (
                 <motion.div
@@ -237,7 +236,7 @@ const About = () => {
 
           {/* Services Section */}
           <motion.div variants={itemVariants} className="space-y-8">
-            <h3 className="text-3xl font-bold text-center gradient-text">What I Offer</h3>
+            <h3 className="text-3xl font-bold text-center gradient-text">{t('whatIOffer')}</h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {services.map((service, index) => (
                 <motion.div

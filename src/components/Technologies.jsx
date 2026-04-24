@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from '../contexts/LanguageContext';
 import { 
   Code, 
   Database, 
@@ -17,6 +18,7 @@ import {
 } from 'lucide-react';
 
 const Technologies = () => {
+  const { t } = useTranslation();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -92,10 +94,10 @@ const Technologies = () => {
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center">
             <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
-              What I Use
+              {t('whatIUse')}
             </h2>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              Tools and technologies I work with daily
+              {t('toolsDaily')}
             </p>
           </motion.div>
 

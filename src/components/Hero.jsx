@@ -3,8 +3,10 @@ import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { ArrowDown, Code, Bot, Sparkles, Zap } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
+import { useTranslation } from '../contexts/LanguageContext';
 
 const Hero = () => {
+  const { t } = useTranslation();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -76,7 +78,7 @@ const Hero = () => {
           {/* Greeting */}
           <motion.div variants={itemVariants}>
             <p className="text-lg md:text-xl text-purple-glow font-medium mb-4">
-              Hello, I'm
+              {t('helloIm')}
             </p>
           </motion.div>
 
@@ -91,19 +93,20 @@ const Hero = () => {
           {/* Animated Typing Text */}
           <motion.div variants={itemVariants} className="h-20">
             <div className="text-2xl md:text-4xl lg:text-5xl font-bold text-dark-text mb-4">
-              <span className="text-purple-accent">I build </span>
+              <span className="text-purple-accent">{t('iBuild')} </span>
               <span className="gradient-text">
                 <TypeAnimation
+                  key={t('iBuild')} // Force re-render when language changes
                   sequence={[
-                    'amazing websites',
+                    t('amazingWebsites'),
                     2000,
-                    'Discord bots',
+                    t('discordBots2'),
                     2000,
-                    'user experiences',
+                    t('userExperiences'),
                     2000,
-                    'digital solutions',
+                    t('digitalSolutions'),
                     2000,
-                    'custom applications',
+                    t('customApplications'),
                     2000,
                   ]}
                   speed={50}
@@ -120,8 +123,7 @@ const Hero = () => {
             variants={itemVariants}
             className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
           >
-            Frontend developer and Discord bot specialist focused on creating 
-            exceptional web applications and intelligent automation solutions
+            {t('heroDescription')}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -135,7 +137,7 @@ const Hero = () => {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              View My Work
+              {t('viewMyWork')}
             </motion.a>
             
             <motion.a
@@ -144,7 +146,7 @@ const Hero = () => {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
-              Let's Connect
+              {t('letsConnect')}
             </motion.a>
             
             <motion.a
@@ -156,7 +158,7 @@ const Hero = () => {
               whileTap={{ scale: 0.95 }}
             >
               <Code size={20} className="mr-2" />
-              GitHub
+              {t('github')}
             </motion.a>
           </motion.div>
 
@@ -166,9 +168,9 @@ const Hero = () => {
             className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-3xl mx-auto"
           >
             {[
-              { number: '50+', label: 'Projects Completed' },
-              { number: '15+', label: 'Discord Bots' },
-              { number: '24/7', label: 'Support Available' },
+              { number: '50+', label: t('projectsCompleted') },
+              { number: '15+', label: t('discordBotsCount') },
+              { number: '24/7', label: t('supportAvailable') },
             ].map((stat, index) => (
               <motion.div
                 key={index}
