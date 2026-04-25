@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Lenis from 'lenis';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { LanguageProvider } from './contexts/LanguageContext';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -55,6 +56,7 @@ function App() {
           <Footer />
         </div>
       </div>
+      <SpeedInsights />
     </LanguageProvider>
   );
 }
