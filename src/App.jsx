@@ -10,7 +10,7 @@ import Projects from './components/Projects';
 import DiscordServices from './components/DiscordServices';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import BackgroundAnimation from './components/BackgroundAnimation';
+import ConstellationGrid from './components/ui/constellation-grid';
 
 function App() {
   useEffect(() => {
@@ -40,8 +40,8 @@ function App() {
 
   return (
     <LanguageProvider>
-      <div className="relative min-h-screen bg-dark-bg">
-        <BackgroundAnimation />
+      <div className="relative min-h-screen">
+        <ConstellationGrid />
         <div className="relative z-10">
           <Navbar />
           <main>
