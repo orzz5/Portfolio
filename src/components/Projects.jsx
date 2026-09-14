@@ -136,7 +136,7 @@ const Projects = () => {
       id: 'bots-testing',
       title: t('botsProjectTitle'),
       description: t('botsProjectDesc'),
-      image: '/Bots.orzz.png',
+      image: 'https://image.thum.io/get/width/800/crop/600/https://bots.orzz.website',
       categories: ['web', 'discord'],
       technologies: ['React', 'Tailwind CSS', 'Discord.js', 'Node.js'],
       features: [t('autoModeration'), t('musicTitle'), t('economyTitle'), t('customFeatures')],
@@ -149,7 +149,7 @@ const Projects = () => {
       id: 'weather-app',
       title: t('weatherProjectTitle'),
       description: t('weatherProjectDesc'),
-      image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&q=80&w=1000',
+      image: 'https://image.thum.io/get/width/800/crop/600/https://weather.orzz.website',
       categories: ['web'],
       technologies: ['React', 'Weather API', 'Tailwind CSS'],
       features: ['Real-time weather', 'Location search', '5-day forecast', 'Responsive design'],
@@ -162,7 +162,7 @@ const Projects = () => {
       id: 'bio-link',
       title: t('bioProjectTitle'),
       description: t('bioProjectDesc'),
-      image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=1000',
+      image: 'https://image.thum.io/get/width/800/crop/600/https://bio.orzz.website',
       categories: ['web'],
       technologies: ['React', 'Tailwind CSS', 'Vercel'],
       features: ['Custom branding', 'Analytics dashboard', 'Link management', 'Mobile optimized'],
@@ -203,7 +203,7 @@ const Projects = () => {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}
               onError={(e) => {
-                e.target.src = 'https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=1000';
+                e.target.src = 'https://image.thum.io/get/width/800/crop/600/https://orzz.website';
               }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-purple-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
