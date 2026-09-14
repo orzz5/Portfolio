@@ -71,6 +71,20 @@ const translations = {
     clickToEnter: "Click anywhere to enter",
     preview: "Preview",
 
+    // Weather Project
+    weatherProjectTitle: "weather.orzz.website",
+    weatherProjectDesc: "A sleek, real-time weather application with location search and forecasts",
+    weatherTech1: "React",
+    weatherTech2: "Weather API",
+    weatherTech3: "Tailwind CSS",
+
+    // Bio Project
+    bioProjectTitle: "bio.orzz.website",
+    bioProjectDesc: "A modern link-in-bio page with custom branding and analytics",
+    bioTech1: "React",
+    bioTech2: "Tailwind CSS",
+    bioTech3: "Vercel",
+
     discordBotDev: "Discord Bot Development",
     discordDesc: "Create powerful, custom Discord bots that enhance your server experience and automate community management",
     botTypesTitle: "Bot Types I Create",
@@ -234,6 +248,20 @@ const translations = {
     clickToEnter: "Haz clic en cualquier lugar para entrar",
     preview: "Vista Previa",
 
+    // Weather Project
+    weatherProjectTitle: "weather.orzz.website",
+    weatherProjectDesc: "Una aplicación meteorológica elegante y en tiempo real con búsqueda por ubicación y pronósticos",
+    weatherTech1: "React",
+    weatherTech2: "Weather API",
+    weatherTech3: "Tailwind CSS",
+
+    // Bio Project
+    bioProjectTitle: "bio.orzz.website",
+    bioProjectDesc: "Una página moderna de links con marca personalizada y análisis",
+    bioTech1: "React",
+    bioTech2: "Tailwind CSS",
+    bioTech3: "Vercel",
+
     discordBotDev: "Desarrollo de Bots de Discord",
     discordDesc: "Crea bots de Discord potentes y personalizados que mejoran la experiencia de tu servidor y automatizan la gestión comunitaria.",
     botTypesTitle: "Tipos de Bots que Creo",
@@ -396,6 +424,20 @@ const translations = {
     botsProjectDesc: "Un site web pour tester tous mes bots créés.",
     clickToEnter: "Cliquez n'importe où pour entrer",
     preview: "Aperçu",
+
+    // Weather Project
+    weatherProjectTitle: "weather.orzz.website",
+    weatherProjectDesc: "Une application météo élégante et en temps réel avec recherche de localisation et prévisions",
+    weatherTech1: "React",
+    weatherTech2: "Weather API",
+    weatherTech3: "Tailwind CSS",
+
+    // Bio Project
+    bioProjectTitle: "bio.orzz.website",
+    bioProjectDesc: "Une page de liens moderne avec branding personnalisé et analytics",
+    bioTech1: "React",
+    bioTech2: "Tailwind CSS",
+    bioTech3: "Vercel",
 
     discordBotDev: "Développement de Bots Discord",
     discordDesc: "Créez des bots Discord puissants et personnalisés qui améliorent l'expérience de votre serveur et automatisent la gestion de communauté.",

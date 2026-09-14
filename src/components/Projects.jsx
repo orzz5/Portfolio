@@ -144,6 +144,32 @@ const Projects = () => {
       live: 'https://bots.orzz.website',
       stats: { stars: 12, forks: 5, servers: 150 },
       status: 'Live'
+    },
+    {
+      id: 'weather-app',
+      title: t('weatherProjectTitle'),
+      description: t('weatherProjectDesc'),
+      image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?auto=format&fit=crop&q=80&w=1000',
+      categories: ['web'],
+      technologies: ['React', 'Weather API', 'Tailwind CSS'],
+      features: ['Real-time weather', 'Location search', '5-day forecast', 'Responsive design'],
+      github: null,
+      live: 'https://weather.orzz.website',
+      stats: { stars: 8, forks: 3 },
+      status: 'Live'
+    },
+    {
+      id: 'bio-link',
+      title: t('bioProjectTitle'),
+      description: t('bioProjectDesc'),
+      image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=1000',
+      categories: ['web'],
+      technologies: ['React', 'Tailwind CSS', 'Vercel'],
+      features: ['Custom branding', 'Analytics dashboard', 'Link management', 'Mobile optimized'],
+      github: null,
+      live: 'https://bio.orzz.website',
+      stats: { stars: 6, forks: 2 },
+      status: 'Live'
     }
   ];
 
