@@ -13,7 +13,9 @@ import {
   Maximize2,
   Minus,
   Globe,
-  Pointer
+  Pointer,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 
 const ProjectModal = ({ project, isOpen, onClose }) => {
@@ -107,6 +109,12 @@ const Projects = () => {
 
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedProject, setSelectedProject] = useState(null);
+  const [showAll, setShowAll] = useState(false);
+  const INITIAL_VISIBLE = 3;
+
+  useEffect(() => {
+    setShowAll(false);
+  }, [activeFilter]);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -170,6 +178,19 @@ const Projects = () => {
       live: 'https://bio.orzz.website',
       stats: { stars: 6, forks: 2 },
       status: 'Live'
+    },
+    {
+      id: 'web-builder',
+      title: t('labsProjectTitle'),
+      description: t('labsProjectDesc'),
+      image: 'https://image.thum.io/get/width/800/crop/600/https://labs.orzz.website',
+      categories: ['web'],
+      technologies: ['Web Builder', 'React', 'Tailwind CSS'],
+      features: ['Drag & drop builder', 'Custom components', 'Responsive design'],
+      github: null,
+      live: 'https://labs.orzz.website',
+      stats: { stars: 4, forks: 1 },
+      status: 'Live'
     }
   ];
 
@@ -183,15 +204,17 @@ const Projects = () => {
     ? projects 
     : projects.filter(project => project.categories.includes(activeFilter));
 
+  const hasMore = filteredProjects.length > INITIAL_VISIBLE;
+  const visibleProjects = showAll ? filteredProjects : filteredProjects.slice(0, INITIAL_VISIBLE);
+
   const ProjectCard = ({ project, index }) => {
     const [isHovered, setIsHovered] = useState(false);
 
     return (
-      <motion.div
-        variants={itemVariants}
-        className="group cursor-pointer"
-        onHoverStart={() => setIsHovered(true)}
-        onHoverEnd={() => setIsHovered(false)}
+      <div
+        className="group cursor-pointer h-full"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
         onClick={() => setSelectedProject(project)}
       >
         <div className="glass-effect rounded-2xl overflow-hidden border border-purple-accent/20 hover:border-purple-accent/40 transition-all duration-300 h-full flex flex-col">
@@ -302,7 +325,7 @@ const Projects = () => {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
     );
   };
 
@@ -347,11 +370,47 @@ const Projects = () => {
           </motion.div>
 
           {filteredProjects.length > 0 ? (
-            <motion.div variants={itemVariants} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {filteredProjects.map((project, index) => (
-                <ProjectCard key={project.id} project={project} index={index} />
-              ))}
-            </motion.div>
+            <>
+              <motion.div
+                layout
+                variants={itemVariants}
+                className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+              >
+                <AnimatePresence initial={false}>
+                  {visibleProjects.map((project, index) => (
+                    <motion.div
+                      key={project.id}
+                      layout
+                      initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -30, scale: 0.95 }}
+                      transition={{ duration: 0.5, ease: [0.6, -0.05, 0.01, 0.9] }}
+                    >
+                      <ProjectCard project={project} index={index} />
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
+              </motion.div>
+
+              {hasMore && (
+                <motion.div variants={itemVariants} layout className="flex justify-center">
+                  <motion.button
+                    onClick={() => setShowAll(!showAll)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl glass-effect border border-purple-accent/30 text-white font-medium hover:border-purple-accent/60 hover:text-purple-accent transition-all duration-300"
+                  >
+                    <span>{showAll ? t('showLessProjects') : t('showAllProjects')}</span>
+                    <motion.span
+                      animate={{ rotate: showAll ? 180 : 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <ChevronDown size={16} />
+                    </motion.span>
+                  </motion.button>
+                </motion.div>
+              )}
+            </>
           ) : (
             <motion.div variants={itemVariants} className="text-center py-16">
               <div className="glass-effect rounded-2xl p-12 border border-purple-accent/20 max-w-2xl mx-auto">

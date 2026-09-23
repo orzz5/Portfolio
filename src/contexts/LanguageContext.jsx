@@ -85,6 +85,12 @@ const translations = {
     bioTech2: "Tailwind CSS",
     bioTech3: "Vercel",
 
+    // Labs Project
+    labsProjectTitle: "labs.orzz.website",
+    labsProjectDesc: "A powerful web builder to create and launch stunning websites easily",
+    showAllProjects: "Show all projects",
+    showLessProjects: "Show less",
+
     discordBotDev: "Discord Bot Development",
     discordDesc: "Create powerful, custom Discord bots that enhance your server experience and automate community management",
     botTypesTitle: "Bot Types I Create",
@@ -262,6 +268,12 @@ const translations = {
     bioTech2: "Tailwind CSS",
     bioTech3: "Vercel",
 
+    // Labs Project
+    labsProjectTitle: "labs.orzz.website",
+    labsProjectDesc: "Un constructor web potente para crear y lanzar sitios web impresionantes fácilmente",
+    showAllProjects: "Mostrar todos los proyectos",
+    showLessProjects: "Mostrar menos",
+
     discordBotDev: "Desarrollo de Bots de Discord",
     discordDesc: "Crea bots de Discord potentes y personalizados que mejoran la experiencia de tu servidor y automatizan la gestión comunitaria.",
     botTypesTitle: "Tipos de Bots que Creo",
@@ -438,6 +450,12 @@ const translations = {
     bioTech1: "React",
     bioTech2: "Tailwind CSS",
     bioTech3: "Vercel",
+
+    // Labs Project
+    labsProjectTitle: "labs.orzz.website",
+    labsProjectDesc: "Un puissant créateur de sites web pour créer et lancer de magnifiques sites facilement",
+    showAllProjects: "Voir tous les projets",
+    showLessProjects: "Voir moins",
 
     discordBotDev: "Développement de Bots Discord",
     discordDesc: "Créez des bots Discord puissants et personnalisés qui améliorent l'expérience de votre serveur et automatisent la gestion de communauté.",
