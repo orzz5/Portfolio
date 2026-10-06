@@ -97,14 +97,14 @@ const Contact = () => {
       >
         <motion.div variants={itemVariants}>
           <motion.div variants={itemVariants} className="mb-8 text-center">
-            <h2 className="text-3xl font-bold text-accent mb-3">{t('getInTouch')}</h2>
-            <p className="text-lg text-gray-300">{t('contactTagline')}</p>
+            <h2 className="text-4xl md:text-5xl font-bold gradient-text tracking-tight mb-4">{t('getInTouch')}</h2>
+            <p className="text-lg md:text-xl text-gray-300">{t('contactTagline')}</p>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-10 items-start">
             <div className="space-y-6">
               <motion.div variants={itemVariants} className="text-center">
-                <h3 className="text-xl font-bold text-accent mb-4">{t('connectOnSocial')}</h3>
+                <h3 className="text-2xl font-bold text-accent mb-4">{t('connectOnSocial')}</h3>
                 <div className="flex justify-center space-x-4">
               <motion.a
                 href="https://github.com/orzz5"
@@ -130,7 +130,7 @@ const Contact = () => {
 
             <motion.div variants={itemVariants}>
               <div className="glass-effect rounded-2xl p-8 border border-accent/20">
-              <h3 className="text-xl font-bold text-accent mb-4">{t('sendMessage')}</h3>
+              <h3 className="text-2xl font-bold text-accent mb-4">{t('sendMessage')}</h3>
               
               {formStatus === 'success' && (
                 <motion.div

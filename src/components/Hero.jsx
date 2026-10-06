@@ -58,7 +58,7 @@ const Hero = () => {
 
           <motion.h1
             variants={itemVariants}
-            className="mt-6 text-5xl md:text-7xl lg:text-8xl font-bold gradient-text tracking-tight"
+            className="mt-6 text-6xl md:text-8xl lg:text-9xl font-bold gradient-text tracking-tight leading-none"
           >
             orzz5
           </motion.h1>
@@ -70,7 +70,7 @@ const Hero = () => {
             {t('heroRole')}
           </motion.p>
 
-          <motion.div variants={itemVariants} className="mt-6 text-xl md:text-3xl font-bold">
+          <motion.div variants={itemVariants} className="mt-6 text-2xl md:text-3xl font-bold">
             <span className="text-accent">{t('iBuild')} </span>
             <span className="gradient-text">
               <TypeAnimation
@@ -97,7 +97,7 @@ const Hero = () => {
 
           <motion.p
             variants={itemVariants}
-            className="mt-5 text-base md:text-lg text-gray-300 leading-relaxed max-w-4xl mx-auto"
+            className="mt-5 text-base md:text-lg text-gray-400 leading-relaxed max-w-4xl mx-auto"
           >
             {t('heroDescription')}
           </motion.p>

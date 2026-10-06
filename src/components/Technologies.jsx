@@ -91,10 +91,10 @@ const Technologies = () => {
           className="space-y-12"
         >
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold gradient-text tracking-tight mb-4">
               {t('whatIUse')}
             </h2>
-            <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
               {t('toolsDaily')}
             </p>
           </motion.div>

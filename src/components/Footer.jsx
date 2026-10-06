@@ -65,7 +65,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-white font-bold text-lg mb-6">{t('quickLinks')}</h4>
+            <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-gray-400 mb-6">{t('quickLinks')}</h4>
             <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
@@ -81,7 +81,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="text-white font-bold text-lg mb-6">{t('services')}</h4>
+            <h4 className="text-xs uppercase tracking-[0.2em] font-semibold text-gray-400 mb-6">{t('services')}</h4>
             <ul className="space-y-3">
               {services.map((service, index) => (
                 <li key={index}>
