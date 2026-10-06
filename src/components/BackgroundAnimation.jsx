@@ -35,7 +35,7 @@ const BackgroundAnimation = () => {
       }
       
       draw() {
-        ctx.fillStyle = `rgba(168, 85, 247, ${this.opacity})`;
+        ctx.fillStyle = `rgba(228, 228, 231, ${this.opacity})`;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
@@ -63,7 +63,7 @@ const BackgroundAnimation = () => {
           
           if (distanceSquared < maxDistanceSquared) {
             const distance = Math.sqrt(distanceSquared);
-            ctx.strokeStyle = `rgba(168, 85, 247, ${0.15 * (1 - distance / 100)})`;
+            ctx.strokeStyle = `rgba(228, 228, 231, ${0.15 * (1 - distance / 100)})`;
             ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
@@ -92,13 +92,13 @@ const BackgroundAnimation = () => {
 
   return (
     <div className="fixed inset-0 z-0">
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-dark via-purple-medium to-dark-bg opacity-80" />
+      <div className="absolute inset-0 bg-gradient-to-br from-ink via-coal to-dark-bg opacity-80" />
       <canvas
         ref={canvasRef}
         className="absolute inset-0"
       />
       <motion.div
-        className="absolute inset-0 bg-gradient-to-t from-purple-dark/50 via-transparent to-transparent"
+        className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent"
         animate={{
           opacity: [0.3, 0.5, 0.3],
         }}

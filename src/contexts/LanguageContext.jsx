@@ -10,6 +10,8 @@ const translations = {
     technologies: "Technologies",
 
     helloIm: "Hello, I'm",
+    heroRole: "Frontend Developer & Discord Bot Specialist",
+    availableForWork: "Available for new projects",
     iBuild: "I build",
     amazingWebsites: "amazing websites",
     discordBots2: "Discord bots",
@@ -193,6 +195,8 @@ const translations = {
     technologies: "Tecnologías",
 
     helloIm: "Hola, soy",
+    heroRole: "Desarrollador frontend y especialista en bots de Discord",
+    availableForWork: "Disponible para nuevos proyectos",
     iBuild: "Desarrollo",
     amazingWebsites: "sitios web increíbles",
     discordBots2: "bots de Discord",
@@ -376,6 +380,8 @@ const translations = {
     technologies: "Technologies",
 
     helloIm: "Bonjour, je suis",
+    heroRole: "Développeur frontend et spécialiste des bots Discord",
+    availableForWork: "Disponible pour de nouveaux projets",
     iBuild: "Je conçois",
     amazingWebsites: "des sites web incroyables",
     discordBots2: "des bots Discord",

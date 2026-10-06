@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
-import { ArrowDown, Code, Bot, Sparkles, Zap } from 'lucide-react';
+import { ArrowDown, Code } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from '../contexts/LanguageContext';
 
@@ -35,119 +35,100 @@ const Hero = () => {
     },
   };
 
-  const floatingIcons = [
-    { icon: Code, delay: 0, x: -100, y: -50 },
-    { icon: Bot, delay: 0.5, x: 100, y: -80 },
-    { icon: Sparkles, delay: 1, x: -80, y: 60 },
-    { icon: Zap, delay: 1.5, x: 120, y: 40 },
-  ];
-
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {floatingIcons.map((item, index) => (
-        <motion.div
-          key={index}
-          className="absolute text-purple-accent/20"
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{
-            opacity: inView ? 0.3 : 0,
-            scale: inView ? 1 : 0,
-            x: [item.x, item.x + 20, item.x],
-            y: [item.y, item.y - 20, item.y],
-          }}
-          transition={{
-            opacity: { delay: item.delay, duration: 1 },
-            scale: { delay: item.delay, duration: 0.5 },
-            x: { repeat: Infinity, duration: 4, ease: "easeInOut" },
-            y: { repeat: Infinity, duration: 3, ease: "easeInOut" },
-          }}
-        >
-          <item.icon size={40} />
-        </motion.div>
-      ))}
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center z-10">
+    <section id="home" className="min-h-[85vh] flex items-center justify-center relative overflow-hidden">
+      <div className="w-full px-6 md:px-10 lg:px-16 z-10">
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="space-y-8"
+          className="text-center"
         >
-          <motion.div variants={itemVariants}>
-            <p className="text-lg md:text-xl text-purple-glow font-medium mb-4">
-              {t('helloIm')}
-            </p>
+          <motion.div
+            variants={itemVariants}
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm text-sm text-gray-300"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
+            </span>
+            {t('availableForWork')}
           </motion.div>
 
           <motion.h1
             variants={itemVariants}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold gradient-text mb-6"
+            className="mt-6 text-5xl md:text-7xl lg:text-8xl font-bold gradient-text tracking-tight"
           >
             orzz5
           </motion.h1>
 
-          <motion.div variants={itemVariants} className="h-20">
-            <div className="text-2xl md:text-4xl lg:text-5xl font-bold text-dark-text mb-4">
-              <span className="text-purple-accent">{t('iBuild')} </span>
-              <span className="gradient-text">
-                <TypeAnimation
-                  key={t('iBuild')}
-                  sequence={[
-                    t('amazingWebsites'),
-                    2000,
-                    t('discordBots2'),
-                    2000,
-                    t('userExperiences'),
-                    2000,
-                    t('digitalSolutions'),
-                    2000,
-                    t('customApplications'),
-                    2000,
-                  ]}
-                  speed={50}
-                  repeat={Infinity}
-                  wrapper="span"
-                  cursor={true}
-                />
-              </span>
-            </div>
+          <motion.p
+            variants={itemVariants}
+            className="mt-4 text-xs md:text-sm font-semibold uppercase tracking-[0.3em] text-silver"
+          >
+            {t('heroRole')}
+          </motion.p>
+
+          <motion.div variants={itemVariants} className="mt-6 text-xl md:text-3xl font-bold">
+            <span className="text-accent">{t('iBuild')} </span>
+            <span className="gradient-text">
+              <TypeAnimation
+                key={t('iBuild')}
+                sequence={[
+                  t('amazingWebsites'),
+                  2000,
+                  t('discordBots2'),
+                  2000,
+                  t('userExperiences'),
+                  2000,
+                  t('digitalSolutions'),
+                  2000,
+                  t('customApplications'),
+                  2000,
+                ]}
+                speed={50}
+                repeat={Infinity}
+                wrapper="span"
+                cursor={true}
+              />
+            </span>
           </motion.div>
 
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+            className="mt-5 text-base md:text-lg text-gray-300 leading-relaxed max-w-4xl mx-auto"
           >
             {t('heroDescription')}
           </motion.p>
 
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12"
+            className="mt-8 flex flex-wrap justify-center items-center gap-3"
           >
             <motion.a
               href="#projects"
-              className="glow-button bg-gradient-to-r from-purple-accent to-purple-glow text-white px-8 py-4 rounded-full font-semibold text-lg shadow-purple-glow hover:shadow-purple-glow-hover transition-all duration-300"
+              className="glow-button inline-flex items-center justify-center whitespace-nowrap bg-gradient-to-r from-accent to-glow text-neutral-900 px-6 py-3 rounded-full font-semibold text-base shadow-glow hover:shadow-glow-hover transition-all duration-300"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
               {t('viewMyWork')}
             </motion.a>
-            
+
             <motion.a
               href="#contact"
-              className="glass-effect border border-purple-accent/50 text-purple-accent px-8 py-4 rounded-full font-semibold text-lg hover:bg-purple-accent/10 transition-all duration-300"
+              className="glass-effect inline-flex items-center justify-center whitespace-nowrap border border-accent/50 text-accent px-6 py-3 rounded-full font-semibold text-base hover:bg-accent/10 transition-all duration-300"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
               {t('letsConnect')}
             </motion.a>
-            
+
             <motion.a
               href="https://github.com/orzz5"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-effect border border-purple-accent/50 text-purple-accent px-8 py-4 rounded-full font-semibold text-lg hover:bg-purple-accent/10 transition-all duration-300"
+              className="glass-effect inline-flex items-center justify-center whitespace-nowrap border border-accent/50 text-accent px-6 py-3 rounded-full font-semibold text-base hover:bg-accent/10 transition-all duration-300"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -156,29 +137,6 @@ const Hero = () => {
             </motion.a>
           </motion.div>
 
-          <motion.div
-            variants={itemVariants}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 max-w-3xl mx-auto"
-          >
-            {[
-              { number: '50+', label: t('projectsCompleted') },
-              { number: '15+', label: t('discordBotsCount') },
-              { number: '24/7', label: t('supportAvailable') },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                className="text-center"
-                whileHover={{ scale: 1.1 }}
-              >
-                <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
-                  {stat.number}
-                </div>
-                <div className="text-sm md:text-base text-gray-400">
-                  {stat.label}
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
         </motion.div>
       </div>
 
@@ -195,7 +153,7 @@ const Hero = () => {
       >
         <motion.a
           href="#about"
-          className="text-purple-accent hover:text-purple-glow transition-colors duration-200"
+          className="text-accent hover:text-glow transition-colors duration-200"
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.8 }}
         >

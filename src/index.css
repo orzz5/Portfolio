@@ -16,27 +16,23 @@
     @apply font-['Space_Grotesk'];
     font-family: 'Space Grotesk', sans-serif;
   }
-  
-  html {
-    scroll-behavior: smooth;
-  }
 }
 
 @layer components {
   .gradient-text {
-    @apply bg-gradient-to-r from-purple-accent via-purple-glow to-purple-light bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-accent via-glow to-silver bg-clip-text text-transparent;
   }
   
   .card-hover {
-    @apply transition-all duration-300 transform hover:scale-105 hover:shadow-purple-glow-hover;
+    @apply transition-all duration-300 transform hover:scale-105 hover:shadow-glow-hover;
   }
   
   .glass-effect {
-    @apply bg-gradient-to-br from-purple-dark/20 to-purple-medium/20 backdrop-blur-md border border-purple-accent/20;
+    @apply bg-white/[0.04] backdrop-blur-md border border-white/10;
   }
   
   .glow-button {
-    @apply relative overflow-hidden transition-all duration-300 before:absolute before:inset-0 before:bg-gradient-to-r before:from-purple-accent before:to-purple-glow before:opacity-0 hover:before:opacity-20 before:transition-opacity;
+    @apply relative overflow-hidden transition-all duration-300 before:absolute before:inset-0 before:bg-gradient-to-r before:from-black/10 before:to-black/20 before:opacity-0 hover:before:opacity-100 before:transition-opacity;
   }
   
   .floating {
@@ -53,17 +49,17 @@
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-purple-dark;
+  @apply bg-ink;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-purple-accent rounded-full;
+  @apply bg-neutral-700 rounded-full;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-purple-glow;
+  @apply bg-neutral-500;
 }
 
 ::selection {
-  @apply bg-purple-accent/30 text-white;
+  @apply bg-white/20 text-white;
 }

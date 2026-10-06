@@ -7,10 +7,9 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Technologies from './components/Technologies';
 import Projects from './components/Projects';
-import DiscordServices from './components/DiscordServices';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ConstellationGrid from './components/ui/constellation-grid';
+import KineticGrid from './components/ui/kinetic-grid';
 
 function App() {
   useEffect(() => {
@@ -24,6 +23,7 @@ function App() {
       smoothTouch: false,
       touchMultiplier: 2,
       infinite: false,
+      anchors: true,
     });
 
     function raf(time) {
@@ -40,21 +40,21 @@ function App() {
 
   return (
     <LanguageProvider>
-      <div className="relative min-h-screen">
-        <ConstellationGrid />
-        <div className="relative z-10">
-          <Navbar />
-          <main>
-            <Hero />
-            <About />
-            <Technologies />
-            <Projects />
-            <DiscordServices />
-            <Contact />
-          </main>
-          <Footer />
+      <KineticGrid globalColor="monochrome">
+        <div className="relative">
+          <div className="relative z-10">
+            <Navbar />
+            <main>
+              <Hero />
+              <About />
+              <Technologies />
+              <Projects />
+              <Contact />
+            </main>
+            <Footer />
+          </div>
         </div>
-      </div>
+      </KineticGrid>
     </LanguageProvider>
   );
 }

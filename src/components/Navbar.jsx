@@ -22,7 +22,6 @@ const Navbar = () => {
     { name: t('home'), href: '#home' },
     { name: t('about'), href: '#about' },
     { name: t('projects'), href: '#projects' },
-    { name: t('discordBots'), href: '#discord' },
     { name: t('contact'), href: '#contact' },
   ];
 
@@ -40,13 +39,13 @@ const Navbar = () => {
   return (
     <motion.nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass-effect shadow-purple-glow' : 'bg-transparent'
+        scrolled ? 'glass-effect shadow-glow' : 'bg-transparent'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-6 md:px-10 lg:px-16">
         <div className="flex items-center justify-between h-16">
           <motion.div
             className="flex-shrink-0"
@@ -65,7 +64,7 @@ const Navbar = () => {
                 <motion.a
                   key={item.name}
                   href={item.href}
-                  className="text-dark-text hover:text-purple-accent transition-colors duration-200 font-medium"
+                  className="text-dark-text hover:text-accent transition-colors duration-200 font-medium"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -79,7 +78,7 @@ const Navbar = () => {
             <div className="relative">
               <motion.button
                 onClick={() => setShowLangDropdown(!showLangDropdown)}
-                className="flex items-center space-x-1 text-dark-text hover:text-purple-accent transition-colors duration-200 p-2 rounded-lg hover:bg-purple-accent/10"
+                className="flex items-center space-x-1 text-dark-text hover:text-accent transition-colors duration-200 p-2 rounded-lg hover:bg-accent/10"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -96,7 +95,7 @@ const Navbar = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute right-0 mt-2 w-48 glass-effect border border-purple-accent/20 rounded-lg shadow-lg z-50"
+                    className="absolute right-0 mt-2 w-48 glass-effect border border-accent/20 rounded-lg shadow-lg z-50"
                   >
                     {languages.map((lang) => (
                       <motion.button
@@ -105,8 +104,8 @@ const Navbar = () => {
                           changeLanguage(lang.code);
                           setShowLangDropdown(false);
                         }}
-                        className={`w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-purple-accent/10 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg ${
-                          language === lang.code ? 'bg-purple-accent/20 text-purple-accent' : 'text-dark-text'
+                        className={`w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-accent/10 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg ${
+                          language === lang.code ? 'bg-accent/20 text-accent' : 'text-dark-text'
                         }`}
                         whileHover={{ x: 5 }}
                         whileTap={{ scale: 0.98 }}
@@ -126,7 +125,7 @@ const Navbar = () => {
                   key={social.label}
                   href={social.href}
                   aria-label={social.label}
-                  className="text-dark-text hover:text-purple-accent transition-colors duration-200"
+                  className="text-dark-text hover:text-accent transition-colors duration-200"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -137,7 +136,7 @@ const Navbar = () => {
 
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden text-dark-text hover:text-purple-accent transition-colors duration-200"
+              className="md:hidden text-dark-text hover:text-accent transition-colors duration-200"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -150,7 +149,7 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="md:hidden glass-effect border-t border-purple-accent/20"
+            className="md:hidden glass-effect border-t border-accent/20"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -161,7 +160,7 @@ const Navbar = () => {
                 <motion.a
                   key={item.name}
                   href={item.href}
-                  className="block px-3 py-2 text-dark-text hover:text-purple-accent hover:bg-purple-accent/10 rounded-md transition-all duration-200 font-medium"
+                  className="block px-3 py-2 text-dark-text hover:text-accent hover:bg-accent/10 rounded-md transition-all duration-200 font-medium"
                   onClick={() => setIsOpen(false)}
                   whileHover={{ x: 5 }}
                   whileTap={{ scale: 0.95 }}
@@ -176,7 +175,7 @@ const Navbar = () => {
                     key={social.label}
                     href={social.href}
                     aria-label={social.label}
-                    className="text-dark-text hover:text-purple-accent transition-colors duration-200"
+                    className="text-dark-text hover:text-accent transition-colors duration-200"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     whileTap={{ scale: 0.9 }}
                   >

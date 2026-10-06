@@ -48,50 +48,50 @@ const Technologies = () => {
   };
 
   const topRowTechnologies = [
-    { name: 'TypeScript', icon: Code, color: 'text-blue-400' },
-    { name: 'HTML5', icon: Code, color: 'text-orange-500' },
-    { name: 'CSS', icon: Palette, color: 'text-blue-500' },
-    { name: 'React', icon: Layers, color: 'text-cyan-400' },
+    { name: 'TypeScript', icon: Code, color: 'text-gray-300' },
+    { name: 'HTML5', icon: Code, color: 'text-gray-300' },
+    { name: 'CSS', icon: Palette, color: 'text-gray-300' },
+    { name: 'React', icon: Layers, color: 'text-gray-300' },
     { name: 'Next.js', icon: Globe, color: 'text-gray-300' },
-    { name: 'Vue', icon: Box, color: 'text-green-500' },
-    { name: 'Angular', icon: Layers, color: 'text-red-500' },
-    { name: 'Vite', icon: Terminal, color: 'text-purple-400' },
-    { name: 'Webpack', icon: Box, color: 'text-blue-400' },
-    { name: 'Git', icon: GitBranch, color: 'text-orange-400' },
-    { name: 'Docker', icon: Server, color: 'text-blue-500' },
-    { name: 'JavaScript', icon: Code, color: 'text-yellow-400' },
-    { name: 'TypeScript', icon: Code, color: 'text-blue-400' },
+    { name: 'Vue', icon: Box, color: 'text-gray-300' },
+    { name: 'Angular', icon: Layers, color: 'text-gray-300' },
+    { name: 'Vite', icon: Terminal, color: 'text-gray-300' },
+    { name: 'Webpack', icon: Box, color: 'text-gray-300' },
+    { name: 'Git', icon: GitBranch, color: 'text-gray-300' },
+    { name: 'Docker', icon: Server, color: 'text-gray-300' },
+    { name: 'JavaScript', icon: Code, color: 'text-gray-300' },
+    { name: 'TypeScript', icon: Code, color: 'text-gray-300' },
   ];
 
   const bottomRowTechnologies = [
-    { name: 'PostgreSQL', icon: Database, color: 'text-blue-400' },
-    { name: 'GSAP', icon: Cpu, color: 'text-green-400' },
-    { name: 'Framer', icon: Layers, color: 'text-purple-500' },
-    { name: 'Three.js', icon: Box, color: 'text-blue-300' },
-    { name: 'WebGL', icon: Globe, color: 'text-purple-400' },
-    { name: 'Tailwind', icon: Palette, color: 'text-cyan-400' },
-    { name: 'Sass', icon: Palette, color: 'text-pink-400' },
-    { name: 'MUI', icon: Box, color: 'text-blue-500' },
-    { name: 'Chakra', icon: Box, color: 'text-teal-400' },
+    { name: 'PostgreSQL', icon: Database, color: 'text-gray-300' },
+    { name: 'GSAP', icon: Cpu, color: 'text-gray-300' },
+    { name: 'Framer', icon: Layers, color: 'text-gray-300' },
+    { name: 'Three.js', icon: Box, color: 'text-gray-300' },
+    { name: 'WebGL', icon: Globe, color: 'text-gray-300' },
+    { name: 'Tailwind', icon: Palette, color: 'text-gray-300' },
+    { name: 'Sass', icon: Palette, color: 'text-gray-300' },
+    { name: 'MUI', icon: Box, color: 'text-gray-300' },
+    { name: 'Chakra', icon: Box, color: 'text-gray-300' },
     { name: 'Express', icon: Server, color: 'text-gray-400' },
-    { name: 'Firebase', icon: Cloud, color: 'text-orange-400' },
-    { name: 'MongoDB', icon: Database, color: 'text-green-500' },
-    { name: 'PostgreSQL', icon: Database, color: 'text-blue-400' },
-    { name: 'GSAP', icon: Cpu, color: 'text-green-400' },
+    { name: 'Firebase', icon: Cloud, color: 'text-gray-300' },
+    { name: 'MongoDB', icon: Database, color: 'text-gray-300' },
+    { name: 'PostgreSQL', icon: Database, color: 'text-gray-300' },
+    { name: 'GSAP', icon: Cpu, color: 'text-gray-300' },
   ];
 
   return (
-    <section id="technologies" className="py-20 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="technologies" className="py-16 lg:py-24 relative overflow-hidden">
+      <div className="w-full px-6 md:px-10 lg:px-16">
         <motion.div
           ref={ref}
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="space-y-16"
+          className="space-y-12"
         >
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-4xl md:text-5xl font-bold gradient-text mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold gradient-text mb-4">
               {t('whatIUse')}
             </h2>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
@@ -105,7 +105,7 @@ const Technologies = () => {
                 {[...topRowTechnologies, ...topRowTechnologies].map((tech, index) => (
                   <motion.div
                     key={`top-${index}`}
-                    className="flex-shrink-0 w-20 h-20 glass-effect rounded-2xl border border-purple-accent/20 flex items-center justify-center group hover:border-purple-accent/40 transition-all duration-300"
+                    className="flex-shrink-0 w-20 h-20 glass-effect rounded-2xl border border-accent/20 flex items-center justify-center group hover:border-accent/40 transition-all duration-300"
                     whileHover={{ scale: 1.1, y: -5 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -123,12 +123,12 @@ const Technologies = () => {
               </div>
             </div>
 
-            <div className="relative overflow-hidden mt-8">
+            <div className="relative overflow-hidden mt-6">
               <div className="flex space-x-8 animate-marquee-left">
                 {[...bottomRowTechnologies, ...bottomRowTechnologies].map((tech, index) => (
                   <motion.div
                     key={`bottom-${index}`}
-                    className="flex-shrink-0 w-20 h-20 glass-effect rounded-2xl border border-purple-accent/20 flex items-center justify-center group hover:border-purple-accent/40 transition-all duration-300"
+                    className="flex-shrink-0 w-20 h-20 glass-effect rounded-2xl border border-accent/20 flex items-center justify-center group hover:border-accent/40 transition-all duration-300"
                     whileHover={{ scale: 1.1, y: -5 }}
                     whileTap={{ scale: 0.95 }}
                   >

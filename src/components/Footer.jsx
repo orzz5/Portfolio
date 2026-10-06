@@ -17,13 +17,11 @@ const Footer = () => {
     { name: t('home'), href: '#home' },
     { name: t('about'), href: '#about' },
     { name: t('projects'), href: '#projects' },
-    { name: t('discordBots'), href: '#discord' },
     { name: t('contact'), href: '#contact' }
   ];
 
   const services = [
     { name: t('webDevelopment'), href: '#about' },
-    { name: t('discordBotDev'), href: '#discord' },
     { name: t('uiuxDesign'), href: '#about' },
     { name: t('consulting'), href: '#contact' }
   ];
@@ -33,20 +31,20 @@ const Footer = () => {
   };
 
   return (
-    <footer className="relative bg-dark-bg pt-20 pb-10 overflow-hidden border-t border-purple-accent/10">
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=60 height=60 viewBox=0 0 60 60 xmlns=http://www.w3.org/2000/svg%3E%3Cg fill=none fill-rule=evenodd%3E%3Cg fill=%23a855f7 fill-opacity=0.1%3E%3Ccircle cx=30 cy=30 r=2/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]" />
+    <footer className="relative bg-dark-bg pt-16 pb-8 overflow-hidden border-t border-accent/10">
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width=60 height=60 viewBox=0 0 60 60 xmlns=http://www.w3.org/2000/svg%3E%3Cg fill=none fill-rule=evenodd%3E%3Cg fill=%23ffffff fill-opacity=0.1%3E%3Ccircle cx=30 cy=30 r=2/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]" />
       
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+      <div className="w-full px-6 md:px-10 lg:px-16 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10">
           <div className="col-span-1 md:col-span-2 lg:col-span-1">
             <motion.div 
-              className="flex items-center space-x-2 mb-6"
+              className="flex items-center space-x-2 mb-4"
               whileHover={{ scale: 1.05 }}
             >
               <img src="/logo.png" alt="orzz5 logo" className="w-10 h-10 object-contain" />
               <span className="text-2xl font-bold gradient-text">orzz5</span>
             </motion.div>
-            <p className="text-gray-400 mb-8 max-w-sm leading-relaxed">
+            <p className="text-gray-400 mb-6 max-w-sm leading-relaxed">
               {t('footerDesc')}
             </p>
             <div className="flex space-x-4">
@@ -56,7 +54,7 @@ const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 glass-effect rounded-lg flex items-center justify-center text-gray-400 hover:text-purple-accent hover:border-purple-accent/50 border border-purple-accent/10 transition-all duration-300"
+                  className="w-10 h-10 glass-effect rounded-lg flex items-center justify-center text-gray-400 hover:text-accent hover:border-accent/50 border border-accent/10 transition-all duration-300"
                   whileHover={{ scale: 1.1, y: -3 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -68,12 +66,12 @@ const Footer = () => {
 
           <div>
             <h4 className="text-white font-bold text-lg mb-6">{t('quickLinks')}</h4>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {quickLinks.map((link, index) => (
                 <li key={index}>
                   <a 
                     href={link.href}
-                    className="text-gray-400 hover:text-purple-accent transition-colors duration-200"
+                    className="text-gray-400 hover:text-accent transition-colors duration-200"
                   >
                     {link.name}
                   </a>
@@ -84,12 +82,12 @@ const Footer = () => {
 
           <div>
             <h4 className="text-white font-bold text-lg mb-6">{t('services')}</h4>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {services.map((service, index) => (
                 <li key={index}>
                   <a 
                     href={service.href}
-                    className="text-gray-400 hover:text-purple-accent transition-colors duration-200"
+                    className="text-gray-400 hover:text-accent transition-colors duration-200"
                   >
                     {service.name}
                   </a>
@@ -101,7 +99,7 @@ const Footer = () => {
           <div className="flex flex-col items-center lg:items-end justify-center">
             <motion.button
               onClick={scrollToTop}
-              className="w-12 h-12 glass-effect rounded-full flex items-center justify-center text-purple-accent border border-purple-accent/20 hover:border-purple-accent/50 hover:shadow-purple-glow mb-4 transition-all duration-300"
+              className="w-12 h-12 glass-effect rounded-full flex items-center justify-center text-accent border border-accent/20 hover:border-accent/50 hover:shadow-glow mb-4 transition-all duration-300"
               whileHover={{ scale: 1.1, y: -5 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -111,13 +109,13 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="pt-10 border-t border-purple-accent/10 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        <div className="pt-8 border-t border-accent/10 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <p className="text-gray-500 text-sm">
-            © {currentYear} orzz5. {t('rights')} <span className="text-purple-accent">❤️</span> {t('andLotsOf')} <span className="text-purple-accent">☕</span>
+            © {currentYear} orzz5. {t('rights')} <span className="text-accent">❤️</span> {t('andLotsOf')} <span className="text-accent">☕</span>
           </p>
           <div className="flex space-x-6">
-            <a href="#" className="text-gray-500 hover:text-purple-accent text-sm transition-colors duration-200">Privacy Policy</a>
-            <a href="#" className="text-gray-500 hover:text-purple-accent text-sm transition-colors duration-200">Terms of Service</a>
+            <a href="#" className="text-gray-500 hover:text-accent text-sm transition-colors duration-200">Privacy Policy</a>
+            <a href="#" className="text-gray-500 hover:text-accent text-sm transition-colors duration-200">Terms of Service</a>
           </div>
         </div>
       </div>

@@ -7,14 +7,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        'purple-dark': '#1a0b2e',
-        'purple-medium': '#2d1b69',
-        'purple-light': '#6b46c1',
-        'purple-accent': '#a855f7',
-        'purple-glow': '#c084fc',
-        'dark-bg': '#0f0a1f',
-        'dark-card': '#1a0b2e',
-        'dark-text': '#e9d5ff',
+        'ink': '#050505',
+        'coal': '#131313',
+        'silver': '#a1a1aa',
+        'accent': '#fafafa',
+        'glow': '#d4d4d4',
+        'dark-bg': '#050505',
+        'dark-card': '#131313',
+        'dark-text': '#e4e4e7',
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',
@@ -29,8 +29,8 @@ export default {
           '50%': { transform: 'translateY(-20px)' },
         },
         glow: {
-          '0%': { boxShadow: '0 0 20px rgba(168, 85, 247, 0.5)' },
-          '100%': { boxShadow: '0 0 30px rgba(168, 85, 247, 0.8), 0 0 40px rgba(168, 85, 247, 0.4)' },
+          '0%': { boxShadow: '0 0 20px rgba(255, 255, 255, 0.06)' },
+          '100%': { boxShadow: '0 0 30px rgba(255, 255, 255, 0.12), 0 0 40px rgba(255, 255, 255, 0.05)' },
         },
         slideUp: {
           '0%': { transform: 'translateY(50px)', opacity: '0' },
@@ -42,13 +42,13 @@ export default {
         },
       },
       backgroundImage: {
-        'gradient-purple': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-        'gradient-dark': 'linear-gradient(135deg, #1a0b2e 0%, #0f0a1f 100%)',
-        'gradient-card': 'linear-gradient(135deg, rgba(26, 11, 46, 0.8) 0%, rgba(15, 10, 31, 0.8) 100%)',
+        'gradient-monochrome': 'linear-gradient(135deg, #fafafa 0%, #a1a1aa 100%)',
+        'gradient-dark': 'linear-gradient(135deg, #131313 0%, #050505 100%)',
+        'gradient-card': 'linear-gradient(135deg, rgba(19, 19, 19, 0.8) 0%, rgba(5, 5, 5, 0.8) 100%)',
       },
       boxShadow: {
-        'purple-glow': '0 0 20px rgba(168, 85, 247, 0.3)',
-        'purple-glow-hover': '0 0 30px rgba(168, 85, 247, 0.6)',
+        'glow': '0 0 20px rgba(255, 255, 255, 0.06)',
+        'glow-hover': '0 0 30px rgba(255, 255, 255, 0.12), 0 8px 30px rgba(0, 0, 0, 0.45)',
       },
     },
   },

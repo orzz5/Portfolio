@@ -88,26 +88,27 @@ const Contact = () => {
   };
 
   return (
-    <section ref={ref} className="py-20">
+    <section ref={ref} className="py-16 lg:py-24">
+      <div className="w-full px-6 md:px-10 lg:px-16">
       <motion.div
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
         variants={containerVariants}
       >
         <motion.div variants={itemVariants}>
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-purple-accent mb-4">{t('getInTouch')}</h2>
-            <p className="text-lg text-gray-300 mb-8">{t('contactTagline')}</p>
-          </div>
+          <motion.div variants={itemVariants} className="mb-8 text-center">
+            <h2 className="text-3xl font-bold text-accent mb-3">{t('getInTouch')}</h2>
+            <p className="text-lg text-gray-300">{t('contactTagline')}</p>
+          </motion.div>
 
-          <DiscordPresence />
-
-          <motion.div variants={itemVariants} className="text-center mb-8">
-            <h3 className="text-2xl font-bold text-purple-accent mb-6">{t('connectOnSocial')}</h3>
-            <div className="flex justify-center space-x-4">
+          <div className="grid lg:grid-cols-2 gap-10 items-start">
+            <div className="space-y-6">
+              <motion.div variants={itemVariants} className="text-center">
+                <h3 className="text-xl font-bold text-accent mb-4">{t('connectOnSocial')}</h3>
+                <div className="flex justify-center space-x-4">
               <motion.a
                 href="https://github.com/orzz5"
-                className="w-12 h-12 bg-purple-accent/20 rounded-lg flex items-center justify-center text-purple-accent hover:bg-purple-accent hover:text-white transition-all duration-300"
+                className="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center text-accent hover:bg-accent hover:text-neutral-900 transition-all duration-300"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -115,7 +116,7 @@ const Contact = () => {
               </motion.a>
               <motion.a
                 href="https://discord.com/users/667791939453583373"
-                className="w-12 h-12 bg-purple-accent/20 rounded-lg flex items-center justify-center text-purple-accent hover:bg-purple-accent hover:text-white transition-all duration-300"
+                className="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center text-accent hover:bg-accent hover:text-neutral-900 transition-all duration-300"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -124,15 +125,18 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          <motion.div variants={itemVariants}>
-            <div className="glass-effect rounded-2xl p-8 border border-purple-accent/20 max-w-2xl mx-auto">
-              <h3 className="text-2xl font-bold text-purple-accent mb-6">{t('sendMessage')}</h3>
+              <DiscordPresence />
+            </div>
+
+            <motion.div variants={itemVariants}>
+              <div className="glass-effect rounded-2xl p-8 border border-accent/20">
+              <h3 className="text-xl font-bold text-accent mb-4">{t('sendMessage')}</h3>
               
               {formStatus === 'success' && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="glass-effect rounded-xl p-6 border border-green-500/30 bg-green-900/10"
+                  className="glass-effect rounded-xl p-8 border border-green-500/30 bg-green-900/10"
                 >
                   <div className="text-center">
                     <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mb-4 mx-auto">
@@ -146,9 +150,9 @@ const Contact = () => {
                 </motion.div>
               )}
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-purple-accent mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-accent mb-2">
                     <User size={16} className="inline mr-2" />
                     {t('name')}
                   </label>
@@ -159,13 +163,13 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-purple-dark/50 border border-purple-accent/30 rounded-lg text-dark-text placeholder-gray-500 focus:outline-none focus:border-purple-accent focus:ring-2 focus:ring-purple-accent/20 transition-all duration-200"
+                    className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition-all duration-200"
                     placeholder="John Doe"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-purple-accent mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-accent mb-2">
                     <Mail size={16} className="inline mr-2" />
                     {t('emailAddress')}
                   </label>
@@ -176,13 +180,13 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-purple-dark/50 border border-purple-accent/30 rounded-lg text-dark-text placeholder-gray-500 focus:outline-none focus:border-purple-accent focus:ring-2 focus:ring-purple-accent/20 transition-all duration-200"
+                    className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition-all duration-200"
                     placeholder="john@example.com"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-purple-accent mb-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-accent mb-2">
                     <FileText size={16} className="inline mr-2" />
                     {t('subject')}
                   </label>
@@ -193,13 +197,13 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-purple-dark/50 border border-purple-accent/30 rounded-lg text-dark-text placeholder-gray-500 focus:outline-none focus:border-purple-accent focus:ring-2 focus:ring-purple-accent/20 transition-all duration-200"
+                    className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition-all duration-200"
                     placeholder="Project Inquiry"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="projectType" className="block text-sm font-medium text-purple-accent mb-2">
+                  <label htmlFor="projectType" className="block text-sm font-medium text-accent mb-2">
                     <Briefcase size={16} className="inline mr-2" />
                     {t('projectType')}
                   </label>
@@ -209,7 +213,7 @@ const Contact = () => {
                     value={formData.projectType}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-purple-dark/50 border border-purple-accent/30 rounded-lg text-dark-text placeholder-gray-500 focus:outline-none focus:border-purple-accent focus:ring-2 focus:ring-purple-accent/20 transition-all duration-200"
+                    className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition-all duration-200 [&>option]:bg-neutral-900 [&>option]:text-white"
                   >
                     <option value="">{t('selectProjectType')}</option>
                     <option value="Web Development">{t('webDevelopment')}</option>
@@ -220,7 +224,7 @@ const Contact = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-purple-accent mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-accent mb-2">
                     {t('message')}
                   </label>
                   <textarea
@@ -230,7 +234,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 bg-purple-dark/50 border border-purple-accent/30 rounded-lg text-dark-text placeholder-gray-500 focus:outline-none focus:border-purple-accent focus:ring-2 focus:ring-purple-accent/20 transition-all duration-200 resize-none"
+                    className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition-all duration-200 resize-none"
                     placeholder={t('messagePlaceholder')}
                   />
                 </div>
@@ -238,13 +242,13 @@ const Contact = () => {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full glow-button bg-gradient-to-r from-purple-accent to-purple-glow text-white px-8 py-4 rounded-lg font-semibold flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full glow-button bg-gradient-to-r from-accent to-glow text-neutral-900 px-6 py-3 rounded-lg font-semibold flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <div className="w-5 h-5 border-2 border-neutral-900 border-t-transparent rounded-full animate-spin" />
                       <span>{t('sending')}</span>
                     </>
                   ) : (
@@ -267,10 +271,12 @@ const Contact = () => {
                   </p>
                 </div>
               )}
-            </div>
-          </motion.div>
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
       </motion.div>
+      </div>
     </section>
   );
 };
