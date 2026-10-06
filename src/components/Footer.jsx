@@ -54,7 +54,7 @@ const Footer = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 glass-effect rounded-lg flex items-center justify-center text-gray-400 hover:text-accent hover:border-accent/50 border border-accent/10 transition-all duration-300"
+                  className="w-10 h-10 liquid-glass rounded-lg flex items-center justify-center text-gray-400 hover:text-accent hover:border-accent/50 transition-all duration-300"
                   whileHover={{ scale: 1.1, y: -3 }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -99,7 +99,7 @@ const Footer = () => {
           <div className="flex flex-col items-center lg:items-end justify-center">
             <motion.button
               onClick={scrollToTop}
-              className="w-12 h-12 glass-effect rounded-full flex items-center justify-center text-accent border border-accent/20 hover:border-accent/50 hover:shadow-glow mb-4 transition-all duration-300"
+              className="w-12 h-12 liquid-glass rounded-full flex items-center justify-center text-accent hover:border-accent/50 hover:shadow-glow mb-4 transition-all duration-300"
               whileHover={{ scale: 1.1, y: -5 }}
               whileTap={{ scale: 0.9 }}
             >

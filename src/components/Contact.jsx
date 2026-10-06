@@ -108,7 +108,7 @@ const Contact = () => {
                 <div className="flex justify-center space-x-4">
               <motion.a
                 href="https://github.com/orzz5"
-                className="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center text-accent hover:bg-accent hover:text-neutral-900 transition-all duration-300"
+                className="w-12 h-12 liquid-glass rounded-xl flex items-center justify-center text-accent"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -116,7 +116,7 @@ const Contact = () => {
               </motion.a>
               <motion.a
                 href="https://discord.com/users/667791939453583373"
-                className="w-12 h-12 bg-accent/20 rounded-lg flex items-center justify-center text-accent hover:bg-accent hover:text-neutral-900 transition-all duration-300"
+                className="w-12 h-12 liquid-glass rounded-xl flex items-center justify-center text-accent"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -242,13 +242,13 @@ const Contact = () => {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full glow-button bg-gradient-to-r from-accent to-glow text-neutral-900 px-6 py-3 rounded-lg font-semibold flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full liquid-glass text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-neutral-900 border-t-transparent rounded-full animate-spin" />
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
                       <span>{t('sending')}</span>
                     </>
                   ) : (

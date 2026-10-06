@@ -87,7 +87,7 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                   href={project.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 bg-white/10 hover:bg-accent hover:text-neutral-900 backdrop-blur-md rounded-xl border border-white/10 text-white transition-all duration-300 shadow-xl flex items-center justify-center group"
+                  className="p-3 liquid-glass hover:bg-accent hover:text-neutral-900 rounded-xl text-white shadow-xl flex items-center justify-center group"
                 >
                   <ExternalLink size={20} className="group-hover:scale-110 transition-transform" />
                 </a>
@@ -261,7 +261,7 @@ const Projects = () => {
                 href={project.github}
                 onClick={(e) => e.stopPropagation()}
                 target="_blank"
-                className="w-8 h-8 bg-ink/80 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-accent hover:text-neutral-900 transition-colors duration-200"
+                className="w-8 h-8 liquid-glass rounded-lg flex items-center justify-center text-white hover:bg-accent hover:text-neutral-900 transition-colors duration-200"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -271,7 +271,7 @@ const Projects = () => {
                 href={project.live}
                 onClick={(e) => e.stopPropagation()}
                 target="_blank"
-                className="w-8 h-8 bg-ink/80 backdrop-blur-sm rounded-lg flex items-center justify-center text-white hover:bg-accent hover:text-neutral-900 transition-colors duration-200"
+                className="w-8 h-8 liquid-glass rounded-lg flex items-center justify-center text-white hover:bg-accent hover:text-neutral-900 transition-colors duration-200"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -356,7 +356,7 @@ const Projects = () => {
                   onClick={() => setActiveFilter(filter.id)}
                   className={`px-4 py-2 rounded-md flex items-center space-x-2 transition-all duration-200 ${
                     activeFilter === filter.id
-                      ? 'bg-gradient-to-r from-accent to-glow text-neutral-900'
+                      ? 'liquid-glass text-white'
                       : 'text-gray-400 hover:text-accent'
                   }`}
                   whileHover={{ scale: 1.05 }}
@@ -398,7 +398,7 @@ const Projects = () => {
                     onClick={() => setShowAll(!showAll)}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl glass-effect border border-accent/30 text-white font-medium hover:border-accent/60 hover:text-accent transition-all duration-300"
+                    className="liquid-glass inline-flex items-center space-x-2 px-6 py-3 rounded-xl text-white font-medium hover:text-accent transition-all duration-300"
                   >
                     <span>{showAll ? t('showLessProjects') : t('showAllProjects')}</span>
                     <motion.span
@@ -421,7 +421,7 @@ const Projects = () => {
                 </p>
                 <motion.a
                   href="#contact"
-                  className="inline-flex items-center space-x-2 glow-button bg-gradient-to-r from-accent to-glow text-neutral-900 px-6 py-3 rounded-lg"
+                  className="liquid-glass inline-flex items-center space-x-2 text-white px-6 py-3 rounded-lg"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >

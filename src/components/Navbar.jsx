@@ -78,7 +78,7 @@ const Navbar = () => {
             <div className="relative">
               <motion.button
                 onClick={() => setShowLangDropdown(!showLangDropdown)}
-                className="flex items-center space-x-1 text-dark-text hover:text-accent transition-colors duration-200 p-2 rounded-lg hover:bg-accent/10"
+                className="liquid-glass flex items-center space-x-1 text-dark-text hover:text-accent p-2 rounded-lg"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -136,7 +136,7 @@ const Navbar = () => {
 
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden text-dark-text hover:text-accent transition-colors duration-200"
+              className="md:hidden liquid-glass text-dark-text hover:text-accent p-2 rounded-lg"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >

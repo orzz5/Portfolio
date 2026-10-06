@@ -108,7 +108,7 @@ const Hero = () => {
           >
             <motion.a
               href="#projects"
-              className="glow-button inline-flex items-center justify-center whitespace-nowrap bg-gradient-to-r from-accent to-glow text-neutral-900 px-6 py-3 rounded-full font-semibold text-base shadow-glow hover:shadow-glow-hover transition-all duration-300"
+              className="liquid-glass inline-flex items-center justify-center whitespace-nowrap text-white px-6 py-3 rounded-full font-semibold text-base"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -117,7 +117,7 @@ const Hero = () => {
 
             <motion.a
               href="#contact"
-              className="glass-effect inline-flex items-center justify-center whitespace-nowrap border border-accent/50 text-accent px-6 py-3 rounded-full font-semibold text-base hover:bg-accent/10 transition-all duration-300"
+              className="liquid-glass inline-flex items-center justify-center whitespace-nowrap text-accent px-6 py-3 rounded-full font-semibold text-base"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -128,7 +128,7 @@ const Hero = () => {
               href="https://github.com/orzz5"
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-effect inline-flex items-center justify-center whitespace-nowrap border border-accent/50 text-accent px-6 py-3 rounded-full font-semibold text-base hover:bg-accent/10 transition-all duration-300"
+              className="liquid-glass inline-flex items-center justify-center whitespace-nowrap text-accent px-6 py-3 rounded-full font-semibold text-base"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
