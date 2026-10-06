@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from '../contexts/LanguageContext';
+import useDiscordPresence from '../hooks/useDiscordPresence';
+import { DISCORD_USER_ID, DISCORD_PROFILE_URL } from '../lib/constants';
 
 const DiscordPresence = () => {
   const { t } = useTranslation();
@@ -10,63 +11,7 @@ const DiscordPresence = () => {
     threshold: 0.1,
   });
 
-  const [discordData, setDiscordData] = useState({
-    username: 'orzz5',
-    discriminator: '1234',
-    avatar: null,
-    status: 'offline',
-    activity: null,
-    loading: true
-  });
-
-  useEffect(() => {
-    const fetchDiscordPresence = async () => {
-      try {
-        const response = await fetch('https://api.lanyard.rest/v1/users/667791939453583373');
-        const data = await response.json();
-        
-        if (data.success) {
-          const discord = data.data;
-          let status = 'offline';
-          let activity = null;
-
-          if (discord.discord_status === 'online') status = 'online';
-          else if (discord.discord_status === 'idle') status = 'idle';
-          else if (discord.discord_status === 'dnd') status = 'dnd';
-          else status = 'offline';
-
-          if (discord.activities && discord.activities.length > 0) {
-            const primaryActivity = discord.activities.find(a => a.type === 0) || discord.activities[0];
-            if (primaryActivity) {
-              activity = {
-                name: primaryActivity.name,
-                state: primaryActivity.state,
-                emoji: primaryActivity.emoji,
-                type: primaryActivity.type
-              };
-            }
-          }
-
-          setDiscordData({
-            username: discord.discord_user.username,
-            discriminator: discord.discord_user.discriminator,
-            avatar: discord.discord_user.avatar,
-            status: status,
-            activity: activity,
-            loading: false
-          });
-        }
-      } catch (error) {
-        console.error('Error fetching Discord presence:', error);
-        setDiscordData(prev => ({ ...prev, loading: false }));
-      }
-    };
-
-    fetchDiscordPresence();
-    const interval = setInterval(fetchDiscordPresence, 30000);
-
-    return () => clearInterval(interval);
-  }, []);
+  const discordData = useDiscordPresence();
 
   const getStatusColor = (status) => {
     switch (status) {
@@ -123,7 +68,7 @@ const DiscordPresence = () => {
               <div className="w-16 h-16 rounded-full overflow-hidden bg-ink/50 border-2 border-accent/30">
                 {discordData.avatar ? (
                   <img
-                    src={getAvatarUrl('667791939453583373', discordData.avatar)}
+                    src={getAvatarUrl(DISCORD_USER_ID, discordData.avatar)}
                     alt={`${discordData.username}'s avatar`}
                     className="w-full h-full object-cover"
                     onError={(e) => {
@@ -182,7 +127,7 @@ const DiscordPresence = () => {
 
         <div className="mt-4 pt-4 border-t border-accent/20">
           <a
-            href="https://discord.com/users/667791939453583373"
+            href={DISCORD_PROFILE_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="liquid-glass flex items-center justify-center space-x-2 px-4 py-2.5 rounded-lg text-sm text-accent hover:text-white transition-colors duration-200"

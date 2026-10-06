@@ -1,15 +1,14 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from '../contexts/LanguageContext';
 import { 
-  Code2, 
+  Rocket, 
   Palette, 
   Zap, 
   Bot, 
-  GitBranch,
-  Terminal,
-  Rocket
+  Github,
+  Globe,
+  Scale
 } from 'lucide-react';
 
 const About = () => {
@@ -92,13 +91,13 @@ const About = () => {
               <p className="text-gray-300 leading-relaxed">
                 {t('aboutDescription')}
               </p>
-              <div className="flex flex-wrap gap-4 pt-4">
-                {[t('problemSolver'), t('creativeThinker'), t('teamPlayer'), t('fastLearner')].map((trait) => (
+              <div className="flex flex-wrap gap-3 pt-4" aria-label="Core stack">
+                {['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'Discord.js'].map((tech) => (
                   <span
-                    key={trait}
-                    className="px-3 py-1.5 glass-effect border border-accent/30 rounded-full text-sm font-medium text-accent"
+                    key={tech}
+                    className="px-3 py-1.5 glass-effect border border-brand/30 rounded-full text-sm font-medium text-brand"
                   >
-                    {trait}
+                    {tech}
                   </span>
                 ))}
               </div>
@@ -112,10 +111,10 @@ const About = () => {
               <div className="glass-effect rounded-2xl p-8 border border-accent/20">
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { icon: Code2, label: t('cleanCode'), value: '100%' },
-                    { icon: Zap, label: t('performance'), value: 'A+' },
-                    { icon: GitBranch, label: t('versionControl'), value: 'Git Pro' },
-                    { icon: Terminal, label: t('debugging'), value: t('expert') },
+                    { icon: Rocket, label: t('projectsCompleted'), value: '4' },
+                    { icon: Github, label: t('publicRepos'), value: '4' },
+                    { icon: Globe, label: t('siteLanguages'), value: '3' },
+                    { icon: Scale, label: t('license'), value: 'MIT' },
                   ].map((item, index) => (
                     <motion.div
                       key={index}
@@ -123,11 +122,11 @@ const About = () => {
                       whileHover={{ scale: 1.1 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-br from-accent to-glow rounded-lg flex items-center justify-center">
-                        <item.icon size={24} className="text-neutral-900" />
+                      <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-br from-brand to-brand-dark rounded-lg flex items-center justify-center">
+                        <item.icon size={24} className="text-[#050505]" aria-hidden="true" />
                       </div>
                       <div className="text-sm font-medium text-accent">{item.label}</div>
-                      <div className="text-xs text-gray-400 mt-1">{item.value}</div>
+                      <div className="text-xs text-gray-300 mt-1">{item.value}</div>
                     </motion.div>
                   ))}
                 </div>
@@ -145,11 +144,11 @@ const About = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-accent to-glow rounded-2xl flex items-center justify-center group-hover:shadow-glow-hover transition-all duration-300">
-                    <service.icon size={32} className="text-neutral-900" />
+                  <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-brand to-brand-dark rounded-2xl flex items-center justify-center group-hover:shadow-glow-hover transition-all duration-300">
+                    <service.icon size={32} className="text-[#050505]" aria-hidden="true" />
                   </div>
                   <h4 className="text-lg font-semibold text-accent mb-2">{service.title}</h4>
-                  <p className="text-sm text-gray-400 leading-relaxed">{service.description}</p>
+                  <p className="text-sm text-gray-300 leading-relaxed">{service.description}</p>
                 </motion.div>
               ))}
             </div>

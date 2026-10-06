@@ -1,151 +1,97 @@
-# orzz5 Portfolio Website
+# orzz5 — Portfolio Website
 
-A stunning, modern portfolio website for frontend developer and Discord bot creator **orzz5**. Built with React, Vite, and TailwindCSS, featuring a purple and dark theme with smooth animations and interactive elements.
+Personal portfolio of **orzz5**, frontend developer and Discord bot creator.
+Live at **[orzz.website](https://orzz.website)**.
+
+Built with React 18, Vite, and Tailwind CSS. Dark monochrome design with a blue accent, an interactive canvas background, smooth scrolling, and full EN/ES/FR localization.
 
 ## Features
 
-- **Modern Design**: Purple and dark color scheme with glass morphism effects
-- **Smooth Animations**: Framer Motion powered animations and micro-interactions
-- **Responsive Layout**: Fully responsive design that works on all devices
-- **Interactive Components**: Hover effects, animated text, and dynamic content
-- **Performance Optimized**: Fast loading times and smooth scrolling
-- **SEO Friendly**: Optimized meta tags and semantic HTML
+- **Interactive background** — kinetic dot-grid canvas that warps toward the cursor, pauses when idle, and respects `prefers-reduced-motion`
+- **Sections** — Hero, About, Technologies (marquee), Projects (filterable, with live GitHub stats), Contact (working form), Footer
+- **Project previews** — click a project card to open a browser-style modal with an embedded live preview (keyboard accessible: Escape closes, focus is trapped)
+- **Live GitHub stats** — star/fork counts fetched from the GitHub API for each project repository
+- **Live Discord presence** — Lanyard API integration showing real status in the contact section and hero badge
+- **Contact form** — serverless API (`/api/contact`) sending email via [Resend](https://resend.com), with validation, HTML escaping, origin checks, and rate limiting
+- **Localization** — English, Spanish, and French with persisted preference (`localStorage`) and correct `<html lang>` switching
+- **Accessibility** — skip link, ARIA labels, keyboard-navigable cards, dialog semantics, focus management, reduced-motion support
+- **SEO** — canonical URL, Open Graph, Twitter card, JSON-LD (Person), `robots.txt`, `sitemap.xml`
 
-## Sections
+## Tech Stack
 
-1. **Hero Section**: Animated welcome with typing effect and call-to-action
-2. **About Section**: Developer profile, skills, and expertise showcase
-3. **Projects Gallery**: Interactive project cards with filtering
-4. **Discord Services**: Dedicated section for Discord bot development services
-5. **Contact Form**: Functional contact form with validation
-6. **Footer**: Social links and newsletter subscription
-
-## Technologies Used
-
-- **Frontend**: React 18, Vite
-- **Styling**: TailwindCSS with custom purple theme
-- **Animations**: Framer Motion
-- **Icons**: Lucide React
-- **Typography**: Inter & Space Grotesk fonts
-- **Type Animation**: React Type Animation
-- **Intersection Observer**: React Intersection Observer
+| Layer | Technology |
+|---|---|
+| Framework | React 18 + Vite 4 |
+| Styling | Tailwind CSS 3 (custom theme tokens) |
+| Animation | Framer Motion, Lenis (smooth scroll), react-type-animation |
+| Icons | lucide-react, react-icons (Simple Icons brand logos) |
+| Backend | Vercel serverless functions + Resend |
+| Hosting | Vercel |
 
 ## Getting Started
 
-### Prerequisites
-
-- Node.js (v14 or higher)
-- npm or yarn
-
-### Installation
-
-1. Clone the repository:
 ```bash
 git clone https://github.com/orzz5/portfolio.git
 cd portfolio
-```
-
-2. Install dependencies:
-```bash
 npm install
+npm run dev        # http://localhost:5173
 ```
 
-3. Start the development server:
-```bash
-npm run dev
+### Environment variables (for the contact form)
+
+Create `.env.local`:
+
+```
+RESEND_API_KEY=...
+TO_EMAIL=...
+ADMIN_KEY=...      # used by /api/reply
 ```
 
-4. Open your browser and navigate to `http://localhost:5173`
-
-### Building for Production
-
-```bash
-npm run build
-```
-
-The built files will be in the `dist` directory.
-
-### Preview Production Build
+### Commands
 
 ```bash
-npm run preview
+npm run dev        # start dev server
+npm run build      # production build (dist/)
+npm run preview    # preview the production build
+npm run lint       # run ESLint
 ```
-
-## Customization
-
-### Colors
-
-The color scheme is defined in `tailwind.config.js`. You can customize the purple theme by modifying these values:
-
-```javascript
-colors: {
-  'purple-dark': '#1a0b2e',
-  'purple-medium': '#2d1b69',
-  'purple-light': '#6b46c1',
-  'purple-accent': '#a855f7',
-  'purple-glow': '#c084fc',
-  // ...
-}
-```
-
-### Fonts
-
-The project uses Inter and Space Grotesk fonts from Google Fonts. You can change them in `index.html`.
-
-### Animations
-
-Custom animations are defined in `tailwind.config.js` under the `animation` and `keyframes` properties.
 
 ## Project Structure
 
 ```
+api/
+|-- contact.js          # contact form endpoint (Resend, rate-limited)
+|-- reply.js            # admin reply endpoint (key-protected)
+public/
+|-- projects/           # self-hosted project screenshots
+|-- favicon.svg, og.png # brand assets
 src/
-|-- components/
-|   |-- Hero.jsx
-|   |-- About.jsx
-|   |-- Projects.jsx
-|   |-- DiscordServices.jsx
-|   |-- Contact.jsx
-|   |-- Footer.jsx
-|   |-- Navbar.jsx
-|   |-- BackgroundAnimation.jsx
-|-- App.jsx
-|-- main.jsx
-|-- index.css
+|-- components/         # Hero, Navbar, About, Technologies, Projects, Contact, Footer, ...
+|-- contexts/           # LanguageContext (i18n: en/es/fr)
+|-- hooks/              # useDiscordPresence, useGithubStats
+|-- lib/                # constants, cn() helper
+|-- App.jsx             # layout, lazy-loaded sections, reduced-motion setup
 ```
 
-## Performance
+## Projects Shown on the Site
 
-- **Lighthouse Score**: 95+ (Performance, Accessibility, Best Practices, SEO)
-- **Bundle Size**: Optimized with code splitting and lazy loading
-- **Animations**: Hardware accelerated with CSS transforms
-- **Images**: Optimized with proper sizing and formats
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+| Site | Repository |
+|---|---|
+| bots.orzz.website | [orzz5/Bots-web](https://github.com/orzz5/Bots-web) |
+| weather.orzz.website | [orzz5/orzz-weather](https://github.com/orzz5/orzz-weather) |
+| bio.orzz.website | [orzz5/orzz-bio](https://github.com/orzz5/orzz-bio) |
+| labs.orzz.website | [orzz5/labs](https://github.com/orzz5/labs) |
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT — see [LICENSE](LICENSE).
 
 ## Contact
 
-- **Email**: hello@orzz5.dev
-- **Discord**: orzz5#1234
-- **Website**: https://orzz5.dev
+- **Website**: [orzz.website](https://orzz.website)
+- **GitHub**: [github.com/orzz5](https://github.com/orzz5)
+- **Discord**: [orzz5](https://discord.com/users/667791939453583373)
 
 ---
 
-Made with <3 and lots of coffee by orzz5
+Made with React and lots of coffee by orzz5

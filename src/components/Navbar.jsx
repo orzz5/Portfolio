@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Github, Globe } from 'lucide-react';
 import DiscordIcon from './DiscordIcon';
+import { GITHUB_URL, DISCORD_PROFILE_URL } from '../lib/constants';
 import { useTranslation } from '../contexts/LanguageContext';
 
 const Navbar = () => {
@@ -26,8 +27,8 @@ const Navbar = () => {
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/orzz5', label: 'GitHub' },
-    { icon: DiscordIcon, href: 'https://discord.com/users/667791939453583373', label: 'Discord' },
+    { icon: Github, href: GITHUB_URL, label: 'GitHub' },
+    { icon: DiscordIcon, href: DISCORD_PROFILE_URL, label: 'Discord' },
   ];
 
   const languages = [
@@ -64,7 +65,7 @@ const Navbar = () => {
                 <motion.a
                   key={item.name}
                   href={item.href}
-                  className="text-dark-text hover:text-accent transition-colors duration-200 font-medium"
+                  className="text-dark-text hover:text-brand transition-colors duration-200 font-medium"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -78,11 +79,14 @@ const Navbar = () => {
             <div className="relative">
               <motion.button
                 onClick={() => setShowLangDropdown(!showLangDropdown)}
-                className="liquid-glass flex items-center space-x-1 text-dark-text hover:text-accent p-2 rounded-lg"
+                aria-label="Change language"
+                aria-haspopup="menu"
+                aria-expanded={showLangDropdown}
+                className="liquid-glass flex items-center space-x-1 text-dark-text hover:text-brand p-2 rounded-lg"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Globe size={18} />
+                <Globe size={18} aria-hidden="true" />
                 <span className="hidden sm:inline text-sm font-medium">
                   {languages.find(lang => lang.code === language)?.flag}
                 </span>
@@ -104,8 +108,9 @@ const Navbar = () => {
                           changeLanguage(lang.code);
                           setShowLangDropdown(false);
                         }}
-                        className={`w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-accent/10 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg ${
-                          language === lang.code ? 'bg-accent/20 text-accent' : 'text-dark-text'
+                        aria-current={language === lang.code ? 'true' : undefined}
+                        className={`w-full flex items-center space-x-3 px-4 py-3 text-left hover:bg-brand/10 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg ${
+                          language === lang.code ? 'bg-brand/15 text-brand' : 'text-dark-text'
                         }`}
                         whileHover={{ x: 5 }}
                         whileTap={{ scale: 0.98 }}
@@ -124,23 +129,28 @@ const Navbar = () => {
                 <motion.a
                   key={social.label}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="text-dark-text hover:text-accent transition-colors duration-200"
+                  className="text-dark-text hover:text-brand transition-colors duration-200"
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   whileTap={{ scale: 0.9 }}
                 >
-                  <social.icon size={20} />
+                  <social.icon size={20} aria-hidden="true" />
                 </motion.a>
               ))}
             </div>
 
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden liquid-glass text-dark-text hover:text-accent p-2 rounded-lg"
+              aria-label={isOpen ? 'Close menu' : 'Open menu'}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+              className="md:hidden liquid-glass text-dark-text hover:text-brand p-2 rounded-lg"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
+              {isOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
             </motion.button>
           </div>
         </div>
@@ -149,6 +159,7 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-menu"
             className="md:hidden glass-effect border-t border-accent/20"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
@@ -160,7 +171,7 @@ const Navbar = () => {
                 <motion.a
                   key={item.name}
                   href={item.href}
-                  className="block px-3 py-2 text-dark-text hover:text-accent hover:bg-accent/10 rounded-md transition-all duration-200 font-medium"
+                  className="block px-3 py-2 text-dark-text hover:text-brand hover:bg-brand/10 rounded-md transition-all duration-200 font-medium"
                   onClick={() => setIsOpen(false)}
                   whileHover={{ x: 5 }}
                   whileTap={{ scale: 0.95 }}
@@ -174,12 +185,14 @@ const Navbar = () => {
                   <motion.a
                     key={social.label}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="text-dark-text hover:text-accent transition-colors duration-200"
+                    className="text-dark-text hover:text-brand transition-colors duration-200"
                     whileHover={{ scale: 1.1, rotate: 5 }}
                     whileTap={{ scale: 0.9 }}
                   >
-                    <social.icon size={20} />
+                    <social.icon size={20} aria-hidden="true" />
                   </motion.a>
                 ))}
               </div>

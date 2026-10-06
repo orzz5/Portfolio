@@ -1,16 +1,29 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { ArrowDown, Code } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from '../contexts/LanguageContext';
+import useDiscordPresence from '../hooks/useDiscordPresence';
+import { GITHUB_URL } from '../lib/constants';
 
 const Hero = () => {
   const { t } = useTranslation();
+  const { status, loading } = useDiscordPresence();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+
+  const isOnline = !loading && status === 'online';
+  const statusDotClass = loading
+    ? 'bg-gray-500'
+    : status === 'online'
+      ? 'bg-green-400'
+      : status === 'idle'
+        ? 'bg-yellow-400'
+        : status === 'dnd'
+          ? 'bg-red-400'
+          : 'bg-gray-500';
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -50,15 +63,24 @@ const Hero = () => {
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur-sm text-sm text-gray-300"
           >
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
+              {isOnline && (
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+              )}
+              <span className={`relative inline-flex rounded-full h-2 w-2 ${statusDotClass}`} />
             </span>
             {t('availableForWork')}
           </motion.div>
 
+          <motion.p
+            variants={itemVariants}
+            className="mt-6 text-sm md:text-base font-medium uppercase tracking-[0.3em] text-gray-400"
+          >
+            {t('helloIm')}
+          </motion.p>
+
           <motion.h1
             variants={itemVariants}
-            className="mt-6 text-6xl md:text-8xl lg:text-9xl font-bold gradient-text tracking-tight leading-none"
+            className="mt-2 text-[clamp(3.5rem,13vw,9rem)] font-bold gradient-text tracking-tight leading-none"
           >
             orzz5
           </motion.h1>
@@ -97,7 +119,7 @@ const Hero = () => {
 
           <motion.p
             variants={itemVariants}
-            className="mt-5 text-base md:text-lg text-gray-400 leading-relaxed max-w-4xl mx-auto"
+            className="mt-5 text-base md:text-lg text-gray-300 leading-relaxed max-w-4xl mx-auto"
           >
             {t('heroDescription')}
           </motion.p>
@@ -108,7 +130,7 @@ const Hero = () => {
           >
             <motion.a
               href="#projects"
-              className="liquid-glass inline-flex items-center justify-center whitespace-nowrap text-white px-6 py-3 rounded-full font-semibold text-base"
+              className="inline-flex items-center justify-center whitespace-nowrap bg-brand hover:bg-brand-dark text-[#050505] px-6 py-3 rounded-full font-semibold text-base transition-colors duration-300"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -125,7 +147,7 @@ const Hero = () => {
             </motion.a>
 
             <motion.a
-              href="https://github.com/orzz5"
+              href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="liquid-glass inline-flex items-center justify-center whitespace-nowrap text-accent px-6 py-3 rounded-full font-semibold text-base"
@@ -153,11 +175,12 @@ const Hero = () => {
       >
         <motion.a
           href="#about"
-          className="text-accent hover:text-glow transition-colors duration-200"
+          aria-label={t('about')}
+          className="text-accent hover:text-brand transition-colors duration-200"
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.8 }}
         >
-          <ArrowDown size={24} />
+          <ArrowDown size={24} aria-hidden="true" />
         </motion.a>
       </motion.div>
     </section>

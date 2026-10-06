@@ -1,7 +1,7 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Mail, Globe, ArrowUp } from 'lucide-react';
+import { Github, ArrowUp } from 'lucide-react';
 import DiscordIcon from './DiscordIcon';
+import { GITHUB_URL, DISCORD_PROFILE_URL } from '../lib/constants';
 import { useTranslation } from '../contexts/LanguageContext';
 
 const Footer = () => {
@@ -9,8 +9,8 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/orzz5', label: 'GitHub' },
-    { icon: DiscordIcon, href: 'https://discord.com/users/667791939453583373', label: 'Discord' }
+    { icon: Github, href: GITHUB_URL, label: 'GitHub' },
+    { icon: DiscordIcon, href: DISCORD_PROFILE_URL, label: 'Discord' }
   ];
 
   const quickLinks = [
@@ -44,7 +44,7 @@ const Footer = () => {
               <img src="/logo.png" alt="orzz5 logo" className="w-10 h-10 object-contain" />
               <span className="text-2xl font-bold gradient-text">orzz5</span>
             </motion.div>
-            <p className="text-gray-400 mb-6 max-w-sm leading-relaxed">
+            <p className="text-gray-300 mb-6 max-w-sm leading-relaxed">
               {t('footerDesc')}
             </p>
             <div className="flex space-x-4">
@@ -71,7 +71,7 @@ const Footer = () => {
                 <li key={index}>
                   <a 
                     href={link.href}
-                    className="text-gray-400 hover:text-accent transition-colors duration-200"
+                    className="text-gray-300 hover:text-brand transition-colors duration-200"
                   >
                     {link.name}
                   </a>
@@ -87,7 +87,7 @@ const Footer = () => {
                 <li key={index}>
                   <a 
                     href={service.href}
-                    className="text-gray-400 hover:text-accent transition-colors duration-200"
+                    className="text-gray-300 hover:text-brand transition-colors duration-200"
                   >
                     {service.name}
                   </a>
@@ -98,25 +98,21 @@ const Footer = () => {
 
           <div className="flex flex-col items-center lg:items-end justify-center">
             <motion.button
-              onClick={scrollToTop}
+              onClick={scrollToTop} aria-label={t('backToTop')}
               className="w-12 h-12 liquid-glass rounded-full flex items-center justify-center text-accent hover:border-accent/50 hover:shadow-glow mb-4 transition-all duration-300"
               whileHover={{ scale: 1.1, y: -5 }}
               whileTap={{ scale: 0.9 }}
             >
-              <ArrowUp size={24} />
+              <ArrowUp size={24} aria-hidden="true" />
             </motion.button>
             <span className="text-gray-400 text-sm font-medium">{t('backToTop')}</span>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-accent/10 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-gray-500 text-sm">
+        <div className="pt-8 border-t border-accent/10">
+          <p className="text-gray-400 text-sm text-center md:text-left">
             © {currentYear} orzz5. {t('rights')} <span className="text-accent">❤️</span> {t('andLotsOf')} <span className="text-accent">☕</span>
           </p>
-          <div className="flex space-x-6">
-            <a href="#" className="text-gray-500 hover:text-accent text-sm transition-colors duration-200">Privacy Policy</a>
-            <a href="#" className="text-gray-500 hover:text-accent text-sm transition-colors duration-200">Terms of Service</a>
-          </div>
         </div>
       </div>
     </footer>

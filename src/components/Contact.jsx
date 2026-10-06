@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Github, Send, Briefcase, ChevronDown, User, Mail, FileText } from 'lucide-react';
+import { Github, Send, Briefcase, User, Mail, FileText } from 'lucide-react';
 import { useTranslation } from '../contexts/LanguageContext';
 import DiscordPresence from './DiscordPresence';
 import DiscordIcon from './DiscordIcon';
+import { GITHUB_URL, DISCORD_PROFILE_URL } from '../lib/constants';
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -107,7 +108,7 @@ const Contact = () => {
                 <h3 className="text-2xl font-bold text-accent mb-4">{t('connectOnSocial')}</h3>
                 <div className="flex justify-center space-x-4">
               <motion.a
-                href="https://github.com/orzz5"
+                href={GITHUB_URL} target="_blank" rel="noopener noreferrer" aria-label="GitHub"
                 className="w-12 h-12 liquid-glass rounded-xl flex items-center justify-center text-accent"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
@@ -115,7 +116,7 @@ const Contact = () => {
                 <Github size={20} />
               </motion.a>
               <motion.a
-                href="https://discord.com/users/667791939453583373"
+                href={DISCORD_PROFILE_URL} target="_blank" rel="noopener noreferrer" aria-label="Discord"
                 className="w-12 h-12 liquid-glass rounded-xl flex items-center justify-center text-accent"
                 whileHover={{ scale: 1.1, rotate: 5 }}
                 whileTap={{ scale: 0.9 }}
@@ -136,7 +137,7 @@ const Contact = () => {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="glass-effect rounded-xl p-8 border border-green-500/30 bg-green-900/10"
+                  role="status" className="glass-effect rounded-xl p-8 border border-green-500/30 bg-green-900/10"
                 >
                   <div className="text-center">
                     <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mb-4 mx-auto">
@@ -163,7 +164,7 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition-all duration-200"
+                    className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-brand/60 focus:ring-2 focus:ring-brand/30 transition-all duration-200"
                     placeholder="John Doe"
                   />
                 </div>
@@ -180,7 +181,7 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition-all duration-200"
+                    className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-brand/60 focus:ring-2 focus:ring-brand/30 transition-all duration-200"
                     placeholder="john@example.com"
                   />
                 </div>
@@ -197,7 +198,7 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition-all duration-200"
+                    className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-brand/60 focus:ring-2 focus:ring-brand/30 transition-all duration-200"
                     placeholder="Project Inquiry"
                   />
                 </div>
@@ -213,7 +214,7 @@ const Contact = () => {
                     value={formData.projectType}
                     onChange={handleChange}
                     required
-                    className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition-all duration-200 [&>option]:bg-neutral-900 [&>option]:text-white"
+                    className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-brand/60 focus:ring-2 focus:ring-brand/30 transition-all duration-200 [&>option]:bg-neutral-900 [&>option]:text-white"
                   >
                     <option value="">{t('selectProjectType')}</option>
                     <option value="Web Development">{t('webDevelopment')}</option>
@@ -234,7 +235,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/40 focus:ring-2 focus:ring-white/10 transition-all duration-200 resize-none"
+                    className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-brand/60 focus:ring-2 focus:ring-brand/30 transition-all duration-200 resize-none"
                     placeholder={t('messagePlaceholder')}
                   />
                 </div>
@@ -242,13 +243,13 @@ const Contact = () => {
                 <motion.button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full liquid-glass text-white px-6 py-3 rounded-lg font-semibold flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-brand hover:bg-brand-dark text-[#050505] px-6 py-3 rounded-lg font-semibold flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-300"
                   whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
                   whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                 >
                   {isSubmitting ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                      <div className="w-5 h-5 border-2 border-[#050505] border-t-transparent rounded-full animate-spin" />
                       <span>{t('sending')}</span>
                     </>
                   ) : (

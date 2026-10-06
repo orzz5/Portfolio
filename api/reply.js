@@ -1,9 +1,33 @@
 import { Resend } from 'resend';
 
-export default async function handler(req, res) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+const ALLOWED_ORIGINS = [
+  'https://orzz.website',
+  'https://www.orzz.website',
+  'http://localhost:5173',
+  'http://localhost:4173',
+];
+
+function applyCors(req, res) {
+  const origin = req.headers.origin;
+  if (origin && ALLOWED_ORIGINS.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+    res.setHeader('Vary', 'Origin');
+  }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+export default async function handler(req, res) {
+  applyCors(req, res);
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -28,8 +52,6 @@ export default async function handler(req, res) {
   }
 
   if (adminKey !== expectedKey) {
-    console.log('Auth mismatch - received length:', adminKey.length, 'expected length:', expectedKey?.length);
-    console.log('Received key (first 3 chars):', adminKey.substring(0, 3) + '***');
     return res.status(401).json({
       success: false,
       error: 'Unauthorized'
@@ -84,7 +106,7 @@ export default async function handler(req, res) {
         </div>
         <div class="content">
           <div class="message">
-            ${message.replace(/\n/g, '<br>')}
+            ${escapeHtml(message).replace(/\n/g, '<br>')}
           </div>
           <p>Best regards,<br>Orzz</p>
         </div>

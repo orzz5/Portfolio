@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useRef, useCallback, ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
@@ -164,8 +162,8 @@ export default function KineticGrid({
           bg: "#000000",
           lineActive: { r: 255, g: 255, b: 255, a: 0.9 },
           nodeActive: { r: 255, g: 255, b: 255, a: 1.0 },
-          glow: "255,255,255",
-          ripple: "255,255,255",
+          glow: "74,158,255",
+          ripple: "74,158,255",
         },
       }[globalColor ?? "default"];
 
@@ -310,6 +308,9 @@ export default function KineticGrid({
 
   // ── Animation loop ──────────────────────────────────────────────────────────
 
+  const idleSinceRef = useRef<number>(0);
+  const runningRef = useRef<boolean>(false);
+
   const animate = useCallback(
     (now: number) => {
       const m = mouseRef.current;
@@ -319,10 +320,30 @@ export default function KineticGrid({
       m.y = lerpN(m.y, t.y, LERP_SPEED);
 
       draw(now);
+
+      const moving =
+        Math.abs(m.x - t.x) > 0.5 || Math.abs(m.y - t.y) > 0.5;
+      const idle =
+        now - idleSinceRef.current > 2500 &&
+        !moving &&
+        ripplesRef.current.length === 0;
+
+      if (idle) {
+        runningRef.current = false;
+        return;
+      }
       rafRef.current = requestAnimationFrame(animate);
     },
     [draw],
   );
+
+  const startLoop = useCallback(() => {
+    idleSinceRef.current = performance.now();
+    if (!runningRef.current) {
+      runningRef.current = true;
+      rafRef.current = requestAnimationFrame(animate);
+    }
+  }, [animate]);
 
   // ── Setup ───────────────────────────────────────────────────────────────────
 
@@ -330,23 +351,44 @@ export default function KineticGrid({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
     const setSize = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
       canvas.width = w;
       canvas.height = h;
       sizeRef.current = { w, h };
-      if (mouseRef.current.x === -9999) {
-        mouseRef.current = { x: -9999, y: -9999 };
-        targetMouseRef.current = { x: -9999, y: -9999 };
+      if (prefersReducedMotion) {
+        draw(performance.now());
       }
     };
 
     setSize();
     window.addEventListener("resize", setSize);
 
+    if (prefersReducedMotion) {
+      return () => {
+        window.removeEventListener("resize", setSize);
+      };
+    }
+
+    const markActivity = () => {
+      startLoop();
+    };
+
     const onMouseMove = (e: MouseEvent) => {
       targetMouseRef.current = { x: e.clientX, y: e.clientY };
+      markActivity();
+    };
+
+    const onMouseOut = (e: MouseEvent) => {
+      if (!e.relatedTarget) {
+        targetMouseRef.current = { x: -9999, y: -9999 };
+        markActivity();
+      }
     };
 
     const onClick = (e: MouseEvent) => {
@@ -357,21 +399,36 @@ export default function KineticGrid({
         opacity: 1,
         born: performance.now(),
       });
+      markActivity();
+    };
+
+    const onVisibilityChange = () => {
+      if (document.hidden) {
+        runningRef.current = false;
+        if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      } else {
+        markActivity();
+      }
     };
 
     window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseout", onMouseOut);
     window.addEventListener("click", onClick);
-    rafRef.current = requestAnimationFrame(animate);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    startLoop();
 
     return () => {
       window.removeEventListener("resize", setSize);
       window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseout", onMouseOut);
       window.removeEventListener("click", onClick);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      runningRef.current = false;
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
       }
     };
-  }, [animate]);
+  }, [animate, draw, startLoop]);
 
   // ── Render ──────────────────────────────────────────────────────────────────
 

@@ -1,21 +1,32 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from '../contexts/LanguageContext';
-import { 
-  Code, 
-  Database, 
-  Globe, 
-  Cpu, 
-  Palette,
-  Server,
-  Cloud,
-  GitBranch,
-  Terminal,
-  Layers,
-  Box,
-  Wrench
-} from 'lucide-react';
+import {
+  SiTypescript,
+  SiHtml5,
+  SiCss3,
+  SiReact,
+  SiNextdotjs,
+  SiVuedotjs,
+  SiAngular,
+  SiVite,
+  SiWebpack,
+  SiGit,
+  SiDocker,
+  SiJavascript,
+  SiPostgresql,
+  SiNodedotjs,
+  SiGreensock,
+  SiFramer,
+  SiThreedotjs,
+  SiTailwindcss,
+  SiSass,
+  SiMui,
+  SiChakraui,
+  SiExpress,
+  SiFirebase,
+  SiMongodb,
+} from 'react-icons/si';
 
 const Technologies = () => {
   const { t } = useTranslation();
@@ -48,37 +59,55 @@ const Technologies = () => {
   };
 
   const topRowTechnologies = [
-    { name: 'TypeScript', icon: Code, color: 'text-gray-300' },
-    { name: 'HTML5', icon: Code, color: 'text-gray-300' },
-    { name: 'CSS', icon: Palette, color: 'text-gray-300' },
-    { name: 'React', icon: Layers, color: 'text-gray-300' },
-    { name: 'Next.js', icon: Globe, color: 'text-gray-300' },
-    { name: 'Vue', icon: Box, color: 'text-gray-300' },
-    { name: 'Angular', icon: Layers, color: 'text-gray-300' },
-    { name: 'Vite', icon: Terminal, color: 'text-gray-300' },
-    { name: 'Webpack', icon: Box, color: 'text-gray-300' },
-    { name: 'Git', icon: GitBranch, color: 'text-gray-300' },
-    { name: 'Docker', icon: Server, color: 'text-gray-300' },
-    { name: 'JavaScript', icon: Code, color: 'text-gray-300' },
-    { name: 'TypeScript', icon: Code, color: 'text-gray-300' },
+    { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' },
+    { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
+    { name: 'HTML5', icon: SiHtml5, color: '#E34F26' },
+    { name: 'CSS', icon: SiCss3, color: '#1572B6' },
+    { name: 'React', icon: SiReact, color: '#61DAFB' },
+    { name: 'Next.js', icon: SiNextdotjs, color: '#FFFFFF' },
+    { name: 'Vue', icon: SiVuedotjs, color: '#4FC08D' },
+    { name: 'Angular', icon: SiAngular, color: '#DD0031' },
+    { name: 'Vite', icon: SiVite, color: '#646CFF' },
+    { name: 'Webpack', icon: SiWebpack, color: '#8DD6F9' },
+    { name: 'Git', icon: SiGit, color: '#F05032' },
+    { name: 'Docker', icon: SiDocker, color: '#2496ED' },
   ];
 
   const bottomRowTechnologies = [
-    { name: 'PostgreSQL', icon: Database, color: 'text-gray-300' },
-    { name: 'GSAP', icon: Cpu, color: 'text-gray-300' },
-    { name: 'Framer', icon: Layers, color: 'text-gray-300' },
-    { name: 'Three.js', icon: Box, color: 'text-gray-300' },
-    { name: 'WebGL', icon: Globe, color: 'text-gray-300' },
-    { name: 'Tailwind', icon: Palette, color: 'text-gray-300' },
-    { name: 'Sass', icon: Palette, color: 'text-gray-300' },
-    { name: 'MUI', icon: Box, color: 'text-gray-300' },
-    { name: 'Chakra', icon: Box, color: 'text-gray-300' },
-    { name: 'Express', icon: Server, color: 'text-gray-400' },
-    { name: 'Firebase', icon: Cloud, color: 'text-gray-300' },
-    { name: 'MongoDB', icon: Database, color: 'text-gray-300' },
-    { name: 'PostgreSQL', icon: Database, color: 'text-gray-300' },
-    { name: 'GSAP', icon: Cpu, color: 'text-gray-300' },
+    { name: 'Node.js', icon: SiNodedotjs, color: '#5FA04E' },
+    { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
+    { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
+    { name: 'Firebase', icon: SiFirebase, color: '#FFCA28' },
+    { name: 'Tailwind', icon: SiTailwindcss, color: '#06B6D4' },
+    { name: 'Sass', icon: SiSass, color: '#CC6699' },
+    { name: 'Framer', icon: SiFramer, color: '#0099FF' },
+    { name: 'GSAP', icon: SiGreensock, color: '#88CE02' },
+    { name: 'Three.js', icon: SiThreedotjs, color: '#FFFFFF' },
+    { name: 'MUI', icon: SiMui, color: '#007FFF' },
+    { name: 'Chakra', icon: SiChakraui, color: '#319795' },
+    { name: 'Express', icon: SiExpress, color: '#FFFFFF' },
   ];
+
+  const TechTile = ({ tech, index, row }) => (
+    <motion.div
+      key={`${row}-${index}`}
+      className="flex-shrink-0 w-20 h-20 glass-effect rounded-2xl border border-accent/20 flex items-center justify-center group hover:border-brand/50 transition-all duration-300"
+      whileHover={{ scale: 1.1, y: -5 }}
+      whileTap={{ scale: 0.95 }}
+    >
+      <div className="text-center">
+        <tech.icon
+          size={30}
+          style={{ color: tech.color }}
+          className="mx-auto mb-1 group-hover:scale-110 transition-transform duration-300"
+          aria-hidden="true"
+        />
+        <span className="text-xs text-gray-300 group-hover:text-white transition-colors duration-300">
+          {tech.name}
+        </span>
+      </div>
+    </motion.div>
+  );
 
   return (
     <section id="technologies" className="py-16 lg:py-24 relative overflow-hidden">
@@ -91,7 +120,7 @@ const Technologies = () => {
           className="space-y-12"
         >
           <motion.div variants={itemVariants} className="text-center">
-            <h2 className="text-4xl md:text-5xl font-bold gradient-text tracking-tight mb-4">
+            <h2 className="text-[clamp(2.25rem,5vw,3.75rem)] font-bold gradient-text tracking-tight mb-4">
               {t('whatIUse')}
             </h2>
             <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">
@@ -103,22 +132,7 @@ const Technologies = () => {
             <div className="relative overflow-hidden">
               <div className="flex space-x-8 animate-marquee-right">
                 {[...topRowTechnologies, ...topRowTechnologies].map((tech, index) => (
-                  <motion.div
-                    key={`top-${index}`}
-                    className="flex-shrink-0 w-20 h-20 glass-effect rounded-2xl border border-accent/20 flex items-center justify-center group hover:border-accent/40 transition-all duration-300"
-                    whileHover={{ scale: 1.1, y: -5 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <div className="text-center">
-                      <tech.icon 
-                        size={32} 
-                        className={`${tech.color} mx-auto mb-1 group-hover:scale-110 transition-transform duration-300`} 
-                      />
-                      <span className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
-                        {tech.name}
-                      </span>
-                    </div>
-                  </motion.div>
+                  <TechTile key={`top-${index}`} tech={tech} index={index} row="top" />
                 ))}
               </div>
             </div>
@@ -126,61 +140,13 @@ const Technologies = () => {
             <div className="relative overflow-hidden mt-6">
               <div className="flex space-x-8 animate-marquee-left">
                 {[...bottomRowTechnologies, ...bottomRowTechnologies].map((tech, index) => (
-                  <motion.div
-                    key={`bottom-${index}`}
-                    className="flex-shrink-0 w-20 h-20 glass-effect rounded-2xl border border-accent/20 flex items-center justify-center group hover:border-accent/40 transition-all duration-300"
-                    whileHover={{ scale: 1.1, y: -5 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <div className="text-center">
-                      <tech.icon 
-                        size={32} 
-                        className={`${tech.color} mx-auto mb-1 group-hover:scale-110 transition-transform duration-300`} 
-                      />
-                      <span className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
-                        {tech.name}
-                      </span>
-                    </div>
-                  </motion.div>
+                  <TechTile key={`bottom-${index}`} tech={tech} index={index} row="bottom" />
                 ))}
               </div>
             </div>
           </motion.div>
         </motion.div>
       </div>
-
-      <style jsx>{`
-        @keyframes marquee-right {
-          0% {
-            transform: translateX(0);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
-        }
-
-        @keyframes marquee-left {
-          0% {
-            transform: translateX(-50%);
-          }
-          100% {
-            transform: translateX(0);
-          }
-        }
-
-        .animate-marquee-right {
-          animation: marquee-right 30s linear infinite;
-        }
-
-        .animate-marquee-left {
-          animation: marquee-left 35s linear infinite;
-        }
-
-        .animate-marquee-right:hover,
-        .animate-marquee-left:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
     </section>
   );
 };
