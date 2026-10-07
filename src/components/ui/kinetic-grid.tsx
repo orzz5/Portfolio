@@ -351,29 +351,16 @@ export default function KineticGrid({
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const prefersReducedMotion = window.matchMedia(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
-
     const setSize = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
       canvas.width = w;
       canvas.height = h;
       sizeRef.current = { w, h };
-      if (prefersReducedMotion) {
-        draw(performance.now());
-      }
     };
 
     setSize();
     window.addEventListener("resize", setSize);
-
-    if (prefersReducedMotion) {
-      return () => {
-        window.removeEventListener("resize", setSize);
-      };
-    }
 
     const markActivity = () => {
       startLoop();
