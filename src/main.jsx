@@ -1,13 +1,21 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
 import App from './App.jsx'
 import { LanguageProvider } from './contexts/LanguageContext'
+import { initAccent } from './lib/accents'
+import { initTelemetry } from './lib/telemetry'
 import './index.css'
+
+initAccent()
+initTelemetry()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <LanguageProvider>
-      <App />
-    </LanguageProvider>
+    <BrowserRouter>
+      <LanguageProvider>
+        <App />
+      </LanguageProvider>
+    </BrowserRouter>
   </React.StrictMode>,
 )

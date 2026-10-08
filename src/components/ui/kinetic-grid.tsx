@@ -1,5 +1,6 @@
 import { useEffect, useRef, useCallback, ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { getAccentTriplet } from "@/lib/accents";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -150,20 +151,23 @@ export default function KineticGrid({
       const mouse = mouseRef.current;
       const ripples = ripplesRef.current;
 
+      const accent = getAccentTriplet();
+      const [ar, ag, ab] = accent.split(",").map(Number);
+
       const theme = {
         default: {
           bg: "#161618",
-          lineActive: { r: 74, g: 158, b: 255, a: 0.9 },
-          nodeActive: { r: 74, g: 158, b: 255, a: 1.0 },
-          glow: "74,158,255",
-          ripple: "100,180,255",
+          lineActive: { r: ar, g: ag, b: ab, a: 0.9 },
+          nodeActive: { r: ar, g: ag, b: ab, a: 1.0 },
+          glow: accent,
+          ripple: accent,
         },
         monochrome: {
           bg: "#000000",
           lineActive: { r: 255, g: 255, b: 255, a: 0.9 },
           nodeActive: { r: 255, g: 255, b: 255, a: 1.0 },
-          glow: "74,158,255",
-          ripple: "74,158,255",
+          glow: accent,
+          ripple: accent,
         },
       }[globalColor ?? "default"];
 

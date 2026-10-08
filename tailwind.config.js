@@ -16,8 +16,8 @@ export default {
         'dark-card': '#131313',
         'dark-text': '#e4e4e7',
         'brand': {
-          DEFAULT: '#4a9eff',
-          dark: '#2b7fe8',
+          DEFAULT: 'rgb(var(--brand-rgb) / <alpha-value>)',
+          dark: 'rgb(var(--brand-dark-rgb) / <alpha-value>)',
         },
       },
       animation: {

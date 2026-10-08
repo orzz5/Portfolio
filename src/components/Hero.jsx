@@ -4,6 +4,7 @@ import { ArrowDown, Code } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from '../contexts/LanguageContext';
 import useDiscordPresence from '../hooks/useDiscordPresence';
+import SmartLink from './SmartLink';
 import { GITHUB_URL } from '../lib/constants';
 
 const Hero = () => {
@@ -128,23 +129,19 @@ const Hero = () => {
             variants={itemVariants}
             className="mt-8 flex flex-wrap justify-center items-center gap-3"
           >
-            <motion.a
-              href="#projects"
+            <SmartLink
+              to="/#projects"
               className="inline-flex items-center justify-center whitespace-nowrap bg-brand hover:bg-brand-dark text-[#050505] px-6 py-3 rounded-full font-semibold text-base transition-colors duration-300"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
             >
               {t('viewMyWork')}
-            </motion.a>
+            </SmartLink>
 
-            <motion.a
-              href="#contact"
+            <SmartLink
+              to="/#contact"
               className="liquid-glass inline-flex items-center justify-center whitespace-nowrap text-accent px-6 py-3 rounded-full font-semibold text-base"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
             >
               {t('letsConnect')}
-            </motion.a>
+            </SmartLink>
 
             <motion.a
               href={GITHUB_URL}
@@ -173,15 +170,13 @@ const Hero = () => {
           ease: "easeInOut",
         }}
       >
-        <motion.a
-          href="#about"
+        <SmartLink
+          to="/#about"
           aria-label={t('about')}
-          className="text-accent hover:text-brand transition-colors duration-200"
-          whileHover={{ scale: 1.2 }}
-          whileTap={{ scale: 0.8 }}
+          className="block text-accent hover:text-brand transition-colors duration-200"
         >
           <ArrowDown size={24} aria-hidden="true" />
-        </motion.a>
+        </SmartLink>
       </motion.div>
     </section>
   );

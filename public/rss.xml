@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>orzz5 Blog</title>
+    <link>https://orzz.website/blog</link>
+    <description>Notes, write-ups, and lessons from building and shipping projects on orzz.website.</description>
+    <language>en</language>
+    <lastBuildDate>Thu, 08 Oct 2026 05:58:21 GMT</lastBuildDate>
+    <atom:link href="https://orzz.website/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Why every project I ship lives on orzz.website</title>
+      <link>https://orzz.website/blog/why-every-project-lives-on-orzz-website</link>
+      <guid isPermaLink="true">https://orzz.website/blog/why-every-project-lives-on-orzz-website</guid>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Four subdomains, one domain, one deploy pipeline. How I structure side projects so each one ships fast and stays maintainable.</description>
+    </item>
+    <item>
+      <title>Building the kinetic dot grid behind this site</title>
+      <link>https://orzz.website/blog/building-the-kinetic-dot-grid</link>
+      <guid isPermaLink="true">https://orzz.website/blog/building-the-kinetic-dot-grid</guid>
+      <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
+      <description>A canvas background that warps toward your cursor: how the grid, the warp math, and the idle-pause all fit together in ~450 lines.</description>
+    </item>
+    <item>
+      <title>Going trilingual without an i18n library</title>
+      <link>https://orzz.website/blog/trilingual-portfolio-without-an-i18n-library</link>
+      <guid isPermaLink="true">https://orzz.website/blog/trilingual-portfolio-without-an-i18n-library</guid>
+      <pubDate>Tue, 06 Oct 2026 00:00:00 GMT</pubDate>
+      <description>Three locales, one React context, zero dependencies. Why I wrote a ~60-line translation layer instead of reaching for i18next.</description>
+    </item>
+  </channel>
+</rss>

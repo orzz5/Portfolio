@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useTranslation } from '../contexts/LanguageContext';
 import useGithubStats from '../hooks/useGithubStats';
+import SmartLink from './SmartLink';
+import { PROJECTS } from '../lib/projects';
 import { 
   ExternalLink, 
   Github, 
@@ -13,7 +15,8 @@ import {
   GitFork,
   X,
   Globe,
-  ChevronDown
+  ChevronDown,
+  ArrowRight
 } from 'lucide-react';
 
 const ProjectCard = ({ project, onOpen }) => {
@@ -127,6 +130,16 @@ const ProjectCard = ({ project, onOpen }) => {
               </span>
             ))}
           </div>
+
+          <SmartLink
+            to={`/projects/${project.slug}`}
+            onClick={(e) => e.stopPropagation()}
+            onKeyDown={(e) => e.stopPropagation()}
+            className="inline-flex items-center space-x-1.5 text-xs font-bold uppercase tracking-widest text-brand hover:underline pt-1 self-start"
+          >
+            <span>{t('viewCaseStudy')}</span>
+            <ArrowRight size={13} aria-hidden="true" />
+          </SmartLink>
 
           <div className="flex items-center justify-between pt-4 border-t border-white/5 mt-auto">
             <div className="flex items-center space-x-4 text-xs text-gray-300">
@@ -249,6 +262,14 @@ const ProjectModal = ({ project, isOpen, onClose }) => {
                 >
                   <ExternalLink size={16} aria-hidden="true" />
                 </a>
+                <SmartLink
+                  to={`/projects/${project.slug}`}
+                  onClick={onClose}
+                  className="hidden sm:inline-flex items-center space-x-1 p-1.5 text-xs font-semibold text-brand hover:underline"
+                >
+                  <span>{t('viewCaseStudy')}</span>
+                  <ArrowRight size={13} aria-hidden="true" />
+                </SmartLink>
                 <button 
                   ref={closeBtnRef}
                   onClick={onClose}
@@ -315,56 +336,11 @@ const Projects = () => {
     },
   };
 
-  const projects = [
-    {
-      id: 'bots-testing',
-      title: t('botsProjectTitle'),
-      description: t('botsProjectDesc'),
-      image: '/projects/bots.png',
-      categories: ['web', 'discord'],
-      technologies: ['React', 'Tailwind CSS', 'Discord.js', 'Node.js'],
-      github: 'https://github.com/orzz5/Bots-web',
-      githubRepo: 'orzz5/Bots-web',
-      live: 'https://bots.orzz.website',
-      status: 'Live'
-    },
-    {
-      id: 'weather-app',
-      title: t('weatherProjectTitle'),
-      description: t('weatherProjectDesc'),
-      image: '/projects/weather.png',
-      categories: ['web'],
-      technologies: ['React', 'Weather API', 'Tailwind CSS'],
-      github: 'https://github.com/orzz5/orzz-weather',
-      githubRepo: 'orzz5/orzz-weather',
-      live: 'https://weather.orzz.website',
-      status: 'Live'
-    },
-    {
-      id: 'bio-link',
-      title: t('bioProjectTitle'),
-      description: t('bioProjectDesc'),
-      image: '/projects/bio.png',
-      categories: ['web'],
-      technologies: ['React', 'Tailwind CSS', 'Vercel'],
-      github: 'https://github.com/orzz5/orzz-bio',
-      githubRepo: 'orzz5/orzz-bio',
-      live: 'https://bio.orzz.website',
-      status: 'Live'
-    },
-    {
-      id: 'web-builder',
-      title: t('labsProjectTitle'),
-      description: t('labsProjectDesc'),
-      image: '/projects/labs.png',
-      categories: ['web'],
-      technologies: ['Web Builder', 'React', 'Tailwind CSS'],
-      github: 'https://github.com/orzz5/labs',
-      githubRepo: 'orzz5/labs',
-      live: 'https://labs.orzz.website',
-      status: 'Live'
-    }
-  ];
+  const projects = PROJECTS.map((project) => ({
+    ...project,
+    title: t(project.titleKey),
+    description: t(project.descKey),
+  }));
 
   const filters = [
     { id: 'all', label: t('allProjects'), icon: Code },
@@ -471,15 +447,13 @@ const Projects = () => {
                 <p className="text-gray-300 mb-6">
                   {t('projectsSoonDesc')}
                 </p>
-                <motion.a
-                  href="#contact"
+                <SmartLink
+                  to="/#contact"
                   className="inline-flex items-center space-x-2 bg-brand hover:bg-brand-dark text-[#050505] px-6 py-3 rounded-lg font-semibold transition-colors duration-300"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                 >
                   <span>{t('getNotified')}</span>
                   <ExternalLink size={16} aria-hidden="true" />
-                </motion.a>
+                </SmartLink>
               </div>
             </motion.div>
           )}
