@@ -23,17 +23,20 @@ const Contact = () => {
   });
 
   const [formStatus, setFormStatus] = useState('');
+  const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+    setFormErrors(prev => (prev[name] ? { ...prev, [name]: '' } : prev));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setFormStatus('');
+    setFormErrors({});
 
     try {
       const response = await fetch('/api/contact', {
@@ -55,6 +58,21 @@ const Contact = () => {
           projectType: '',
           message: ''
         });
+      } else if (response.status === 400 && data.errors) {
+        const fieldKeys = {
+          name: 'errNameShort',
+          email: 'errEmailInvalid',
+          subject: 'errSubjectShort',
+          message: 'errMessageShort',
+        };
+        const mapped = {};
+        for (const [field, serverMessage] of Object.entries(data.errors)) {
+          mapped[field] = serverMessage.includes('too long')
+            ? t('errTooLong')
+            : t(fieldKeys[field] || 'messageError');
+        }
+        setFormErrors(mapped);
+        setFormStatus('error');
       } else {
         setFormStatus('error');
       }
@@ -64,6 +82,13 @@ const Contact = () => {
       setIsSubmitting(false);
     }
   };
+
+  const fieldError = (field) =>
+    formErrors[field] ? (
+      <p className="text-red-400 text-xs mt-1.5" role="alert">
+        {formErrors[field]}
+      </p>
+    ) : null;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -164,9 +189,12 @@ const Contact = () => {
                     value={formData.name}
                     onChange={handleChange}
                     required
+                    minLength={2}
+                    maxLength={200}
                     className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-brand/60 focus:ring-2 focus:ring-brand/30 transition-all duration-200"
                     placeholder="John Doe"
                   />
+                  {fieldError('name')}
                 </div>
 
                 <div>
@@ -181,9 +209,11 @@ const Contact = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
+                    maxLength={254}
                     className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-brand/60 focus:ring-2 focus:ring-brand/30 transition-all duration-200"
                     placeholder="john@example.com"
                   />
+                  {fieldError('email')}
                 </div>
 
                 <div>
@@ -198,9 +228,12 @@ const Contact = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
+                    minLength={3}
+                    maxLength={300}
                     className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-brand/60 focus:ring-2 focus:ring-brand/30 transition-all duration-200"
                     placeholder="Project Inquiry"
                   />
+                  {fieldError('subject')}
                 </div>
 
                 <div>
@@ -234,10 +267,13 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
+                    minLength={10}
+                    maxLength={5000}
                     rows={5}
                     className="w-full px-3.5 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-brand/60 focus:ring-2 focus:ring-brand/30 transition-all duration-200 resize-none"
                     placeholder={t('messagePlaceholder')}
                   />
+                  {fieldError('message')}
                 </div>
 
                 <motion.button

@@ -69,7 +69,22 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, subject, message } = req.body;
+    let body = req.body;
+    if (typeof body === 'string') {
+      try {
+        body = JSON.parse(body);
+      } catch {
+        body = null;
+      }
+    }
+    if (!body || typeof body !== 'object') {
+      return res.status(400).json({
+        success: false,
+        error: 'Invalid request body'
+      });
+    }
+
+    const { name, email, subject, message } = body;
 
     const errors = {};
     if (!name || typeof name !== 'string' || name.trim().length < 2) {
