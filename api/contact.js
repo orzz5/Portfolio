@@ -84,7 +84,7 @@ export default async function handler(req, res) {
       });
     }
 
-    const { name, email, subject, message } = body;
+    const { name, email, subject, projectType, message } = body;
 
     const errors = {};
     if (!name || typeof name !== 'string' || name.trim().length < 2) {
@@ -118,11 +118,24 @@ export default async function handler(req, res) {
       name: name.trim(),
       email: email.trim().toLowerCase(),
       subject: subject.trim(),
+      projectType: typeof projectType === 'string' ? projectType.trim() : '',
       message: message.trim(),
       timestamp: new Date().toISOString()
     };
 
-    const resend = new Resend(process.env.RESEND_API_KEY);
+    const apiKey = process.env.RESEND_API_KEY;
+    const toEmail = process.env.TO_EMAIL;
+    const fromEmail = process.env.FROM_EMAIL || 'Orzz Portfolio <contact@orzz.website>';
+
+    if (!apiKey || !toEmail) {
+      console.error('Email service not configured: RESEND_API_KEY and/or TO_EMAIL missing');
+      return res.status(500).json({
+        success: false,
+        error: 'Email service not configured'
+      });
+    }
+
+    const resend = new Resend(apiKey);
 
     const emailHtml = `
       <!DOCTYPE html>
@@ -160,6 +173,10 @@ export default async function handler(req, res) {
             <div class="value">${escapeHtml(sanitizedData.subject)}</div>
           </div>
           <div class="field">
+            <div class="label">Project Type:</div>
+            <div class="value">${escapeHtml(sanitizedData.projectType || 'Not specified')}</div>
+          </div>
+          <div class="field">
             <div class="label">Message:</div>
             <div class="value">${escapeHtml(sanitizedData.message).replace(/\n/g, '<br>')}</div>
           </div>
@@ -176,22 +193,23 @@ export default async function handler(req, res) {
     `;
 
     const { data, error } = await resend.emails.send({
-      from: 'Orzz Portfolio <contact@orzz.website>',
-      to: process.env.TO_EMAIL,
+      from: fromEmail,
+      to: toEmail,
       subject: `New Contact: ${sanitizedData.subject.slice(0, 100)}`,
       html: emailHtml,
-      replyTo: sanitizedData.email
+      text: `New contact form submission\n\nName: ${sanitizedData.name}\nEmail: ${sanitizedData.email}\nSubject: ${sanitizedData.subject}\nProject Type: ${sanitizedData.projectType || 'Not specified'}\n\n${sanitizedData.message}`,
+      reply_to: sanitizedData.email
     });
 
     if (error) {
-      console.error('Resend error:', error);
+      console.error('Resend error:', JSON.stringify(error));
       return res.status(500).json({
         success: false,
         error: 'Failed to send message'
       });
     }
 
-    console.log('Email sent:', data.id);
+    console.log('Email sent:', data.id, 'to:', toEmail, 'from:', fromEmail);
     return res.status(200).json({
       success: true
     });

@@ -167,7 +167,7 @@ const Contact = () => {
                   <div className="text-center">
                     <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mb-4 mx-auto">
                       <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4l4 6 4l1.5 0 0-2-2-2h4l-1.5 0-2 2-2l4-1.5 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
                     <h4 className="text-xl font-bold text-green-400">{t('messageSuccess')}</h4>
